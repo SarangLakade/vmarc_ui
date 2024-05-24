@@ -58,10 +58,10 @@ export default {
   },
   h6: {
     fontFamily: "Plus Jakarta Sans, sans-serif",
-    fontSize: "12px",
+    fontSize: "14px",
     fontWeight: 700,
-    lineHeight: "20px",
-    letterSpacing: "0.1em",
+    // lineHeight: "20px",
+    // letterSpacing: "0.1em",
     textAlign: "left",
   },
   h7: {

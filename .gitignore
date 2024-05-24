@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/public/vmarc
+build.zip
 # testing
 /coverage
 

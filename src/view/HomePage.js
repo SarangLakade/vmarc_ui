@@ -8,7 +8,9 @@ import {
   TextField,
   Tabs,
   Tab,
-  CustomTabPanel,
+  Fade,
+  Fab,
+  IconButton,
 } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -21,11 +23,62 @@ import {
   Twitter,
   Google,
   Search,
+  ArrowUpward,
+  YouTube,
+  Instagram,
+  LinkedIn,
 } from "@mui/icons-material";
 import theme from "../theme";
 import ProductCard from "../component/ProductCard";
+import PropTypes from "prop-types";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
 
-const HomePage = () => {
+function ScrollTop(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#back-to-top-anchor"
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        block: "center",
+      });
+    }
+  };
+
+  return (
+    <Fade in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: "fixed", bottom: 16, right: 16 }}
+      >
+        {children}
+      </Box>
+    </Fade>
+  );
+}
+
+ScrollTop.propTypes = {
+  children: PropTypes.element.isRequired,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
+
+const HomePage = ({ props }) => {
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
@@ -36,9 +89,9 @@ const HomePage = () => {
     <div>
       <Box
         style={{
-          position: "absolute",
+          position: "fixed",
           borderRadius: "0px 20.18px 20.18px 0",
-          padding: "25px 15px",
+          padding: "20px 8px",
           gap: "13.45px",
           backgroundColor: "#1B1B1B",
           flexDirection: "column",
@@ -50,11 +103,45 @@ const HomePage = () => {
         }}
         sx={{ display: { xs: "none", lg: "flex" } }}
       >
-        <Facebook fontSize="large" style={{ color: "white", padding: 10 }} />
-        <Twitter fontSize="large" style={{ color: "white", padding: 10 }} />
-        <Google fontSize="large" style={{ color: "white", padding: 10 }} />
-        {/* <Behance /> */}
-        <Facebook fontSize="large" style={{ color: "white", padding: 10 }} />
+        <IconButton
+          style={{ padding: 10 }}
+          // Change color to primary on hover
+        >
+          <LinkedIn
+            fontSize="large"
+            sx={{
+              color: "white",
+              "&:hover": { color: theme.palette.primary.main },
+            }}
+          />
+        </IconButton>
+        <IconButton style={{ padding: 10 }}>
+          <Instagram
+            fontSize="large"
+            sx={{
+              color: "white",
+              "&:hover": { color: theme.palette.primary.main },
+            }}
+          />
+        </IconButton>
+        <IconButton style={{ padding: 10 }}>
+          <YouTube
+            fontSize="large"
+            sx={{
+              color: "white",
+              "&:hover": { color: theme.palette.primary.main },
+            }}
+          />
+        </IconButton>
+        <IconButton style={{ padding: 10 }}>
+          <Facebook
+            fontSize="large"
+            sx={{
+              color: "white",
+              "&:hover": { color: theme.palette.primary.main },
+            }}
+          />
+        </IconButton>
       </Box>
       <Container maxWidth={"lg"} sx={{ position: "relative" }}>
         <div
@@ -138,13 +225,27 @@ const HomePage = () => {
                 }}
                 flexDirection={"row"}
               >
-                <Typography variant="hb4" component="div">
-                  10+
+                <Typography
+                  component="div"
+                  sx={{
+                    color: theme.palette.primary.main,
+                    textAlign: "center",
+                    fontWeight: 700,
+                    fontFamily: "Poppins, sans-serif",
+                    fontSize: 40,
+                  }}
+                >
+                  1K+
                 </Typography>
                 <Typography variant="h5" component="div" align="center">
                   years of delivering
                 </Typography>
-                <Typography variant="h5" component="div" align="center">
+                <Typography
+                  variant="h5"
+                  component="div"
+                  sx={{ letterSpacing: "6px" }}
+                  align="center"
+                >
                   EXCELLENCE
                 </Typography>
               </Grid>
@@ -159,13 +260,27 @@ const HomePage = () => {
                 }}
                 flexDirection={"row"}
               >
-                <Typography variant="hb4" component="div">
+                <Typography
+                  sx={{
+                    color: theme.palette.primary.main,
+                    textAlign: "center",
+                    fontWeight: 700,
+                    fontFamily: "Poppins, sans-serif",
+                    fontSize: 40,
+                  }}
+                  component="div"
+                >
                   10+
                 </Typography>
                 <Typography variant="h5" component="div" align="center">
                   years of delivering
                 </Typography>
-                <Typography variant="h5" component="div" align="center">
+                <Typography
+                  variant="h5"
+                  component="div"
+                  align="center"
+                  sx={{ letterSpacing: "6px" }}
+                >
                   EXCELLENCE
                 </Typography>
               </Grid>
@@ -399,6 +514,23 @@ const HomePage = () => {
             </TabContext>
           </Grid>
         </Grid>
+        <ScrollTop {...props}>
+          <Fab
+            size="small"
+            aria-label="scroll back to top"
+            sx={{
+              backgroundColor: "rgba(0, 0, 0, 0.8)",
+              "&:hover": {
+                backgroundColor: "rgba(0, 0, 0, 0.8)", // Ensure the background color doesn't change on hover
+              },
+              "&:hover svg": {
+                color: theme.palette.primary.main, // Change the color of the icon to primary on hover
+              },
+            }}
+          >
+            <ArrowUpward sx={{ color: "white" }} />
+          </Fab>
+        </ScrollTop>
       </Container>
     </div>
   );

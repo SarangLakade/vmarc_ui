@@ -1,5 +1,6 @@
 import "./App.css";
-import Navbar from "./component/NavBar";
+import Navbar from "./section/NavBar";
+import Footer from "./section/Footer";
 import * as React from "react";
 import "@fontsource/poppins"; // Defaults to weight 400
 import "@fontsource/poppins/400.css"; // Specify weight
@@ -60,7 +61,7 @@ function App() {
         <BrowserRouter basename="/" future={{ v7_startTransition: true }}>
           <Navbar />
           <AnimatedRoutes />
-          {/* <Footer /> */}
+          <Footer />
           {/* <RouterProvider router={router} /> */}
         </BrowserRouter>
       </React.StrictMode>

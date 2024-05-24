@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Grid,
@@ -8,7 +8,7 @@ import {
   TextField,
   Tabs,
   Tab,
-  CustomTabPanel,
+  Collapse,
 } from "@mui/material";
 import SEBI from "../img/invest1.png";
 import TabContext from "@mui/lab/TabContext";
@@ -16,22 +16,37 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import theme from "../theme";
 import BodCard from "../component/BODCard";
-import backgroundImage from "../img/earth.png";
+import backgroundImage from "../img/earth1.png";
+import {
+  boardDirector,
+  FinancialTableData,
+  ShareholdingData,
+} from "../content";
+import CommitteeOfBoardSection from "../section/CommitteeOfBoardSection";
+import DetailOfBusiness from "../section/DetailOfBusiness";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import CustomTable from "../component/CustomTable";
 
 const InvestorPage = () => {
   const [value, setValue] = React.useState("1");
+  const [expanded, setExpanded] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleToggle = () => {
+    setExpanded(!expanded);
   };
   return (
     <>
       <div
         style={{
           position: "absolute",
-          top: "-85%",
+          top: "-10%",
           left: 0,
-          width: "2930px", // Full screen width
+          width: "1900px", // Full screen width
           overflow: "hidden", // Hide overflow
           zIndex: -1,
         }}
@@ -40,10 +55,10 @@ const InvestorPage = () => {
           src={backgroundImage}
           alt="background"
           style={{
-            width: "2930px%", // Full width of container
+            width: "100%", // Full width of container
             height: "auto", // Maintain aspect ratio
             objectFit: "cover", // Ensure the image is contained within the container
-            transform: `rotate(270deg)`, // Rotate the image if needed
+            // transform: `rotate(270deg)`, // Rotate the image if needed
           }}
         />
       </div>
@@ -60,7 +75,7 @@ const InvestorPage = () => {
           }}
         >
           <Box
-            sx={{ color: "white" }}
+            sx={{ color: "#C3C3C3" }}
             display={"flex"}
             flexDirection={"column"}
           >
@@ -116,32 +131,72 @@ const InvestorPage = () => {
                 value="1"
                 sx={{
                   paddingX: 0,
-                  justifyContent: "center",
-                  alignContent: "center",
-                  alignItems: "center",
                 }}
               >
                 <Typography variant="h4" mt={5} mb={3}>
                   BOARD OF DIRECTORS
                 </Typography>
-                <BodCard />
-                <BodCard />
-                <BodCard />
-                <BodCard />
+                {console.log("boardDirector", boardDirector)}
+                {boardDirector.map((director, index) => (
+                  <BodCard
+                    key={index}
+                    img={director.img}
+                    name={director.name}
+                    position={director.position}
+                    description={director.description}
+                  />
+                ))}
               </TabPanel>
               <TabPanel value="2" sx={{ paddingX: 0 }}>
-                two
+                <Box sx={{ mt: 5, mb: 3 }}>
+                  <Typography variant="body1">
+                    <Collapse in={expanded} collapsedSize={100}>
+                      “V-Marc”is among the global leaders in providing reliable
+                      and consistent quality of products.By supplying our
+                      optimally priced high quality products we enable our
+                      clients to achieve more and outperform their competitors
+                      and stay ahead of the innovation curve. Customers'
+                      satisfaction is our prime objectives it is the foundation
+                      stone for the growth of the company.
+                      <br /> “V-Marc”has earned trust and reputation in India by
+                      winning the customers’ confidence. A very huge quantity of
+                      our cables has been in operation across India. The
+                      Organization is also committed to comply with all
+                      applicable environment, health & safety legislations and
+                      all other requirements of existing & prospective buyers.
+                    </Collapse>
+                  </Typography>
+                  <Box display="flex" justifyContent="center" mt={1}>
+                    <Button
+                      onClick={handleToggle}
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
+                      {expanded ? "Read Less" : "Read More"}
+                      {expanded ? (
+                        <ExpandLessIcon sx={{ color: "white" }} />
+                      ) : (
+                        <ExpandMoreIcon sx={{ color: "white" }} />
+                      )}
+                    </Button>
+                  </Box>
+                </Box>
               </TabPanel>
               <TabPanel value="3" sx={{ paddingX: 0 }}>
-                Three
+                <CustomTable Data={FinancialTableData} />
               </TabPanel>
               <TabPanel value="4" sx={{ paddingX: 0 }}>
-                Three
+                <CustomTable Data={ShareholdingData} />
               </TabPanel>
             </Box>
           </TabContext>
         </Grid>
       </Container>
+      {value == "1" ? <CommitteeOfBoardSection /> : null}
+      {value == "2" ? <DetailOfBusiness /> : null}
     </>
   );
 };
