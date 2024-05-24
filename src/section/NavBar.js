@@ -16,13 +16,15 @@ import {
   ListItem,
   Box,
 } from "@mui/material";
-import { ArrowRight } from "@mui/icons-material";
+import { ExpandMore } from "@mui/icons-material";
 // import LanguageSelector from "../multilingual/LanguageSelector";
 import Logo from "../img/logo.png";
 import theme from "../theme/index";
 import { Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { cableMenu } from "../content";
+import { useNavigate } from "react-router-dom";
+
 const StyledAppBar = styled(AppBar)(({ theme, scrolled }) => ({
   transition: "background-color 0.5s ease",
   backgroundColor: scrolled ? "black" : "transparent",
@@ -68,27 +70,18 @@ const Navbar = () => {
   const lcaseN = location.pathname.toLowerCase().trim();
   console.log("THIS IS lcaseN", lcaseN);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [submenuAnchorEl, setSubmenuAnchorEl] = useState(null);
-  const [activeSubmenu, setActiveSubmenu] = useState(null);
 
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (event, index) => {
-    handleCloseSub();
-    setActiveSubmenu(index);
-    setSubmenuAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
+  const handleMenuClose = () => {
     setAnchorEl(null);
-    setSubmenuAnchorEl(null);
-    setActiveSubmenu(null);
   };
-  const handleCloseSub = () => {
-    setSubmenuAnchorEl(null);
-    setActiveSubmenu(null);
+  const navigate = useNavigate();
+  const handleNavigate = (link) => {
+    navigate(link);
+    handleMenuClose();
   };
 
   return (
@@ -232,13 +225,101 @@ const Navbar = () => {
                 }}
               ></span>
             </Typography>
-
-            <Typography
+            <Button
+              aria-controls="main-menu"
+              aria-haspopup="true"
+              onClick={handleMenuClick}
+              sx={{
+                color: `${theme.palette.textPrimary.main}`,
+                display: "block",
+                textTransform: "capitalize",
+                "&:hover": { color: `${theme.palette.primary.main}` },
+                position: "relative",
+                fontSize: "16px",
+                fontWeight: 400,
+                lineHeight: 1.5,
+                fontFamily: "Poppins, sans-serif",
+              }}
+            >
+              Investor
+              <ExpandMore
+                sx={{
+                  marginLeft: "5px",
+                  verticalAlign: "middle",
+                }}
+              />
+              <span
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  bottom: 15, // Adjust this value to control the gap between text and underline
+                  width: lcaseN.includes("investor") ? "100%" : "0",
+                  borderBottom: `2px solid ${theme.palette.primary.main}`,
+                }}
+              ></span>
+            </Button>
+            <Menu
+              id="main-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+              sx={{
+                "& .MuiPaper-root": {
+                  backgroundColor: "#333", // Dark background color
+                  color: "#fff", // Light text color
+                },
+                "& .MuiMenuItem-root": {
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.main, // Highlight color on hover
+                    color: "#fff",
+                  },
+                  "&.Mui-selected": {
+                    backgroundColor: theme.palette.primary.main, // Highlight color when selected
+                    color: "#fff",
+                    "&:hover": {
+                      backgroundColor: theme.palette.primary.dark, // Darker highlight on hover when selected
+                    },
+                  },
+                },
+              }}
+            >
+              <MenuItem onClick={() => handleNavigate("/investor/sebi46")}>
+                Disclosure - Regulation 46 of the SEBI
+              </MenuItem>
+              <MenuItem
+                aria-controls="submenu"
+                aria-haspopup="true"
+                onClick={() => handleNavigate("/investor/policies")}
+              >
+                Policies & Program
+              </MenuItem>
+              <MenuItem
+                onClick={() => handleNavigate("/investor/announcements")}
+              >
+                {" "}
+                Announcements
+              </MenuItem>
+              <MenuItem onClick={() => handleNavigate("/investor/ipo")}>
+                IPO
+              </MenuItem>
+              <MenuItem
+                onClick={() => handleNavigate("/investor/investor-grievance")}
+              >
+                Investor Grievance
+              </MenuItem>
+              <MenuItem
+                onClick={() => handleNavigate("/investor/details-of-registrar")}
+              >
+                Details Of Registrar and Share Transfer Agents
+              </MenuItem>
+            </Menu>
+            {/* <Typography
               // key={page}
               variant="h5"
               mx={2}
               component={Link} // Use Link component for navigation
-              to={"investor"}
+              to={"investor/sebi46"}
               sx={{
                 my: 3,
                 color: `${theme.palette.textPrimary.main}`,
@@ -251,7 +332,7 @@ const Navbar = () => {
               }}
             >
               Investor
-              {/* Underline */}
+         
               <span
                 style={{
                   position: "absolute",
@@ -261,7 +342,7 @@ const Navbar = () => {
                   borderBottom: `2px solid ${theme.palette.primary.main}`,
                 }}
               ></span>
-            </Typography>
+            </Typography> */}
             <Typography
               // key={page}
               variant="h5"
