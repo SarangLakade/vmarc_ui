@@ -187,7 +187,7 @@ const AboutUsPage = () => {
             </Grid>
           </Grid>
         </Box>
-        <Box py={10}>
+        <Box py={10} sx={{ display: "none" }}>
           <Grid container>
             <Grid
               item
@@ -199,13 +199,23 @@ const AboutUsPage = () => {
                 alignItems: "flex-start",
               }}
             >
+              {/* <Typography>
+                01 */}
               <Typography
                 sx={{
-                  color: "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
+                  background:
+                    "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  textAlign: "right",
                 }}
+                variant="h4" // You can change the variant as per your requirement
               >
-                01
+                A targeted stock policy.
               </Typography>
+              {/* </Typography> */}
             </Grid>
             <Grid item xs={12} md={2.4} sx={{}}>
               <CardMedia
@@ -239,7 +249,20 @@ const AboutUsPage = () => {
                 // backgroundColor: "red",
               }}
             >
-              <Typography>02</Typography>
+              <Typography
+                sx={{
+                  background:
+                    "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  textAlign: "left",
+                }}
+                variant="h4" // You can change the variant as per your requirement
+              >
+                Reliable & Consistent quality
+              </Typography>
             </Grid>
             <Grid
               item
@@ -252,7 +275,21 @@ const AboutUsPage = () => {
                 // backgroundColor: "red",
               }}
             >
-              <Typography>03</Typography>
+              <Typography
+                sx={{
+                  background:
+                    "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  textAlign: "right",
+                }}
+                variant="h4" // You can change the variant as per your requirement
+              >
+                Product development & enrichment as demanded by the changing
+                markets
+              </Typography>
             </Grid>
             <Grid item xs={12} md={2.4}>
               <CardMedia
@@ -300,7 +337,21 @@ const AboutUsPage = () => {
                 // backgroundColor: "red",
               }}
             >
-              <Typography>04</Typography>
+              <Typography
+                sx={{
+                  background:
+                    "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  textAlign: "left",
+                }}
+                variant="h4" // You can change the variant as per your requirement
+              >
+                Technical Support for cable applications / cables cost
+                optimization for projects etc.
+              </Typography>
             </Grid>
             <Grid
               item
@@ -313,7 +364,20 @@ const AboutUsPage = () => {
                 // backgroundColor: "red",
               }}
             >
-              <Typography>05</Typography>
+              <Typography
+                sx={{
+                  background:
+                    "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  textAlign: "right",
+                }}
+                variant="h4" // You can change the variant as per your requirement
+              >
+                Commercially Competetive Pricing
+              </Typography>
             </Grid>
             <Grid item xs={12} md={2.4}>
               <CardMedia
@@ -347,7 +411,20 @@ const AboutUsPage = () => {
                 // backgroundColor: "red",
               }}
             >
-              <Typography>06</Typography>
+              <Typography
+                sx={{
+                  background:
+                    "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  textAlign: "left",
+                }}
+                variant="h4" // You can change the variant as per your requirement
+              >
+                On time deliveries
+              </Typography>
             </Grid>
           </Grid>
         </Box>

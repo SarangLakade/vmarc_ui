@@ -220,7 +220,7 @@ const Navbar = () => {
                 textDecoration: "none", // Remove underline from default
               }}
             >
-              Product
+              Products
               {/* Underline */}
               <span
                 style={{

@@ -7,6 +7,7 @@ import {
   CardContent,
   IconButton,
   Divider,
+  Button,
   Tab,
   CustomTabPanel,
 } from "@mui/material";
@@ -72,6 +73,7 @@ const Footer = () => {
               }}
             >
               <IconButton
+                href="https://www.linkedin.com/company/v-marc/"
                 size="small"
                 aria-label="LinkedIn"
                 sx={{ color: "rgba(255,255,255, 0.8)", mr: 1 }}
@@ -79,6 +81,7 @@ const Footer = () => {
                 <LinkedIn />
               </IconButton>
               <IconButton
+                href="https://www.instagram.com/vmarcindia?igshid=NDk5N2NlZjQ%3D"
                 size="small"
                 aria-label="Instagram"
                 sx={{ color: "rgba(255,255,255, 0.8)", mr: 1 }}
@@ -86,6 +89,7 @@ const Footer = () => {
                 <Instagram />
               </IconButton>
               <IconButton
+                href="https://twitter.com/VMARCwires"
                 size="small"
                 aria-label="Twitter"
                 sx={{ color: "rgba(255,255,255, 0.8)", mr: 1 }}
@@ -93,6 +97,7 @@ const Footer = () => {
                 <Twitter />
               </IconButton>
               <IconButton
+                href="https://www.youtube.com/@v-marcwirescables8469/videos"
                 size="small"
                 aria-label="YouTube"
                 sx={{ color: "rgba(255,255,255, 0.8)", mr: 1 }}
@@ -100,6 +105,7 @@ const Footer = () => {
                 <YouTube />
               </IconButton>
               <IconButton
+                href="https://www.facebook.com/profile.php?id=100068702384250"
                 size="small"
                 aria-label="Facebook"
                 sx={{ color: "rgba(255,255,255, 0.8)", mr: 1 }}
@@ -120,7 +126,13 @@ const Footer = () => {
                 py: 2,
               }}
             >
-              <img src={PlayStore} width={120} style={{ marginRight: "5px" }} />
+              <Button href="https://play.google.com/store/apps/details?id=com.unotag.vmarc">
+                <img
+                  src={PlayStore}
+                  width={120}
+                  style={{ marginRight: "5px" }}
+                />
+              </Button>
               <img src={AppStore} width={120} />
             </Box>
             {/* <Typography variant="h5" color={"#A9A27B"}>

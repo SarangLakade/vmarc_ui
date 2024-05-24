@@ -15,7 +15,7 @@ import {
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import backgroundImage from "../img/earth.png";
+import backgroundImage from "../img/homeEarth.jpg";
 import Frame2 from "../img/Frame2.png";
 import {
   PlayCircleFilled,
@@ -32,6 +32,8 @@ import theme from "../theme";
 import ProductCard from "../component/ProductCard";
 import PropTypes from "prop-types";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -79,6 +81,9 @@ ScrollTop.propTypes = {
 };
 
 const HomePage = ({ props }) => {
+  const navigate = useNavigate();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
@@ -86,7 +91,7 @@ const HomePage = ({ props }) => {
   };
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <Box
         style={{
           position: "fixed",
@@ -105,6 +110,7 @@ const HomePage = ({ props }) => {
       >
         <IconButton
           style={{ padding: 10 }}
+          href="https://www.linkedin.com/company/v-marc/"
           // Change color to primary on hover
         >
           <LinkedIn
@@ -115,7 +121,10 @@ const HomePage = ({ props }) => {
             }}
           />
         </IconButton>
-        <IconButton style={{ padding: 10 }}>
+        <IconButton
+          style={{ padding: 10 }}
+          href="https://www.instagram.com/vmarcindia?igshid=NDk5N2NlZjQ%3D"
+        >
           <Instagram
             fontSize="large"
             sx={{
@@ -124,7 +133,10 @@ const HomePage = ({ props }) => {
             }}
           />
         </IconButton>
-        <IconButton style={{ padding: 10 }}>
+        <IconButton
+          style={{ padding: 10 }}
+          href="https://www.youtube.com/@v-marcwirescables8469/videos"
+        >
           <YouTube
             fontSize="large"
             sx={{
@@ -133,7 +145,10 @@ const HomePage = ({ props }) => {
             }}
           />
         </IconButton>
-        <IconButton style={{ padding: 10 }}>
+        <IconButton
+          style={{ padding: 10 }}
+          href="https://www.facebook.com/profile.php?id=100068702384250"
+        >
           <Facebook
             fontSize="large"
             sx={{
@@ -142,15 +157,27 @@ const HomePage = ({ props }) => {
             }}
           />
         </IconButton>
+        <IconButton
+          style={{ padding: 10 }}
+          href="https://twitter.com/VMARCwires"
+        >
+          <Twitter
+            fontSize="large"
+            sx={{
+              color: "white",
+              "&:hover": { color: theme.palette.primary.main },
+            }}
+          />
+        </IconButton>
       </Box>
-      <Container maxWidth={"lg"} sx={{ position: "relative" }}>
+
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
         <div
           style={{
             position: "absolute",
-            top: "-395px",
-            right: "141px",
-            width: "775px",
-            height: "1018px",
+            top: 0,
+            left: 0,
+            // height: "100%",
             overflow: "visible",
             zIndex: -1,
           }}
@@ -159,13 +186,14 @@ const HomePage = ({ props }) => {
             src={backgroundImage}
             alt="background"
             style={{
-              width: "1848px",
-              height: "1168px",
-              objectFit: "fill",
-              transform: `rotate(155deg)`,
+              width: isMobile ? "400px" : "100%",
+              height: isMobile ? "350px" : "100%",
+              objectFit: isMobile ? "cover" : "contain",
             }}
           />
         </div>
+      </div>
+      <Container maxWidth={"lg"} sx={{ position: "relative" }}>
         <Grid
           container
           spacing={2}
@@ -184,10 +212,18 @@ const HomePage = ({ props }) => {
               Enlightening Lives
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "row", mt: 3 }}>
-              <Button variant="outlined" sx={{ mr: 2 }}>
-                Our Services
+              <Button
+                variant="outlined"
+                sx={{ mr: 2 }}
+                onClick={() => navigate("/product")}
+              >
+                Our Products
               </Button>
-              <Button variant="contained" startIcon={<PlayCircleFilled />}>
+              <Button
+                variant="contained"
+                startIcon={<PlayCircleFilled />}
+                href="https://www.youtube.com/@v-marcwirescables8469/videos"
+              >
                 Watch Video
               </Button>
             </Box>

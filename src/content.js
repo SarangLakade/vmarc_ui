@@ -388,7 +388,7 @@ const ShareholdingData = [
     HY1: [
       {
         name: "Shareholding Pattern",
-        link: "/vmarc/Shareholding-Pattern/2023-24/Board_Meeting_HY2_2022-23.pdf",
+        link: "/vmarc/Shareholding-Pattern/2023-24/23-24.pdf",
       },
     ],
     HY2: [
@@ -441,7 +441,7 @@ const ShareholdingData = [
   },
 ];
 
-const cableMenu = [
+const Products = [
   {
     category: "Communication Cables",
     items: [
@@ -501,5 +501,5 @@ export {
   AnualReturn3,
   FinancialTableData,
   ShareholdingData,
-  cableMenu,
+  Products,
 };

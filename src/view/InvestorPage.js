@@ -27,8 +27,10 @@ import DetailOfBusiness from "../section/DetailOfBusiness";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import CustomTable from "../component/CustomTable";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const InvestorPage = () => {
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [value, setValue] = React.useState("1");
   const [expanded, setExpanded] = useState(false);
 
@@ -44,9 +46,9 @@ const InvestorPage = () => {
       <div
         style={{
           position: "absolute",
-          top: "-10%",
+          top: isMobile ? 0 : "-10%",
           left: 0,
-          width: "1900px", // Full screen width
+          width: "100%", // Full screen width
           overflow: "hidden", // Hide overflow
           zIndex: -1,
         }}

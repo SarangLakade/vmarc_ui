@@ -2,7 +2,7 @@ import theme from "./index";
 export default {
   hb1: {
     fontFamily: "Poppins, sans-serif",
-    fontSize: "80px",
+    fontSize: "60px",
     fontWeight: 500,
     textAlign: "left",
   },

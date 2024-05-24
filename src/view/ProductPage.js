@@ -14,7 +14,8 @@ import {
 } from "@mui/material";
 import backgroundImage from "../img/earth1.png";
 import { InfoOutlined, Download, ContactMail } from "@mui/icons-material";
-
+import useMediaQuery from "@mui/material/useMediaQuery";
+import theme from "../theme";
 const StandardsComponent = ({ title, description }) => {
   return (
     <Box display="flex" flexDirection="column">
@@ -37,6 +38,7 @@ const StandardsComponent = ({ title, description }) => {
 };
 
 const ProductPage = () => {
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [age, setAge] = React.useState("");
 
   const handleChange = (event) => {
@@ -47,9 +49,9 @@ const ProductPage = () => {
       <div
         style={{
           position: "absolute",
-          top: "-10%",
+          top: isMobile ? 0 : "-10%",
           left: 0,
-          width: "1900px", // Full screen width
+          width: "100%", // Full screen width
           overflow: "hidden", // Hide overflow
           zIndex: -1,
         }}
