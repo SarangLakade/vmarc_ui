@@ -34,7 +34,7 @@ const pages = [
   "About Us",
   "Product",
   "Investor",
-  "Carrier",
+  "Careers",
   "Contact Us",
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -267,7 +267,7 @@ const Navbar = () => {
               variant="h5"
               mx={2}
               component={Link} // Use Link component for navigation
-              to={"carrier"}
+              to={"careers"}
               sx={{
                 my: 3,
                 color: `${theme.palette.textPrimary.main}`,
@@ -279,14 +279,14 @@ const Navbar = () => {
                 textDecoration: "none", // Remove underline from default
               }}
             >
-              Career
+              Careers
               {/* Underline */}
               <span
                 style={{
                   position: "absolute",
                   left: 0,
                   bottom: -6, // Adjust this value to control the gap between text and underline
-                  width: lcaseN.includes("carrier") ? "100%" : "0",
+                  width: lcaseN.includes("careers") ? "100%" : "0",
                   borderBottom: `2px solid ${theme.palette.primary.main}`,
                 }}
               ></span>

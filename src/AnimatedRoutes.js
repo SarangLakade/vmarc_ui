@@ -23,7 +23,7 @@ const AnimatedRoutes = () => {
       <Route path="/about us" element={<AboutUsPage />} />
       <Route path="/product" element={<ProductPage />} />
       <Route path="/investor" element={<InvestorPage />} />
-      <Route path="/carrier" element={<CarrierPage />} />
+      <Route path="/careers" element={<CarrierPage />} />
       <Route path="/contact us" element={<ContactUsPage />} />
     </Routes>
     // </AnimatePresence>
