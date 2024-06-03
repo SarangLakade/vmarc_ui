@@ -101,6 +101,8 @@ const InvestorPage = () => {
                 onChange={handleChange}
                 aria-label="lab API tabs example"
                 centered
+                variant="scrollable"
+                scrollButtons="auto"
                 sx={{
                   width: "100%", // Set TabList to take full width
                   borderBottom: "none",
@@ -124,10 +126,10 @@ const InvestorPage = () => {
                   },
                 }}
               >
-                <Tab label="Leadership Team" value="1" />
-                <Tab label="Details of Business" value="2" />
-                <Tab label="Financial Information" value="3" />
-                <Tab label="Shareholding Pattern" value="4" />
+                <Tab label="Leadership Team" value="1" wrapped />
+                <Tab label="Details of Business" value="2" wrapped />
+                <Tab label="Financial Information" value="3" wrapped />
+                <Tab label="Shareholding Pattern" value="4" wrapped />
               </TabList>
               <TabPanel
                 value="1"

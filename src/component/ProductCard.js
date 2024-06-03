@@ -29,8 +29,8 @@ const ProductCard = ({ heading, subHeading, paragraph }) => {
   return (
     <Box
       sx={{
-        width: "344.06px", // Adjust the width as needed
-        height: "500px", // Adjust the height as neededb
+        // width: "344.06px", // Adjust the width as needed
+        height: "400px", // Adjust the height as neededb
         backgroundImage: `url(${Products1})`,
         backgroundSize: "cover", // Cover the entire box
         backgroundPosition: "center", // Center the image

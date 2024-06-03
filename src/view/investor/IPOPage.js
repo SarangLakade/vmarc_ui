@@ -9,6 +9,7 @@ import {
   Tabs,
   Tab,
   Collapse,
+  CardMedia,
 } from "@mui/material";
 import SEBI from "../../img/invest1.png";
 import TabContext from "@mui/lab/TabContext";
@@ -28,6 +29,37 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import CustomTable from "../../component/CustomTable";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import draftRed from "../../img/draft-red-herring-prospectus.jpeg";
+import certificateMaterial from "../../img/Certificate_on_Material_Creditor.jpg";
+import redHerring from "../../img/red-herring-prospectus.png";
+import prospectus from "../../img/prospectus.jpg";
+
+const ImageCard = ({ img, buttonText, link }) => {
+  return (
+    <Grid item xs={12} md={5}>
+      <CardMedia
+        component="img"
+        sx={{
+          height: 450,
+          backgroundColor: "white",
+          objectFit: "cover", // Ensures the image covers the area
+          objectPosition: "top", // Positions the upper part of the image within the container
+        }}
+        image={img}
+        alt="Image"
+      />
+      <Button
+        variant="contained"
+        color="secondary"
+        fullWidth
+        sx={{ mt: 2 }}
+        onClick={() => window.open(link, "_blank")}
+      >
+        {buttonText}
+      </Button>
+    </Grid>
+  );
+};
 
 const IPOPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -73,7 +105,8 @@ const IPOPage = () => {
             justifyContent: "space-between",
             alignContent: "center",
             alignItems: "center",
-            my: 20,
+            mt: 20,
+            mb: 5,
           }}
         >
           <Box
@@ -82,14 +115,14 @@ const IPOPage = () => {
             flexDirection={"column"}
           >
             <Typography variant="hb3">
-              Disclosure As Per Regulation 46 of the
+              {/* Disclosure As Per Regulation 46 of the */}
             </Typography>
             <Typography variant="hb1" fontWeight={800}>
-              SEBI (LODR), 2015
+              IPO
             </Typography>
           </Box>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <img src={SEBI}></img>
+            {/* <img src={SEBI}></img> */}
           </Box>
         </Grid>
         <Grid item sm={12} sx={{}}>
@@ -124,10 +157,9 @@ const IPOPage = () => {
                   },
                 }}
               >
-                <Tab label="Leadership Team" value="1" />
-                <Tab label="Details of Business" value="2" />
-                <Tab label="Financial Information" value="3" />
-                <Tab label="Shareholding Pattern" value="4" />
+                <Tab label="Draft Red Herring Prospectus" value="1" />
+                <Tab label="Red Herring Prospectus" value="2" />
+                <Tab label="Prospectus" value="3" />
               </TabList>
               <TabPanel
                 value="1"
@@ -135,70 +167,62 @@ const IPOPage = () => {
                   paddingX: 0,
                 }}
               >
-                <Typography variant="h4" mt={5} mb={3}>
-                  BOARD OF DIRECTORS
-                </Typography>
-                {console.log("boardDirector", boardDirector)}
-                {boardDirector.map((director, index) => (
-                  <BodCard
-                    key={index}
-                    img={director.img}
-                    name={director.name}
-                    position={director.position}
-                    description={director.description}
+                <Grid
+                  container
+                  gap={2}
+                  sx={{ alignContent: "center", justifyContent: "center" }}
+                >
+                  <ImageCard
+                    img={draftRed}
+                    buttonText="Draft Red Herring Prospectus"
+                    link={
+                      "/vmarc/IPO/Draft-Red-Hearing-Prospectus/V_Marc_DRHP.pdf"
+                    }
                   />
-                ))}
+                  <ImageCard
+                    img={certificateMaterial}
+                    buttonText="Certificate Of Material Creditor"
+                    link={
+                      "/vmarc/IPO/Draft-Red-Hearing-Prospectus/V_Marc_DRHP.pdf"
+                    }
+                  />
+                </Grid>
               </TabPanel>
               <TabPanel value="2" sx={{ paddingX: 0 }}>
-                <Box sx={{ mt: 5, mb: 3 }}>
-                  <Typography variant="body1">
-                    <Collapse in={expanded} collapsedSize={100}>
-                      “V-Marc”is among the global leaders in providing reliable
-                      and consistent quality of products.By supplying our
-                      optimally priced high quality products we enable our
-                      clients to achieve more and outperform their competitors
-                      and stay ahead of the innovation curve. Customers'
-                      satisfaction is our prime objectives it is the foundation
-                      stone for the growth of the company.
-                      <br /> “V-Marc”has earned trust and reputation in India by
-                      winning the customers’ confidence. A very huge quantity of
-                      our cables has been in operation across India. The
-                      Organization is also committed to comply with all
-                      applicable environment, health & safety legislations and
-                      all other requirements of existing & prospective buyers.
-                    </Collapse>
-                  </Typography>
-                  <Box display="flex" justifyContent="center" mt={1}>
-                    <Button
-                      onClick={handleToggle}
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                      }}
-                    >
-                      {expanded ? "Read Less" : "Read More"}
-                      {expanded ? (
-                        <ExpandLessIcon sx={{ color: "white" }} />
-                      ) : (
-                        <ExpandMoreIcon sx={{ color: "white" }} />
-                      )}
-                    </Button>
-                  </Box>
-                </Box>
+                <Grid
+                  container
+                  gap={2}
+                  sx={{ alignContent: "center", justifyContent: "center" }}
+                  link={
+                    "/vmarc/IPO/Draft-Red-Hearing-Prospectus/V_Marc_DRHP.pdf"
+                  }
+                >
+                  <ImageCard
+                    img={redHerring}
+                    buttonText="Red Herring Prospectus"
+                    link={
+                      "/vmarc/IPO/Red-Hearing_Prospectus/V-MarcIndia_RHP.pdf"
+                    }
+                  />
+                </Grid>
               </TabPanel>
               <TabPanel value="3" sx={{ paddingX: 0 }}>
-                <CustomTable Data={FinancialTableData} />
-              </TabPanel>
-              <TabPanel value="4" sx={{ paddingX: 0 }}>
-                <CustomTable Data={ShareholdingData} />
+                <Grid
+                  container
+                  gap={2}
+                  sx={{ alignContent: "center", justifyContent: "center" }}
+                >
+                  <ImageCard
+                    img={prospectus}
+                    buttonText="Prospectus V-Marc India Limited."
+                    link={"/vmarc/IPO/Prospectus/V_Marc_Prospectus.pdf"}
+                  />
+                </Grid>
               </TabPanel>
             </Box>
           </TabContext>
         </Grid>
       </Container>
-      {value == "1" ? <CommitteeOfBoardSection /> : null}
-      {value == "2" ? <DetailOfBusiness /> : null}
     </>
   );
 };

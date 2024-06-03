@@ -441,51 +441,6 @@ const ShareholdingData = [
   },
 ];
 
-const Products = [
-  {
-    category: "Communication Cables",
-    items: [
-      {
-        name: "LAN Cables",
-        icon: "path/to/lan_cables_icon.png",
-      },
-      {
-        name: "CCTV Cables",
-        icon: "path/to/cctv_cables_icon.png",
-      },
-      {
-        name: "Telephone & Switchboard Cables",
-        icon: "path/to/telephone_cables_icon.png",
-      },
-      {
-        name: "CO-AXIAL CABLES",
-        icon: "path/to/coaxial_cables_icon.png",
-      },
-    ],
-  },
-  {
-    category: "HT Cables",
-    items: [
-      {
-        name: "LAN Cables1",
-        icon: "path/to/lan_cables_icon.png",
-      },
-      {
-        name: "CCTV Cables2",
-        icon: "path/to/cctv_cables_icon.png",
-      },
-    ],
-  },
-  {
-    category: "LT Cables",
-    items: [], // Assuming no sub-items for LT Cables, otherwise add items here
-  },
-  {
-    category: "Light Duty Cables",
-    items: [], // Assuming no sub-items for Light Duty Cables, otherwise add items here
-  },
-];
-
 export {
   boardDirector,
   Event,
@@ -501,5 +456,4 @@ export {
   AnualReturn3,
   FinancialTableData,
   ShareholdingData,
-  Products,
 };

@@ -95,7 +95,7 @@ const CustomTable = ({ Data }) => {
             </TableCell>
             {Data[0].annual !== undefined ? (
               <TableCell style={styles.tableCell}>
-                <Typography style={styles.heading}>Anual Return</Typography>
+                <Typography style={styles.heading}>Annual Report</Typography>
               </TableCell>
             ) : null}
           </TableRow>

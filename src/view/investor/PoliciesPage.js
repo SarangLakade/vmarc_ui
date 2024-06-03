@@ -70,7 +70,8 @@ const PoliciesPage = () => {
             justifyContent: "space-between",
             alignContent: "center",
             alignItems: "center",
-            my: 20,
+            mt: 20,
+            mb: 10,
           }}
         >
           <Box
