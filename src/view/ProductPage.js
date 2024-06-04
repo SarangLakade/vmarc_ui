@@ -308,23 +308,21 @@ const ProductPage = () => {
                   fontFamily: "Poppins, sans-serif",
                 }}
               >
-                Inner sheath is provided over the laid-up cores. It is provided
-                to give circular shape to the cable and it provides bedding for
-                the armouring. I.S. 1554 permits following two methods of
-                applying the inner sheath of any thermoplastic material i.e.
-                PVC.
+                The PVC covering over conductor is called insulation and it is
+                provided by extrusion process only. The insulated conductor is
+                called a core.
                 <br />
-                <br /> Extruded Inner Sheath: It is provided by extrusion of
-                thermoplastic material over the laid-up cores. This type of
-                inner sheath also acts as a water barrier between cores and
-                outer sheath. Is case of a puncture in the outer sheath water
-                cannot reach to the cores and hence we recommend that cables for
-                outdoor underground uses should have extruded inner sheath.
-                Taped Inner Sheath: It is provided by wrapping a thermoplastic
-                tape over the laid-up cores. This method saves a process and
-                hence manufactures always provide this type of inner sheath
-                unless the purchase specifications ask for extruded inner
-                sheath.
+                PVC insulation as per IS: 1554:
+                <ol>
+                  <li>
+                    Insulation with type A PVC Compound as per IS: 5831,
+                    suitable for 70°C continuous operation.
+                  </li>
+                  <li>
+                    Insulation with type C PVC Compound as per IS: 5831,
+                    suitable for 85°C continuous operation.
+                  </li>
+                </ol>
               </Typography>
             </Grid>
           </Grid>
