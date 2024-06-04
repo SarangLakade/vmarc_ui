@@ -22,28 +22,30 @@ const CustomListCard = ({ title, list, singlechild, large, pdf }) => {
   };
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-end",
-          justifyItems: "flex-end",
-          alignItems: "flex-end",
-        }}
-      >
+      {title ? (
         <Box
           sx={{
-            backgroundColor: theme.palette.secondary.main,
-            width: 400,
-            borderRadius: "10px 10px 0px 0px",
-            py: 1,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            justifyItems: "flex-end",
+            alignItems: "flex-end",
           }}
         >
-          <Typography variant="h4" sx={{ color: "#FFFF" }}>
-            {title}
-          </Typography>
+          <Box
+            sx={{
+              backgroundColor: theme.palette.secondary.main,
+              width: 400,
+              borderRadius: "10px 10px 0px 0px",
+              py: 1,
+            }}
+          >
+            <Typography variant="h4" sx={{ color: "#FFFF" }}>
+              {title}
+            </Typography>
+          </Box>
         </Box>
-      </Box>
+      ) : null}
 
       <Box
         sx={{
@@ -88,6 +90,7 @@ const CustomListCard = ({ title, list, singlechild, large, pdf }) => {
                   display={"flex"}
                   flexDirection={"row"}
                   justifyContent={"space-between"}
+                  alignItems={"center"}
                 >
                   <Typography
                     sx={{
@@ -112,6 +115,7 @@ const CustomListCard = ({ title, list, singlechild, large, pdf }) => {
                           bgcolor: "white",
                           color: theme.palette.secondary.main,
                         },
+                        width: 130,
                       }}
                       startIcon={<VisibilityIcon />}
                       onClick={() => handleOpenPDF(member.link)}

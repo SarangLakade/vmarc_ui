@@ -6,8 +6,8 @@ import {
   Container,
   Box,
   CardMedia,
-  Select,
-  MenuItem,
+  Card,
+  CardContent,
   FormControl,
   InputLabel,
   styled,
@@ -16,6 +16,8 @@ import backgroundImage from "../img/earth1.png";
 import { InfoOutlined, Download, ContactMail } from "@mui/icons-material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import theme from "../theme";
+import { useNavigate, useLocation } from "react-router-dom";
+
 const StandardsComponent = ({ title, description }) => {
   return (
     <Box display="flex" flexDirection="column">
@@ -36,10 +38,38 @@ const StandardsComponent = ({ title, description }) => {
     </Box>
   );
 };
+const Paragraph = ({ header, description }) => {
+  return (
+    <>
+      <Typography
+        variant="h4"
+        fontWeight={600}
+        textAlign={"left"}
+        sx={{ my: 2, mt: 4 }}
+      >
+        {header}
+      </Typography>
+      <Typography
+        textAlign={"left"}
+        sx={{
+          fontWeight: 400,
+          fontSize: "14px",
+          fontFamily: "Poppins, sans-serif",
+        }}
+        dangerouslySetInnerHTML={{ __html: description }}
+      ></Typography>
+    </>
+  );
+};
 
 const ProductPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { item, category } = location.state || {};
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [age, setAge] = React.useState("");
+  console.log("Item from Product page ", item);
+  console.log("Item from Product category ", category);
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -75,24 +105,30 @@ const ProductPage = () => {
             md={6}
             sx={{
               mt: 20,
+              mb: 10,
               color: "white",
             }}
           >
             <Box mb={10}>
-              <Box>
-                <Button variant="contained" color="primary">
-                  Cable
-                </Button>
-              </Box>
-              <Box mb={2} mt={1}>
-                <Typography variant="hb4">LAN Cables</Typography>
-              </Box>
-              <Typography variant="h5">
-                A LAN cable is a conductor that connects devices in a Local Area
-                Network (LAN) with a network connector. The network cable
-                provides communication between several devices (computers,
-                routers, switches,…).
+              <Typography
+                sx={{
+                  fontFamily: "Poppins",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: "#fff",
+                  textAlign: "center",
+                  display: "inline-block",
+                  backgroundColor: theme.palette.primary.main,
+                  padding: "8px 16px", // Optional: Adds some padding for better appearance
+                  borderRadius: "4px", // Optional: Adds rounded corners
+                }}
+              >
+                {category}
               </Typography>
+              <Box mb={2} mt={1}>
+                <Typography variant="hb4">{item.title}</Typography>
+              </Box>
+              <Typography variant="h5">{item.description}</Typography>
             </Box>
             <Box
               mt={2}
@@ -101,26 +137,23 @@ const ProductPage = () => {
               alignItems="center" // This aligns items vertically center
               justifyContent={"space-between"}
             >
-              <StandardsComponent
-                title={"Standards"}
-                description={"IS-1554 (Part -1) 1988"}
-              />
-              <StandardsComponent
-                title={"Conductor"}
-                description={"Solid Bare Copper"}
-              />
-              <StandardsComponent
-                title={"Insulation"}
-                description={"High Density Polyethylene"}
-              />
+              {item.features.length > 0 &&
+                item.features.map((feature, i) => (
+                  <StandardsComponent
+                    key={i}
+                    title={feature.title}
+                    description={feature.des}
+                  />
+                ))}
             </Box>
 
-            <Box display="flex" gap={2} mt={2}>
+            <Box display="flex" gap={2} my={2} mb={2}>
               <Button
                 variant="contained"
                 color="secondary"
                 startIcon={<ContactMail />}
                 sx={{ px: 5 }}
+                onClick={() => navigate("/contact us")}
               >
                 Contact
               </Button>
@@ -129,10 +162,17 @@ const ProductPage = () => {
                 color="secondary"
                 startIcon={<Download />}
                 sx={{ px: 10 }}
+                onClick={() => window.open(item.brochureLink, "_blank")}
               >
                 Download Brochure
               </Button>
             </Box>
+            {item.paragraph.length > 0 && (
+              <Paragraph
+                header={item.paragraph[0].title}
+                description={item.paragraph[0].des}
+              />
+            )}
           </Grid>
           <Grid item xs={0} md={2}></Grid>
           <Grid
@@ -141,10 +181,6 @@ const ProductPage = () => {
             md={4}
             mt={20}
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "Center",
-              alignItems: "center",
               color: "white",
             }}
           >
@@ -153,99 +189,54 @@ const ProductPage = () => {
               alt="green iguana"
               // width={100}
               // height={100}
-              image={require("../img/prodact_right.png")}
+              src={item.img}
               sx={{ objectFit: "contain" }}
             />
-            {/* <FormControl
-              fullWidth
+            <Card
               sx={{
-                mt: 2,
-                "& .MuiInputLabel-root": {
-                  color: "white",
-                },
-                // "& .MuiSelect-root": {
-                //   color: theme.palette.text.primary,
-                // },
+                mt: 4,
+                backgroundColor: "#1D1D1D",
+                p: 1,
+                borderRadius: "8px",
               }}
             >
-              <InputLabel id="demo-simple-select-label">
-                Change Variants
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                label="Age"
-                sx={{ border: "1px solid #ffff" }}
-                onChange={handleChange}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl> */}
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={8}
-            my={5}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              // justifyContent: "Center",
-              // alignItems: "center",
-              // my: 20,
-              color: "white",
-            }}
-          >
-            <Typography
-              variant="h4"
-              fontWeight={600}
-              textAlign={"left"}
-              sx={{ my: 2 }}
-            >
-              Description
-            </Typography>
-            <Typography
-              textAlign={"left"}
-              sx={{
-                fontWeight: 400,
-                fontSize: "14px",
-                fontFamily: "Poppins, sans-serif",
-              }}
-            >
-              The most acceptable metals for wires & cables are copper and
-              aluminum due to their higher conductivity & ductility. Copper has
-              higher affinity for Sulphur it corrodes in the atmosphere where
-              Sulphur fumes is present. In these conditions tinned copper should
-              be used as it forms a protective film over it & prevents it from
-              tarnishing.
-              <br />
-              <br /> Aluminum oxide film present on the surface of aluminum
-              conductor acts as a barrier to protect it from corrosion.
-              CONDUCTOR CONSTRUCTION The most economical construction for
-              conductor is solid conductor i.e. conductor made of one single
-              wire. As the area of conductor increases, solid conductor becomes
-              stiffer and difficult to handle, therefore stranded construction
-              is adopted.
-              <br />
-              <br /> Here the conductor is made of number of strands. The
-              strands are arranged in spiral layers in 1+6+12+18+…… formations.
-              This geometrical progression of strands provides more compactness
-              & flexibility. The stranded construction of conductors is more
-              suitable for crimping of lugs. To economize the weight of
-              insulating material, to optimize overall diameter, conductors are
-              shaped & compacted in higher sized cables.
-              <br />
-              <br /> The stranded conductor is shaped in to a segment of a
-              circle so that when all the cores are laid, they form a complete
-              circle. These segments are identified as 2 Core- 180 degrees, 3
-              Core- 120 degrees, 4 Core- 90 degrees, 3.5 Core- 100/60 degrees.
-              IS 1554 permits solid conductor construction up to 10 sqmm in
-              aluminium and up to 6 sqmm in copper. It permits the use of shaped
-              conductors for size from 16 sqmm onwards.
-            </Typography>
+              <CardContent>
+                <Typography
+                  variant="body2"
+                  color="#ffff"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  Colour
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    my: 1,
+                  }}
+                >
+                  {item.color.map((color, i) => (
+                    <Box
+                      key={i}
+                      sx={{
+                        width: 24,
+                        height: 24,
+                        backgroundColor: color,
+                        borderRadius: "50%",
+                        marginRight: "8px",
+                      }}
+                    ></Box>
+                  ))}
+                </Box>
+                <Typography
+                  variant="body2"
+                  color="#c9c9c9"
+                  sx={{ fontStyle: "italic" }}
+                >
+                  Available other colour as per customers’ requirement.
+                </Typography>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
       </Container>
@@ -272,58 +263,12 @@ const ProductPage = () => {
                 color: "white",
               }}
             >
-              <Typography
-                variant="h4"
-                fontWeight={600}
-                textAlign={"left"}
-                sx={{ my: 2 }}
-              >
-                Laying Up
-              </Typography>
-              <Typography
-                textAlign={"left"}
-                sx={{
-                  fontWeight: 400,
-                  fontSize: "14px",
-                  fontFamily: "Poppins, sans-serif",
-                }}
-              >
-                The cores are laid up with suitable lay. The final layer always
-                has a right hand lay i.e. if you look along the cable, the cores
-                move to your right hand or clock wise.{" "}
-              </Typography>
-              <Typography
-                variant="h4"
-                fontWeight={600}
-                textAlign={"left"}
-                sx={{ my: 2 }}
-              >
-                Inner sheath
-              </Typography>
-              <Typography
-                textAlign={"left"}
-                sx={{
-                  fontWeight: 400,
-                  fontSize: "14px",
-                  fontFamily: "Poppins, sans-serif",
-                }}
-              >
-                The PVC covering over conductor is called insulation and it is
-                provided by extrusion process only. The insulated conductor is
-                called a core.
-                <br />
-                PVC insulation as per IS: 1554:
-                <ol>
-                  <li>
-                    Insulation with type A PVC Compound as per IS: 5831,
-                    suitable for 70°C continuous operation.
-                  </li>
-                  <li>
-                    Insulation with type C PVC Compound as per IS: 5831,
-                    suitable for 85°C continuous operation.
-                  </li>
-                </ol>
-              </Typography>
+              {item.paragraph.length > 0 &&
+                item.paragraph
+                  .slice(1)
+                  .map((para, i) => (
+                    <Paragraph header={para.title} description={para.des} />
+                  ))}
             </Grid>
           </Grid>
         </Container>

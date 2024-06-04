@@ -1,28 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
 import {
   Button,
   Menu,
   MenuItem,
-  ListItemIcon,
+  Drawer,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  List,
+  Container,
   ListItemText,
   ListItem,
+  Collapse,
+  ListItemButton,
   Box,
 } from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+import {
+  ExpandMore,
+  KeyboardArrowRight,
+  MenuOutlined,
+  Close,
+} from "@mui/icons-material";
+import ExpandLess from "@mui/icons-material/ExpandLess";
 // import LanguageSelector from "../multilingual/LanguageSelector";
+// import Logo from "../img/V-mark-logo-horizontal.png";
 import Logo from "../img/logo.png";
 import theme from "../theme/index";
-import { Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { cableMenu } from "../content";
+import { Products } from "../productContent";
 import { useNavigate } from "react-router-dom";
 
 const StyledAppBar = styled(AppBar)(({ theme, scrolled }) => ({
@@ -31,14 +38,6 @@ const StyledAppBar = styled(AppBar)(({ theme, scrolled }) => ({
   boxShadow: scrolled ? undefined : "none",
 }));
 
-const pages = [
-  "Home",
-  "About Us",
-  "Product",
-  "Investor",
-  "Careers",
-  "Contact Us",
-];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
@@ -65,23 +64,44 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  // const lcaseN = location.pathname;
 
   const lcaseN = location.pathname.toLowerCase().trim();
-  console.log("THIS IS lcaseN", lcaseN);
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleMenuClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
   const navigate = useNavigate();
-  const handleNavigate = (link) => {
+
+  const [investorMenu, setInvestorMenu] = useState(null);
+  const [productMenu, setProductMenu] = useState(null);
+  const [productSubMenu, setProductSubMenu] = useState({});
+  const [openInvestor, setOpenInvestor] = React.useState(false);
+
+  const handleClickInvestor = () => {
+    setOpenInvestor(!openInvestor);
+  };
+  const [openProductCat, setOpenProductCat] = useState(false);
+  const [openProductItems, setOpenProductItems] = useState({});
+
+  const handleClickProductCat = () => {
+    setOpenProductCat(!openProductCat);
+    // toggleDrawer();
+  };
+
+  const handleClickProductItem = (index) => {
+    setOpenProductItems((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index],
+    }));
+  };
+  const handleClickProductMenuItem = (event, index) => {
+    setProductSubMenu((prev) => ({ ...prev, [index]: event.currentTarget }));
+  };
+  const handleClickProductSubMenuItem = (item, category) => {
+    navigate("product", { state: { item, category } });
+    setProductSubMenu({});
+    setProductMenu(null);
+  };
+
+  const handleInvestorNavigate = (link) => {
     navigate(link);
-    handleMenuClose();
+    setInvestorMenu(null);
   };
 
   return (
@@ -100,7 +120,7 @@ const Navbar = () => {
             justifyContent: "space-between",
           }}
         >
-          <img src={Logo} alt="logo" height={"70px"} />
+          <img src={Logo} alt="logo" height={"120px"} />
 
           {/* Navigation links for medium and larger screens */}
           <Box sx={{ display: { xs: "none", md: "flex" } }} ml={4}>
@@ -120,9 +140,7 @@ const Navbar = () => {
                 display: "block",
                 "&:hover": { color: `${theme.palette.primary.main}` },
                 position: "relative",
-              }}
-              style={{
-                textDecoration: "none", // Remove underline from default
+                textDecoration: "none",
               }}
             >
               Home
@@ -150,9 +168,7 @@ const Navbar = () => {
                 display: "block",
                 "&:hover": { color: `${theme.palette.primary.main}` },
                 position: "relative",
-              }}
-              style={{
-                textDecoration: "none", // Remove underline from default
+                textDecoration: "none",
               }}
             >
               About Us
@@ -179,9 +195,7 @@ const Navbar = () => {
                 display: "block",
                 "&:hover": { color: `${theme.palette.primary.main}` },
                 position: "relative",
-              }}
-              style={{
-                textDecoration: "none", // Remove underline from default
+                textDecoration: "none",
               }}
             >
               Contact Us
@@ -196,44 +210,140 @@ const Navbar = () => {
                 }}
               ></span>
             </Typography>
-            <Typography
-              // key={page}
-              variant="h5"
-              mx={2}
-              component={Link} // Use Link component for navigation
-              to={"product"}
+
+            <Button
+              aria-controls="main-menu"
+              aria-haspopup="true"
+              onClick={(event) => setProductMenu(event.currentTarget)}
               sx={{
-                my: 3,
                 color: `${theme.palette.textPrimary.main}`,
-                display: "block",
-                "&:hover": { color: `${theme.palette.primary.main}` },
+                // display: "block",
+                textTransform: "capitalize",
+                "&:hover": {
+                  color: `${theme.palette.primary.main}`,
+                  backgroundColor: "transparent",
+                },
                 position: "relative",
-              }}
-              style={{
-                textDecoration: "none", // Remove underline from default
+                fontSize: "16px",
+                fontWeight: 400,
+                lineHeight: 1.5,
+                fontFamily: "Poppins, sans-serif",
               }}
             >
               Products
-              {/* Underline */}
+              <ExpandMore
+                sx={{
+                  marginLeft: "5px",
+                  verticalAlign: "middle",
+                }}
+              />
               <span
                 style={{
                   position: "absolute",
                   left: 0,
-                  bottom: -6, // Adjust this value to control the gap between text and underline
+                  bottom: 15, // Adjust this value to control the gap between text and underline
                   width: lcaseN.includes("product") ? "100%" : "0",
                   borderBottom: `2px solid ${theme.palette.primary.main}`,
                 }}
               ></span>
-            </Typography>
+            </Button>
+            <Menu
+              id="main-menu"
+              anchorEl={productMenu}
+              keepMounted
+              open={Boolean(productMenu)}
+              onClose={() => setProductMenu(null)}
+              sx={{
+                "& .MuiPaper-root": {
+                  backgroundColor: "#333",
+                  color: "#fff",
+                },
+                "& .MuiMenuItem-root": {
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.main,
+                    color: "#fff",
+                  },
+                  "&.Mui-selected": {
+                    backgroundColor: theme.palette.primary.main,
+                    color: "#fff",
+                    "&:hover": {
+                      backgroundColor: theme.palette.primary.dark,
+                    },
+                  },
+                },
+              }}
+            >
+              {Products.map((product, i) => (
+                <MenuItem
+                  key={i}
+                  onClick={(event) => {
+                    handleClickProductMenuItem(event, i);
+                  }}
+                >
+                  {product.category}
+                  {product.items.length > 0 ? <KeyboardArrowRight /> : null}
+                  <Menu
+                    id={`submenu-${i}`} // Unique ID for each submenu
+                    anchorEl={productSubMenu[i]}
+                    keepMounted
+                    open={Boolean(productSubMenu[i])}
+                    onClose={() => setProductSubMenu({})}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    sx={{
+                      "& .MuiPaper-root": {
+                        backgroundColor: "#333",
+                        color: "#fff",
+                      },
+                      "& .MuiMenuItem-root": {
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.main,
+                          color: "#fff",
+                        },
+                        "&.Mui-selected": {
+                          backgroundColor: theme.palette.primary.main,
+                          color: "#fff",
+                          "&:hover": {
+                            backgroundColor: theme.palette.primary.dark,
+                          },
+                        },
+                      },
+                    }}
+                  >
+                    {product.items.map((item, j) => (
+                      <MenuItem
+                        key={j}
+                        onClick={() =>
+                          handleClickProductSubMenuItem(item, product.category)
+                        }
+                      >
+                        {item.title}
+                        {item.length > 0 ? <KeyboardArrowRight /> : null}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </MenuItem>
+              ))}
+            </Menu>
+
             <Button
               aria-controls="main-menu"
               aria-haspopup="true"
-              onClick={handleMenuClick}
+              onClick={(event) => setInvestorMenu(event.currentTarget)}
               sx={{
                 color: `${theme.palette.textPrimary.main}`,
                 display: "block",
                 textTransform: "capitalize",
-                "&:hover": { color: `${theme.palette.primary.main}` },
+                "&:hover": {
+                  color: `${theme.palette.primary.main}`,
+                  backgroundColor: "transparent",
+                },
                 position: "relative",
                 fontSize: "16px",
                 fontWeight: 400,
@@ -260,10 +370,10 @@ const Navbar = () => {
             </Button>
             <Menu
               id="main-menu"
-              anchorEl={anchorEl}
+              anchorEl={investorMenu}
               keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
+              open={Boolean(investorMenu)}
+              onClose={() => setInvestorMenu(null)}
               sx={{
                 "& .MuiPaper-root": {
                   backgroundColor: "#333", // Dark background color
@@ -284,65 +394,44 @@ const Navbar = () => {
                 },
               }}
             >
-              <MenuItem onClick={() => handleNavigate("/investor/sebi46")}>
+              <MenuItem
+                onClick={() => handleInvestorNavigate("/investor/sebi46")}
+              >
                 Disclosure - Regulation 46 of the SEBI
               </MenuItem>
               <MenuItem
                 aria-controls="submenu"
                 aria-haspopup="true"
-                onClick={() => handleNavigate("/investor/policies")}
+                onClick={() => handleInvestorNavigate("/investor/policies")}
               >
                 Policies & Program
               </MenuItem>
               <MenuItem
-                onClick={() => handleNavigate("/investor/announcements")}
+                onClick={() =>
+                  handleInvestorNavigate("/investor/announcements")
+                }
               >
                 {" "}
                 Announcements
               </MenuItem>
-              <MenuItem onClick={() => handleNavigate("/investor/ipo")}>
+              <MenuItem onClick={() => handleInvestorNavigate("/investor/ipo")}>
                 IPO
               </MenuItem>
               <MenuItem
-                onClick={() => handleNavigate("/investor/investor-grievance")}
+                onClick={() =>
+                  handleInvestorNavigate("/investor/investor-grievance")
+                }
               >
                 Investor Grievance
               </MenuItem>
               <MenuItem
-                onClick={() => handleNavigate("/investor/details-of-registrar")}
+                onClick={() =>
+                  handleInvestorNavigate("/investor/details-of-registrar")
+                }
               >
                 Details Of Registrar and Share Transfer Agents
               </MenuItem>
             </Menu>
-            {/* <Typography
-              // key={page}
-              variant="h5"
-              mx={2}
-              component={Link} // Use Link component for navigation
-              to={"investor/sebi46"}
-              sx={{
-                my: 3,
-                color: `${theme.palette.textPrimary.main}`,
-                display: "block",
-                "&:hover": { color: `${theme.palette.primary.main}` },
-                position: "relative",
-              }}
-              style={{
-                textDecoration: "none", // Remove underline from default
-              }}
-            >
-              Investor
-         
-              <span
-                style={{
-                  position: "absolute",
-                  left: 0,
-                  bottom: -6, // Adjust this value to control the gap between text and underline
-                  width: lcaseN.includes("investor") ? "100%" : "0",
-                  borderBottom: `2px solid ${theme.palette.primary.main}`,
-                }}
-              ></span>
-            </Typography> */}
             <Typography
               // key={page}
               variant="h5"
@@ -393,7 +482,7 @@ const Navbar = () => {
               display: { md: "none", color: theme.palette.textPrimary.main },
             }}
           >
-            <MenuIcon />
+            <MenuOutlined />
           </IconButton>
 
           {/* User settings */}
@@ -408,28 +497,234 @@ const Navbar = () => {
         </Toolbar>
 
         {/* Responsive drawer for small screens */}
-        <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer}>
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={toggleDrawer}
+          sx={{
+            "& .MuiDrawer-paper": {
+              width: "350px", // Set your desired width here
+              backgroundColor: "#2B2B2B", // Optional: Set a background color for the drawer
+            },
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "end",
+              justifyContent: "flex-end",
+              m: 2,
+            }}
+          >
+            <IconButton aria-label="delete" onClick={toggleDrawer}>
+              <Close sx={{ color: "white" }} />
+            </IconButton>
+          </Box>
           <List>
-            {pages.map((page) => (
-              <ListItem key={page}>
-                <Typography
-                  key={page}
-                  variant="h4"
-                  mx={2}
-                  component={Link} // Use Link component for navigation
-                  to={page == "Home" ? `/` : `/${page.toLowerCase()}`}
-                  onClick={toggleDrawer}
-                  sx={{
-                    my: 1,
-                    color: `${theme.palette.textGray.main}`,
-                    display: "block",
-                    textDecoration: "none", // Remove underline from links
-                  }}
+            <ListItem>
+              <Typography
+                variant="h4"
+                mx={2}
+                component={Link}
+                to="/"
+                onClick={toggleDrawer}
+                sx={{
+                  my: 1,
+                  color: "#fff",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+              >
+                Home
+              </Typography>
+            </ListItem>
+            <ListItem>
+              <Typography
+                variant="h4"
+                mx={2}
+                component={Link}
+                to="/about us"
+                onClick={toggleDrawer}
+                sx={{
+                  my: 1,
+                  color: "#fff",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+              >
+                About Us
+              </Typography>
+            </ListItem>
+            <ListItem
+              sx={{ display: "flex", alignItems: "center" }}
+              onClick={handleClickProductCat}
+            >
+              <Typography
+                variant="h4"
+                mx={2}
+                // component={Link}
+                // to="/product"
+                sx={{
+                  my: 1,
+                  color: "#fff",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+              >
+                Product
+              </Typography>
+              {openProductCat ? (
+                <ExpandLess sx={{ color: "#fff" }} />
+              ) : (
+                <ExpandMore sx={{ color: "#fff" }} />
+              )}
+            </ListItem>
+            <Collapse in={openProductCat} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                {Products.map((product, i) => (
+                  <div key={i}>
+                    <ListItemButton
+                      sx={{ mx: 2, color: "#c9c9c9" }}
+                      onClick={() => handleClickProductItem(i)}
+                    >
+                      {product.category}
+                      {openProductItems[i] ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse
+                      in={openProductItems[i]}
+                      timeout="auto"
+                      unmountOnExit
+                    >
+                      <List id={`sublist${i}`} component="div" disablePadding>
+                        {product.items.map((item, j) => (
+                          <ListItemButton
+                            key={j}
+                            sx={{ mx: 4, color: "#c9c9c9" }}
+                            onClick={() =>
+                              handleClickProductSubMenuItem(
+                                item,
+                                product.category
+                              )
+                            }
+                          >
+                            {item.title}
+                            {item.items && item.items.length > 0 ? (
+                              <KeyboardArrowRight />
+                            ) : null}
+                          </ListItemButton>
+                        ))}
+                      </List>
+                    </Collapse>
+                  </div>
+                ))}
+              </List>
+            </Collapse>
+
+            <ListItem
+              onClick={handleClickInvestor}
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <Typography
+                variant="h4"
+                mx={2}
+                sx={{
+                  my: 1,
+                  color: "#fff",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+              >
+                Investor
+              </Typography>
+              {openInvestor ? (
+                <ExpandLess sx={{ color: "#fff" }} />
+              ) : (
+                <ExpandMore sx={{ color: "#fff" }} />
+              )}
+            </ListItem>
+            <Collapse in={openInvestor} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton
+                  onClick={() => handleInvestorNavigate("/investor/sebi46")}
+                  sx={{ mx: 2, color: "#c9c9c9" }}
                 >
-                  {page}
-                </Typography>
-              </ListItem>
-            ))}
+                  Disclosure - Regulation 46 of the SEBI
+                </ListItemButton>
+                <ListItemButton
+                  aria-controls="submenu"
+                  aria-haspopup="true"
+                  onClick={() => handleInvestorNavigate("/investor/policies")}
+                  sx={{ mx: 2, color: "#c9c9c9" }}
+                >
+                  Policies & Program
+                </ListItemButton>
+                <ListItemButton
+                  onClick={() =>
+                    handleInvestorNavigate("/investor/announcements")
+                  }
+                  sx={{ mx: 2, color: "#c9c9c9" }}
+                >
+                  {" "}
+                  Announcements
+                </ListItemButton>
+                <ListItemButton
+                  onClick={() => handleInvestorNavigate("/investor/ipo")}
+                  sx={{ mx: 2, color: "#c9c9c9" }}
+                >
+                  IPO
+                </ListItemButton>
+                <ListItemButton
+                  onClick={() =>
+                    handleInvestorNavigate("/investor/investor-grievance")
+                  }
+                  sx={{ mx: 2, color: "#c9c9c9" }}
+                >
+                  Investor Grievance
+                </ListItemButton>
+                <ListItemButton
+                  onClick={() =>
+                    handleInvestorNavigate("/investor/details-of-registrar")
+                  }
+                  sx={{ mx: 2, color: "#c9c9c9" }}
+                >
+                  Details Of Registrar and Share Transfer Agents
+                </ListItemButton>
+              </List>
+            </Collapse>
+            <ListItem>
+              <Typography
+                variant="h4"
+                mx={2}
+                component={Link}
+                to="/carrier"
+                onClick={toggleDrawer}
+                sx={{
+                  my: 1,
+                  color: "#fff",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+              >
+                Carrier
+              </Typography>
+            </ListItem>
+            <ListItem>
+              <Typography
+                variant="h4"
+                mx={2}
+                component={Link}
+                to="/contact us"
+                onClick={toggleDrawer}
+                sx={{
+                  my: 1,
+                  color: "#fff",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+              >
+                Contact Us
+              </Typography>
+            </ListItem>
           </List>
         </Drawer>
       </Container>

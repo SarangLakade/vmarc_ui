@@ -59,6 +59,8 @@ const CommitteeOfBoardSection = () => {
                 onChange={handleCommiteeChange}
                 aria-label="lab API tabs example"
                 centered
+                variant="scrollable"
+                scrollButtons="auto"
                 sx={{
                   width: "100%", // Set TabList to take full width
                   borderBottom: "none",
@@ -82,10 +84,14 @@ const CommitteeOfBoardSection = () => {
                   },
                 }}
               >
-                <Tab label="Audit" value="1" />
-                <Tab label="Nomination And Remuneration" value="2" />
-                <Tab label="Stakeholder Relationship" value="3" />
-                <Tab label="Corporate Social Responsibility" value="4" />
+                <Tab label="Audit" value="1" wrapped />
+                <Tab label="Nomination And Remuneration" value="2" wrapped />
+                <Tab label="Stakeholder Relationship" value="3" wrapped />
+                <Tab
+                  label="Corporate Social Responsibility"
+                  value="4"
+                  wrapped
+                />
               </TabList>
               <TabPanel
                 value="1"

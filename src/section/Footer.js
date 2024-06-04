@@ -9,6 +9,7 @@ import {
   Divider,
   Button,
   Tab,
+  Link,
   CustomTabPanel,
 } from "@mui/material";
 import theme from "../theme";
@@ -19,7 +20,7 @@ import {
   Instagram,
   LinkedIn,
 } from "@mui/icons-material";
-import Logo from "../img/v-marc_logo.png";
+import Logo from "../img/V-mark-logo-horizontal-w.png";
 import PlayStore from "../img/google-play.png";
 import AppStore from "../img/app-store.png";
 
@@ -50,7 +51,7 @@ const Footer = () => {
             filter: "brightness(0) invert(1)",
           }}
         >
-          <img src={Logo} width={150} />
+          <img src={Logo} height={70} />
         </div>
       </Container>
       <Divider
@@ -63,7 +64,7 @@ const Footer = () => {
 
       <Container maxWidth={"lg"} sx={{ position: "relative" }}>
         <Grid container spacing={3} py={3}>
-          <Grid item xs={12} lg={3} sx={{}}>
+          <Grid item xs={12} lg={6} md={4} sm={12} sx={{}}>
             <Box
               sx={{
                 display: "flex",
@@ -139,8 +140,7 @@ const Footer = () => {
           {position}
         </Typography> */}
           </Grid>
-          <Grid item xs={12} lg={3} sx={{}}></Grid>
-          <Grid item xs={12} lg={3} sx={{}}>
+          <Grid item xs={12} lg={3} md={4} sm={6} sx={{}}>
             <Box>
               <Typography style={style.heading} color="white">
                 Registered Office
@@ -150,25 +150,42 @@ const Footer = () => {
                 Uttarakhand – 249403
               </Typography>
               <Typography style={style.subHeading}>
-                <b>Phone:</b> 01334-239638 <br />
-                <b>Customer Support:</b> 70555 21808 <br />
-                <b>Email:</b> info@v-marc.in
+                <b>Phone:</b>
+                <Link href="tel:01334-239638" color="inherit">
+                  01334-239638
+                </Link>
+                <br />
+                <b>Customer Support:</b>{" "}
+                <Link href="tel:70555 21808 " color="inherit">
+                  70555 21808
+                </Link>
+                <br />
+                <b>Email:</b>
+                <Link href="mailto: info@v-marc.in" color="inherit">
+                  info@v-marc.in
+                </Link>{" "}
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} lg={3} sx={{}}>
+
+          <Grid item xs={12} lg={3} md={4} sm={6} sx={{}}>
             <Box>
               <Typography style={style.heading} color="white">
-                Sales Office
+                Noida Office
               </Typography>
               <Typography style={{ ...style.subHeading, marginBottom: "7px" }}>
-                203, Aditya Complex, Local Shopping Centre, Savita Vihar, Delhi
-                – 110092.
+                Trapezoid IT Park, 3rd Floor, C-27, C Block,Phase 2, Sector-62,
+                Noida, Uttar Pradesh - 201309
               </Typography>
               <Typography style={style.subHeading}>
-                <b>Phone:</b> 011-43025843 <br />
-                <b>Email:</b> sales@v-marc.in <br />
-                salesproject@v-marc.in
+                <b>Email:</b>{" "}
+                <Link href="mailto:sales@v-marc.in" color="inherit">
+                  sales@v-marc.in
+                </Link>
+                <br />
+                <Link href="mailto:salesproject@v-marc.in" color="inherit">
+                  salesproject@v-marc.in
+                </Link>
               </Typography>
             </Box>
           </Grid>

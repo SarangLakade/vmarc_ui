@@ -11,11 +11,13 @@ import {
   Fade,
   Fab,
   IconButton,
+  colors,
 } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import backgroundImage from "../img/homeEarth.jpg";
+import backgroundImage from "../img/homeEarth.png";
+import Ellipse from "../img//Ellipse.png";
 import Frame2 from "../img/Frame2.png";
 import {
   PlayCircleFilled,
@@ -27,6 +29,8 @@ import {
   YouTube,
   Instagram,
   LinkedIn,
+  ArrowBackIos,
+  ArrowForwardIos,
 } from "@mui/icons-material";
 import theme from "../theme";
 import ProductCard from "../component/ProductCard";
@@ -34,12 +38,11 @@ import PropTypes from "prop-types";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as MySVG } from "../img/Group 95.svg";
 
 function ScrollTop(props) {
   const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
+
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
@@ -73,22 +76,21 @@ function ScrollTop(props) {
 
 ScrollTop.propTypes = {
   children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 
 const HomePage = ({ props }) => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isLg = useMediaQuery(theme.breakpoints.down("xl"));
 
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const svg =
+    "data:image/svg+xml,%3Csvg%20width%3D%22176%22%20height%3D%22849%22%20viewBox%3D%220%200%20176%20849%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20filter%3D%22url(%23filter0_di_0_270)%22%3E%3Cpath%20d%3D%22M151.088%2025.1958V97.1607C151.088%20103.847%20145.668%20109.267%20138.982%20109.267H21.282C14.5959%20109.267%209.17578%20114.687%209.17578%20121.373V641.269V765.695V839.677%22%20stroke%3D%22url(%23paint0_linear_0_270)%22%20stroke-width%3D%224.03542%22%20stroke-linecap%3D%22round%22/%3E%3C/g%3E%3Cg%20filter%3D%22url(%23filter1_dd_0_270)%22%3E%3Ccircle%20cx%3D%22151.761%22%20cy%3D%2225.1958%22%20r%3D%224.03542%22%20fill%3D%22white%22/%3E%3C/g%3E%3Cdefs%3E%3Cfilter%20id%3D%22filter0_di_0_270%22%20x%3D%220.432264%22%20y%3D%2216.4523%22%20width%3D%22159.399%22%20height%3D%22831.968%22%20filterUnits%3D%22userSpaceOnUse%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeFlood%20flood-opacity%3D%220%22%20result%3D%22BackgroundImageFix%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeOffset/%3E%3CfeGaussianBlur%20stdDeviation%3D%223.36285%22/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22out%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.6%200%200%200%200%200.282353%200%200%200%200%200.984314%200%200%200%201%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22BackgroundImageFix%22%20result%3D%22effect1_dropShadow_0_270%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in%3D%22SourceGraphic%22%20in2%3D%22effect1_dropShadow_0_270%22%20result%3D%22shape%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeOffset/%3E%3CfeGaussianBlur%20stdDeviation%3D%222.69028%22/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22arithmetic%22%20k2%3D%22-1%22%20k3%3D%221%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.9%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22shape%22%20result%3D%22effect2_innerShadow_0_270%22/%3E%3C/filter%3E%3Cfilter%20id%3D%22filter1_dd_0_270%22%20x%3D%22127.548%22%20y%3D%220.983316%22%20width%3D%2248.425%22%20height%3D%2248.425%22%20filterUnits%3D%22userSpaceOnUse%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeFlood%20flood-opacity%3D%220%22%20result%3D%22BackgroundImageFix%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeMorphology%20radius%3D%222.69028%22%20operator%3D%22dilate%22%20in%3D%22SourceAlpha%22%20result%3D%22effect1_dropShadow_0_270%22/%3E%3CfeOffset/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22out%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.643137%200%200%200%200%200.211765%200%200%200%200%200.976471%200%200%200%201%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22BackgroundImageFix%22%20result%3D%22effect1_dropShadow_0_270%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeOffset/%3E%3CfeGaussianBlur%20stdDeviation%3D%2210.0885%22/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22out%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.839216%200%200%200%200%200.239216%200%200%200%200%200.435294%200%200%200%201%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22effect1_dropShadow_0_270%22%20result%3D%22effect2_dropShadow_0_270%22/%3E%3";
 
   return (
     <div style={{ position: "relative" }}>
@@ -186,19 +188,74 @@ const HomePage = ({ props }) => {
             src={backgroundImage}
             alt="background"
             style={{
-              width: isMobile ? "400px" : "100%",
-              height: isMobile ? "350px" : "100%",
-              objectFit: isMobile ? "cover" : "contain",
+              width: "100%", // Full width of container
+              height: "auto", // Maintain aspect ratio
+              objectFit: "cover", // Ensure the image is contained within the container
             }}
           />
         </div>
       </div>
-      <Container maxWidth={"lg"} sx={{ position: "relative" }}>
+
+      <Container maxWidth={"lg"}>
+        <div id="back-to-top-anchor" />
         <Grid
           container
           spacing={2}
-          sx={{ color: "white", alignItems: "center" }}
+          sx={{
+            color: "white",
+            alignItems: "center",
+            position: "relative",
+          }}
         >
+          {/* <Box
+            sx={{
+              position: "absolute",
+              bottom: 0,
+              right: -180,
+              width: "100%",
+              height: "70%",
+              display: isLg ? "none" : undefined,
+            }}
+          >
+            <MySVG
+              style={{
+                position: "absolute",
+                right: 0,
+                bottom: 0,
+                // width: '100%',
+                height: "100%",
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                right: 90,
+                bottom: -50,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <ArrowBackIos
+                fontSize="small"
+                sx={{ color: "white", alignItems: "flex-end" }}
+              />
+              <img
+                src={Ellipse}
+                alt="background"
+                style={{
+                  width: "50px", // Full width of container
+                  height: "50px", // Maintain aspect ratio
+                  objectFit: "cover", // Ensure the image is contained within the container
+                }}
+              />
+              <ArrowForwardIos
+                fontSize="small"
+                sx={{ color: "white", alignItems: "flex-start" }}
+              />
+            </Box>
+          </Box> */}
+
           <Grid item xs={12} sx={{ my: 25 }}>
             <Typography variant="h6" component="div">
               Experience Excellence with Us
@@ -229,8 +286,68 @@ const HomePage = ({ props }) => {
             </Box>
           </Grid>
         </Grid>
-        <Grid container spacing={2} sx={{ color: "white", my: 5 }}>
-          <Grid item sm={12} lg={6} sx={{}}>
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            color: "white",
+            my: 5,
+            position: "relative",
+            // overflow: "hidden",
+          }}
+        >
+          {/* <Box
+            sx={{
+              display: isLg ? "none" : undefined,
+              position: "absolute",
+              bottom: -50,
+              right: -50,
+              width: "100%",
+              height: "105%",
+              // backgroundColor: "red",
+              overflow: "hidden",
+              borderBottomRightRadius: 10,
+              zIndex: -1,
+              "&::before": {
+                content: "''",
+                position: "absolute",
+                zIndex: -999,
+                // right: "-50%",
+                // bottom: "-50%",
+                width: "200%",
+                height: "300%",
+                backgroundRepeat: "repeat",
+                backgroundSize: "50% 50%, 50% 50%",
+                backgroundPosition: "0 0, 100% 0, 100% 100%, 0 100%",
+                backgroundImage:
+                  "linear-gradient(#9747FF, #FF6B00), linear-gradient(#05FF00, #1E4705), linear-gradient(#1D4EFF, #0085FF), linear-gradient(#9B49F6, #BD00FF)",
+                animation: "rotate 4s linear infinite",
+              },
+              "&::after": {
+                content: "''",
+                position: "absolute",
+                zIndex: -2,
+                bottom: "4px",
+                right: "4px",
+                width: "100% ",
+                height: "100% ",
+                background: "black",
+                borderRadius: "5px",
+              },
+            }}
+          >
+            <style jsx>{`
+              @keyframes rotate {
+                0% {
+                  transform: rotate(360deg);
+                }
+                100% {
+                  transform: rotate(0deg);
+                }
+              }
+            `}</style>
+          </Box> */}
+          <Grid item sm={12} md={6} sx={{ mb: 5 }}>
             <Typography variant="hb3" component="div">
               Premium & Durable Wires and cables
             </Typography>
@@ -271,7 +388,7 @@ const HomePage = ({ props }) => {
                     fontSize: 40,
                   }}
                 >
-                  1K+
+                  18+
                 </Typography>
                 <Typography variant="h5" component="div" align="center">
                   years of delivering
@@ -306,10 +423,10 @@ const HomePage = ({ props }) => {
                   }}
                   component="div"
                 >
-                  10+
+                  1k+
                 </Typography>
                 <Typography variant="h5" component="div" align="center">
-                  years of delivering
+                  up and running
                 </Typography>
                 <Typography
                   variant="h5"
@@ -317,7 +434,7 @@ const HomePage = ({ props }) => {
                   align="center"
                   sx={{ letterSpacing: "6px" }}
                 >
-                  EXCELLENCE
+                  VENTURES
                 </Typography>
               </Grid>
             </Box>
@@ -325,8 +442,9 @@ const HomePage = ({ props }) => {
           <Grid
             item
             sm={12}
-            lg={6}
+            md={6}
             sx={{
+              mb: 5,
               alignContent: "center",
             }}
           >
@@ -336,7 +454,8 @@ const HomePage = ({ props }) => {
               style={{
                 width: "100%",
                 height: "auto",
-                objectFit: "contain",
+                maxHeight: "350px",
+                objectFit: "cover",
                 // transform: `rotate(155deg)`,
               }}
             />
@@ -350,8 +469,63 @@ const HomePage = ({ props }) => {
             </Button>
           </Grid>
         </Grid>
-        <Grid container spacing={3} sx={{ color: "white", my: 3 }}>
-          <Grid item sm={12} lg={6} sx={{}}>
+        <Grid
+          container
+          spacing={3}
+          sx={{ color: "white", my: 3, position: "relative" }}
+        >
+          {/* <Box
+            sx={{
+              display: isLg ? "none" : undefined,
+              position: "absolute",
+              top: 6,
+              left: -50,
+              width: "100%",
+              height: "105%",
+              // backgroundColor: "red",
+              overflow: "hidden",
+              borderTopLeftRadius: 10,
+              zIndex: -1,
+              "&::before": {
+                content: "''",
+                position: "absolute",
+                zIndex: -100,
+                top: "-50%",
+                left: "-50%",
+                width: "200%",
+                height: "300%",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "50% 50% ",
+                backgroundPosition: "0 0, 100% 0, 100% 100%, 0 100%",
+                backgroundImage:
+                  "linear-gradient(#9747FF, #FF6B00), linear-gradient(#05FF00, #1E4705), linear-gradient(#1D4EFF, #0085FF), linear-gradient(#9B49F6, #BD00FF), linear-gradient(#FF0000, #FF7F50), linear-gradient(#FFFF00, #9ACD32), linear-gradient(#00FF00, #32CD32), linear-gradient(#00FFFF, #4682B4)",
+                animation: "rotate 4s linear infinite",
+              },
+              "&::after": {
+                content: "''",
+                position: "absolute",
+                zIndex: -2,
+                top: "4px",
+                left: "4px",
+                width: "100% ",
+                height: "100% ",
+                background: "black",
+                borderTopLeftRadius: 10,
+              },
+            }}
+          >
+            <style jsx>{`
+              @keyframes rotate {
+                0% {
+                  transform: rotate(369deg);
+                }
+                100% {
+                  transform: rotate(0deg);
+                }
+              }
+            `}</style>
+          </Box> */}
+          <Grid item sm={12} md={6} sx={{ mt: 5 }}>
             <Typography variant="hb4" component="div">
               Our Products
             </Typography>
@@ -371,7 +545,7 @@ const HomePage = ({ props }) => {
           <Grid
             item
             sm={12}
-            lg={6}
+            md={6}
             sx={{
               alignContent: "center",
             }}
@@ -431,8 +605,8 @@ const HomePage = ({ props }) => {
               </Button>{" "}
             </Box>
           </Grid>
-        </Grid>
-        <Grid container spacing={3} sx={{ color: "white", my: 3 }}>
+          {/* </Grid>
+        <Grid container spacing={3} sx={{ color: "white", my: 3 }}> */}
           <Grid item sm={12} sx={{}}>
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -455,7 +629,7 @@ const HomePage = ({ props }) => {
               </Box>
               <TabPanel value="1" sx={{ paddingX: 0 }}>
                 <Grid container spacing={3} sx={{}}>
-                  <Grid item xs={12} md={6} lg={4} sx={{}}>
+                  <Grid item xs={12} sm={6} md={4} sx={{}}>
                     <ProductCard
                       heading={"Cable"}
                       subHeading={"VIEW PRODUCT"}
@@ -464,7 +638,7 @@ const HomePage = ({ props }) => {
                       }
                     />
                   </Grid>
-                  <Grid item xs={12} md={6} lg={4} sx={{}}>
+                  <Grid item xs={12} sm={6} md={4} sx={{}}>
                     <ProductCard
                       heading={"Cable"}
                       subHeading={"VIEW PRODUCT"}
@@ -473,7 +647,7 @@ const HomePage = ({ props }) => {
                       }
                     />
                   </Grid>
-                  <Grid item xs={12} md={6} lg={4} sx={{}}>
+                  <Grid item xs={12} sm={6} md={4} sx={{}}>
                     <ProductCard
                       heading={"Cable"}
                       subHeading={"VIEW PRODUCT"}
@@ -486,7 +660,7 @@ const HomePage = ({ props }) => {
               </TabPanel>
               <TabPanel value="2" sx={{ paddingX: 0 }}>
                 <Grid container spacing={3} sx={{}}>
-                  <Grid item xs={12} md={6} lg={4} sx={{}}>
+                  <Grid item xs={12} sm={6} md={4} sx={{}}>
                     <ProductCard
                       heading={"Switches"}
                       subHeading={"VIEW PRODUCT"}
@@ -495,7 +669,7 @@ const HomePage = ({ props }) => {
                       }
                     />
                   </Grid>
-                  <Grid item xs={12} md={6} lg={4} sx={{}}>
+                  <Grid item xs={12} sm={6} md={4} sx={{}}>
                     <ProductCard
                       heading={"Switches"}
                       subHeading={"VIEW PRODUCT"}
@@ -504,7 +678,7 @@ const HomePage = ({ props }) => {
                       }
                     />
                   </Grid>
-                  <Grid item xs={12} md={6} lg={4} sx={{}}>
+                  <Grid item xs={12} sm={6} md={4} sx={{}}>
                     <ProductCard
                       heading={"Switches"}
                       subHeading={"VIEW PRODUCT"}
@@ -518,7 +692,7 @@ const HomePage = ({ props }) => {
               <TabPanel value="3" sx={{ paddingX: 0 }}>
                 {" "}
                 <Grid container spacing={3} sx={{}}>
-                  <Grid item xs={12} md={6} lg={4} sx={{}}>
+                  <Grid item xs={12} sm={6} md={4} sx={{}}>
                     <ProductCard
                       heading={"MCB's"}
                       subHeading={"VIEW PRODUCT"}
@@ -527,7 +701,7 @@ const HomePage = ({ props }) => {
                       }
                     />
                   </Grid>
-                  <Grid item xs={12} md={6} lg={4} sx={{}}>
+                  <Grid item xs={12} sm={6} md={4} sx={{}}>
                     <ProductCard
                       heading={"MCB's"}
                       subHeading={"VIEW PRODUCT"}
@@ -536,7 +710,7 @@ const HomePage = ({ props }) => {
                       }
                     />
                   </Grid>
-                  <Grid item xs={12} md={6} lg={4} sx={{}}>
+                  <Grid item xs={12} sm={6} md={4} sx={{}}>
                     <ProductCard
                       heading={"MCB's"}
                       subHeading={"VIEW PRODUCT"}
@@ -557,10 +731,10 @@ const HomePage = ({ props }) => {
             sx={{
               backgroundColor: "rgba(0, 0, 0, 0.8)",
               "&:hover": {
-                backgroundColor: "rgba(0, 0, 0, 0.8)", // Ensure the background color doesn't change on hover
+                backgroundColor: "rgba(0, 0, 0, 0.8)",
               },
               "&:hover svg": {
-                color: theme.palette.primary.main, // Change the color of the icon to primary on hover
+                color: theme.palette.primary.main,
               },
             }}
           >
