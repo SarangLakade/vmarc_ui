@@ -28,6 +28,7 @@ import theme from "../theme";
 import vector24 from "../img/Vector.svg";
 
 import Timeline from "../component/Timeline";
+import Service from "../section/Services";
 
 const styles = {
   heading: {
@@ -296,7 +297,7 @@ const AboutUsPage = () => {
               </Grid>
             </Grid>
           </Box>
-          <Box py={10} sx={{ display: "none" }}>
+          <Box py={10} sx={{}}>
             <Box mb={10} sx={{ color: "#FFFF" }}>
               <Typography
                 sx={{
@@ -313,245 +314,10 @@ const AboutUsPage = () => {
                 offers a variety of services:
               </Typography>
             </Box>
-            <Grid container>
-              <Grid
-                item
-                xs={12}
-                md={2.4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "flex-start",
-                }}
-              >
-                {/* <Typography>
-                01 */}
-                <Typography
-                  sx={{
-                    background:
-                      "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    textAlign: "right",
-                  }}
-                  variant="h4" // You can change the variant as per your requirement
-                >
-                  A targeted stock policy.
-                </Typography>
-                {/* </Typography> */}
-              </Grid>
-              <Grid item xs={12} md={2.4} sx={{}}>
-                <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  width={100}
-                  height={100}
-                  image={require("../img/Vector1.png")}
-                  sx={{ objectFit: "contain" }}
-                />
-              </Grid>
-              <Grid item xs={12} md={2.4}></Grid>
-              <Grid item xs={12} md={2.4}>
-                <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  width={100}
-                  height={100}
-                  image={require("../img/Vector2.png")}
-                  sx={{ objectFit: "contain" }}
-                />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={2.4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "flex-start",
-                  // backgroundColor: "red",
-                }}
-              >
-                <Typography
-                  sx={{
-                    background:
-                      "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    textAlign: "left",
-                  }}
-                  variant="h4" // You can change the variant as per your requirement
-                >
-                  Reliable & Consistent quality
-                </Typography>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={2.4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "center",
-                  // backgroundColor: "red",
-                }}
-              >
-                <Typography
-                  sx={{
-                    background:
-                      "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    textAlign: "right",
-                  }}
-                  variant="h4" // You can change the variant as per your requirement
-                >
-                  Product development & enrichment as demanded by the changing
-                  markets
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={2.4}>
-                <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  width={100}
-                  height={100}
-                  image={require("../img/Vector5.png")}
-                  sx={{ objectFit: "contain", width: "70%" }}
-                />
-              </Grid>
-              <Grid item xs={12} md={2.4}>
-                <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  width={100}
-                  height={100}
-                  image={require("../img/logo.png")}
-                  sx={{ objectFit: "contain" }}
-                />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={2.4}
-                sx={{ display: "flex", justifyContent: "flex-end" }}
-              >
-                <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  width={100}
-                  height={100}
-                  image={require("../img/Vector5.png")}
-                  sx={{ objectFit: "contain", width: "70%" }}
-                />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={2.4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  // backgroundColor: "red",
-                }}
-              >
-                <Typography
-                  sx={{
-                    background:
-                      "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    textAlign: "left",
-                  }}
-                  variant="h4" // You can change the variant as per your requirement
-                >
-                  Technical Support for cable applications / cables cost
-                  optimization for projects etc.
-                </Typography>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={2.4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "flex-end",
-                  // backgroundColor: "red",
-                }}
-              >
-                <Typography
-                  sx={{
-                    background:
-                      "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    textAlign: "right",
-                  }}
-                  variant="h4" // You can change the variant as per your requirement
-                >
-                  Commercially Competetive Pricing
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={2.4}>
-                <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  width={100}
-                  height={100}
-                  image={require("../img/Vector3.png")}
-                  sx={{ objectFit: "contain" }}
-                />
-              </Grid>
-              <Grid item xs={12} md={2.4}></Grid>
-              <Grid item xs={12} md={2.4}>
-                <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  width={100}
-                  height={100}
-                  image={require("../img/Vector4.png")}
-                  sx={{ objectFit: "contain" }}
-                />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={2.4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "flex-end",
-                  // backgroundColor: "red",
-                }}
-              >
-                <Typography
-                  sx={{
-                    background:
-                      "linear-gradient(90deg, #FFFFFF 0%, #FD8C00 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    textAlign: "left",
-                  }}
-                  variant="h4" // You can change the variant as per your requirement
-                >
-                  On time deliveries
-                </Typography>
-              </Grid>
-            </Grid>
+            <Box sx={{ overflowX: "auto", py: 5, my: 5, ...scrollBoxStyles }}>
+              <Service />
+            </Box>
+            {/* <Timeline /> */}
           </Box>
         </Container>
       </div>

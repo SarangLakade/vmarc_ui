@@ -22,11 +22,6 @@ const validationSchema = Yup.object({
     .max(50, "Must be less than 50 characters")
     .required("Required"),
   email: Yup.string().email("Invalid email address").required("Required"),
-
-  subject: Yup.string()
-    .min(5, "Must be at least 5 characters")
-    .max(100, "Must be less than 100 characters")
-    .required("Required"),
   message: Yup.string()
     .min(10, "Must be at least 10 characters")
     .required("Required"),
@@ -63,7 +58,7 @@ const styles = {
 const ContactUsPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const formikFeedback = useFormik({
+  const formikRequest = useFormik({
     initialValues: {
       name: "",
       email: "",
@@ -71,59 +66,77 @@ const ContactUsPage = () => {
       message: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
       const templateParams = {
-        from_name: values.name,
-        from_email: values.email,
+        name: values.name,
+        email: values.email,
         subject: values.subject,
         message: values.message,
       };
-      console.log(templateParams);
-      // emailjs.send(
-      //   "YOUR_SERVICE_ID",
-      //   "YOUR_TEMPLATE_ID",
-      //   templateParams,
-      //   "YOUR_USER_ID"
-      // ).then(
-      //   (response) => {
-      //     console.log("SUCCESS!", response.status, response.text);
-      //     resetForm();
-      //   },
-      //   (error) => {
-      //     console.log("FAILED...", error);
-      //   }
-      // );
+      console.log("Contact us Form", templateParams);
+      try {
+        const response = await fetch(
+          "https://1yh728hhzg.execute-api.ap-south-1.amazonaws.com/prod/send_request",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(templateParams),
+          }
+        );
+
+        if (response.ok) {
+          alert("Email sent successfully");
+        } else {
+          alert("Error sending email");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Error sending email");
+      }
     },
   });
 
-  const formikRequest = useFormik({
+  const formikFeedback = useFormik({
     initialValues: {
       name: "",
       email: "",
       message: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
       const templateParams = {
-        from_name: values.name,
-        from_email: values.email,
+        name: values.name,
+        email: values.email,
         message: values.message,
       };
-      console.log(templateParams);
-      // emailjs.send(
-      //   "YOUR_SERVICE_ID",
-      //   "YOUR_TEMPLATE_ID",
-      //   templateParams,
-      //   "YOUR_USER_ID"
-      // ).then(
-      //   (response) => {
-      //     console.log("SUCCESS!", response.status, response.text);
-      //     resetForm();
-      //   },
-      //   (error) => {
-      //     console.log("FAILED...", error);
-      //   }
-      // );
+      console.log("FeedBack Form Values:", values);
+      console.log("Template Params:", templateParams);
+      try {
+        const response = await fetch(
+          "https://1yh728hhzg.execute-api.ap-south-1.amazonaws.com/prod/send_feedback",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(templateParams),
+          }
+        );
+
+        console.log("Response Status:", response.status);
+
+        if (response.ok) {
+          alert("Email sent successfully");
+          resetForm();
+        } else {
+          alert("Error sending email");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Error sending email");
+      }
     },
   });
 
@@ -234,7 +247,7 @@ const ContactUsPage = () => {
             }}
           >
             <Typography component="h1" gutterBottom sx={styles.h2}>
-              Sales Office
+              Noida Office
             </Typography>
             <Typography
               variant="body1"
@@ -242,21 +255,10 @@ const ContactUsPage = () => {
               sx={styles.h4}
               gutterBottom
             >
-              V-Marc India Limited Trapezoid IT Park, <br />
+              Trapezoid IT Park, <br />
               3rd Floor, C-27, C Block, <br /> Phase 2, Sector-62,
               <br /> Noida, Uttar Pradesh - 201309
             </Typography>
-            {/* <Typography
-              variant="body1"
-              component="p"
-              gutterBottom
-              sx={styles.h3}
-            >
-              Phone:{" "}
-              <Link href="tel:01334-239638" color="inherit">
-                01334-239638
-              </Link>
-            </Typography> */}
             <Typography variant="body1" component="p" sx={styles.h3}>
               Email:{" "}
               <Link href="mailto:sales@v-marc.in" color="inherit">
@@ -277,7 +279,7 @@ const ContactUsPage = () => {
             }}
           >
             <Typography component="h1" gutterBottom sx={styles.h2}>
-              Sales Office
+              Mumbai Office
             </Typography>
             <Typography
               variant="body1"
@@ -285,21 +287,9 @@ const ContactUsPage = () => {
               sx={styles.h4}
               gutterBottom
             >
-              V-Marc India Ltd 91,Spring Board , 74,Techno Park,74/II,C Cross
-              Road, Opp.Gate No. 2, MIDC ,SEEPZ, Andheri (East), Mumbai,
-              Maharashtra - 400093
+              91,Spring Board , 74,Techno Park,74/II,C Cross Road, Opp.Gate No.
+              2, MIDC ,SEEPZ, Andheri (East), Mumbai, Maharashtra - 400093
             </Typography>
-            {/* <Typography
-              variant="body1"
-              component="p"
-              gutterBottom
-              sx={styles.h3}
-            >
-              Phone:{" "}
-              <Link href="tel:01334-239638" color="inherit">
-                01334-239638
-              </Link>
-            </Typography> */}
             <Typography variant="body1" component="p" sx={styles.h3}>
               Email:{" "}
               <Link href="mailto:sales@v-marc.in" color="inherit">

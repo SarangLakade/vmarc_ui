@@ -78,31 +78,39 @@ const InvestorGrievancePage = () => {
       message: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
       const templateParams = {
-        from_name: values.name,
-        from_email: values.email,
+        name: values.name,
+        email: values.email,
         phone: values.phone,
         subject: values.subject,
         message: values.message,
       };
       console.log("templateParams", templateParams);
-      //  emailjs
-      //    .send(
-      //      "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-      //      "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
-      //      templateParams,
-      //      "YOUR_USER_ID" // Replace with your EmailJS user ID
-      //    )
-      //    .then(
-      //      (response) => {
-      //        console.log("SUCCESS!", response.status, response.text);
-      //        resetForm();
-      //      },
-      //      (error) => {
-      //        console.log("FAILED...", error);
-      //      }
-      //    );
+      try {
+        const response = await fetch(
+          "https://1yh728hhzg.execute-api.ap-south-1.amazonaws.com/prod/investor_request",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(templateParams),
+          }
+        );
+
+        console.log("Response Status:", response.status);
+
+        if (response.ok) {
+          alert("Email sent successfully");
+          resetForm();
+        } else {
+          alert("Error sending email");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Error sending email");
+      }
     },
   });
 

@@ -17,6 +17,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import StyledTextField from "../component/StyledTextField";
 import img from "../img/hiring.jpg";
+import { json } from "react-router-dom";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -24,7 +25,7 @@ const validationSchema = Yup.object({
     .max(50, "Must be less than 50 characters")
     .required("Required"),
   email: Yup.string().email("Invalid email address").required("Required"),
-  resume: Yup.mixed()
+  pdf: Yup.mixed()
     .required("Required")
     .test("fileType", "Unsupported File Format", (value) => {
       return (
@@ -35,6 +36,9 @@ const validationSchema = Yup.object({
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         ].includes(value.type)
       );
+    })
+    .test("fileSize", "File too large", (value) => {
+      return value && value.size <= 1024 * 1024;
     }),
   message: Yup.string()
     .min(10, "Must be at least 10 characters")
@@ -76,12 +80,66 @@ const CareerPage = () => {
     initialValues: {
       name: "",
       email: "",
-      resume: null,
+      pdf: null,
+      pdfpath: null,
       message: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       console.log(values);
+      console.log(values.pdf);
+      // try {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "multipart/form-data");
+
+      const formdata = new FormData();
+      formdata.append("email", values.email);
+      formdata.append("name", values.name);
+      formdata.append("message", values.message);
+      formdata.append("pdf", values.pdf, values.pdfpath);
+
+      // console.log(formdata.getAll());
+      const requestOptions = {
+        method: "POST",
+        body: formdata,
+      };
+
+      fetch(
+        "https://bbab-2401-4900-1c43-d63-c4a3-6fe8-de36-9a84.ngrok-free.app/job_request",
+        requestOptions
+      )
+        .then((response) => {
+          if (response.ok) {
+            alert("Email sent successfully");
+          } else {
+            alert("Error sending email");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Error sending email");
+        });
+
+      //   const response = await fetch(
+      //     "https://1yh728hhzg.execute-api.ap-south-1.amazonaws.com/prod/job_request",
+      //     {
+      //       headers: {
+      //         "Content-Type": "multipart/form-data",
+      //       },
+      //       method: "POST",
+      //       body: JSON.stringify(values),
+      //     }
+      //   );
+
+      //   if (response.ok) {
+      //     alert("Email sent successfully");
+      //   } else {
+      //     alert("Error sending email");
+      //   }
+      // } catch (error) {
+      //   console.error("Error:", error);
+      //   alert("Error sending email");
+      // }
     },
   });
 
@@ -186,19 +244,22 @@ const CareerPage = () => {
                         Upload Your Resume (.doc, .dox, .docx, .pdf)*
                       </Typography>
                       <input
-                        id="resume"
-                        name="resume"
+                        id="pdf"
+                        name="pdf"
                         type="file"
+                        accept="application/pdf"
                         onChange={(event) => {
+                          console.log(event);
                           formik.setFieldValue(
-                            "resume",
+                            "pdf",
                             event.currentTarget.files[0]
                           );
+                          formik.setFieldValue("pdfpath", event.target.value);
                         }}
                       />
-                      {formik.touched.resume && formik.errors.resume ? (
+                      {formik.touched.pdf && formik.errors.pdf ? (
                         <Typography variant="body2" color="error">
-                          {formik.errors.resume}
+                          {formik.errors.pdf}
                         </Typography>
                       ) : null}
                     </Grid>

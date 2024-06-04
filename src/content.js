@@ -293,7 +293,7 @@ const FinancialTableData = [
     ],
     annual: [
       {
-        name: "View",
+        name: "Annual Report",
         link: "/vmarc/Financial-Information/2022-23/annual-23.pdf",
       },
     ],

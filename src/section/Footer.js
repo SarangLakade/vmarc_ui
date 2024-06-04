@@ -171,11 +171,11 @@ const Footer = () => {
           <Grid item xs={12} lg={3} md={4} sm={6} sx={{}}>
             <Box>
               <Typography style={style.heading} color="white">
-                Sales Office
+                Noida Office
               </Typography>
               <Typography style={{ ...style.subHeading, marginBottom: "7px" }}>
-                V-Marc India Limited Trapezoid IT Park, 3rd Floor, C-27, C
-                Block,Phase 2, Sector-62, Noida, Uttar Pradesh - 201309
+                Trapezoid IT Park, 3rd Floor, C-27, C Block,Phase 2, Sector-62,
+                Noida, Uttar Pradesh - 201309
               </Typography>
               <Typography style={style.subHeading}>
                 <b>Email:</b>{" "}

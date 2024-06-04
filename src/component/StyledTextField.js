@@ -5,9 +5,9 @@ const StyledTextField = ({ label, name, formik, ...props }) => {
   return (
     <TextField
       fullWidth
-      id={name}
-      name={name}
+      variant="outlined"
       label={label}
+      name={name}
       value={formik.values[name]}
       onChange={formik.handleChange}
       onBlur={formik.handleBlur}
