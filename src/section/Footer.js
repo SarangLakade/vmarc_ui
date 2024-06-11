@@ -45,7 +45,7 @@ const style = {
 const Footer = () => {
   return (
     <div style={{ backgroundColor: "#1D1D1D" }}>
-      <Container maxWidth={"lg"} sx={{ position: "relative", py: 2 }}>
+      {/* <Container maxWidth={"lg"} sx={{ position: "relative", py: 2 }}>
         <div
           style={{
             filter: "brightness(0) invert(1)",
@@ -60,7 +60,7 @@ const Footer = () => {
           borderWidth: "1px",
           borderStyle: "solid",
         }}
-      />
+      /> */}
 
       <Container maxWidth={"lg"} sx={{ position: "relative" }}>
         <Grid container spacing={3} py={3}>

@@ -28,6 +28,7 @@ const Products = [
             des: "Available in easy pull box of 305 Mtr.",
           },
         ],
+        category: "Communication Cables",
       },
       {
         title: "CCTV Cables",
@@ -46,6 +47,7 @@ const Products = [
             des: "“V-Marc” CCTV Cables are manufactured in 3+1 and 4+1 cores i.e. 3 or 4 cores for supply and 1 core for video. The CCTV Cable Offered by us is a composite structure of video and audio wires intended to install the cameras with audio system from one point to equipment system. We use best quality raw materials to ensure efficient operation. Further, our CCTV Cables are safe and reliable for transmission of voice, video & data. These CCTV Cables are available in various specifications and at reasonable prices to suit client’s specific needs.",
           },
         ],
+        category: "Communication Cables",
       },
       {
         title: "Co-Axial Cables",
@@ -73,6 +75,7 @@ const Products = [
             des: "Supplied in attractive cartons / wooden drums.",
           },
         ],
+        category: "Communication Cables",
       },
       {
         title: "Telephone and Switchboard Cables",
@@ -103,6 +106,7 @@ const Products = [
             des: "Available in easy pull box of 305 Mtr.",
           },
         ],
+        category: "Communication Cables",
       },
     ],
   },
@@ -121,6 +125,7 @@ const Products = [
             des: "IS-7098 Part 2",
           },
         ],
+        category: "HT Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -217,6 +222,7 @@ const Products = [
             des: "IS:398(Part-II), IS:398(Part-IV), IEC :61089, EN 50397-1:2006, BS EN 50182",
           },
         ],
+        category: "HT Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -310,6 +316,7 @@ const Products = [
             des: "IS-1554 (Part -1) 1988",
           },
         ],
+        category: "LT Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -386,6 +393,7 @@ const Products = [
             des: "XLPE / PE applied by extrusion process.",
           },
         ],
+        category: "LT Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -450,6 +458,7 @@ const Products = [
             des: " XLPE (cross–linked Polyethylene) compound by extrusion",
           },
         ],
+        category: "LT Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -569,6 +578,7 @@ const Products = [
           { title: "Standard", des: "IS 694: FR Category, IS 8130 & IS 5831" },
           { title: "Range", des: "Wires from 0.50 up to 300 Sq.mm" },
         ],
+        category: "Light Duty Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -607,6 +617,7 @@ const Products = [
           },
           { title: "Range", des: "1.00 sqmm up to 300 sqmm" },
         ],
+        category: "Light Duty Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -632,6 +643,7 @@ const Products = [
           },
           { title: "Range", des: "1.00 sqmm up to 300 sqmm" },
         ],
+        category: "Light Duty Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -658,6 +670,7 @@ const Products = [
           { title: "Insulation", des: "PVC as per IS-5831" },
           { title: "Sheath", des: "PVC as per IS-5831" },
         ],
+        category: "Light Duty Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -687,6 +700,7 @@ const Products = [
           { title: "Insulation", des: "PVC as per IS-5831" },
           { title: "Sheath", des: "PVC as per IS-5831" },
         ],
+        category: "Light Duty Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -723,6 +737,7 @@ const Products = [
             des: "1.50 sqmm to 6.0 sqmm, above 6.0 sqmm can be supplied on request.",
           },
         ],
+        category: "Light Duty Cables",
         brochureLink: "",
         paragraph: [
           {
@@ -799,6 +814,155 @@ const Products = [
         ],
       },
     ], // Assuming no sub-items for Light Duty Cables, otherwise add items here
+  },
+  {
+    category: "Geyser",
+    items: [
+      {
+        title: "SNUG Geyser",
+        description: "STORAGE WATER HEATER",
+        features: [
+          { title: "Digital Temp. Display", iconPath: "" },
+          { title: "Long Lasting Magnesium Anode Rode", iconPath: "" },
+          { title: "Maximum Pressure Rating", iconPath: "" },
+          { title: "Shockproof Plastic Body", iconPath: "" },
+          { title: "Suitable for Highrise Building", iconPath: "" },
+          { title: "Multi-Functional Safety Valve", iconPath: "" },
+          { title: "Free Installation", iconPath: "" },
+        ],
+        img: "/vmarc/Product-Images/Geysers/Snug.png",
+        capacity: ["10 Ltr /", "15 Ltr /", "25 Ltr"],
+        tags: [
+          `Product <strong>2 Years</strong>`,
+          `Heating Element <strong>2 Years</strong>`,
+          `Heating Element <strong>7 Years</strong>`,
+        ],
+        category: "Geyser",
+        brochureLink: "",
+        paragraph: [
+          {
+            title: "Description",
+            des: `<ul>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Anti-corrosive <strong>CERAMIC BLUE* GLASSLINED TANK</strong> for long life.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Digital temperature display.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Adjustable temperature knob.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Power - 2/3/4.5Kw</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Voltage- 230V AC, 50Hz Single Phase</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Suitable for pressure pumps and high rise buildings.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;"><strong>SUPER PUFF TECHNOLOGY*</strong> for highest energy efficiency.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Auto cut-off provided for safety.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">5 Star BEE rating for low power consumption.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Plastic Shock Proof Body.</li>
+                  </ul>`,
+          },
+        ],
+      },
+      {
+        title: "TEPID Geyser",
+        description: "STORAGE WATER HEATER",
+        features: [
+          { title: "Puf Insulation", iconPath: "" },
+          { title: "Long Lasting Magnesium Anode Rode", iconPath: "" },
+          { title: "Maximum Pressure Rating", iconPath: "" },
+          { title: "Shockproof Plastic Body", iconPath: "" },
+          { title: "Suitable for Highrise Building", iconPath: "" },
+          { title: "Multi-Functional Safety Valve", iconPath: "" },
+          { title: "Free Installation", iconPath: "" },
+        ],
+        img: "/vmarc/Product-Images/Geysers/Tepid.png",
+        capacity: ["10 Ltr /", "15 Ltr /", "25 Ltr"],
+        tags: [
+          "Product <strong>2 Years</strong>",
+          "Heating Element <strong>2 Years</strong>",
+          `Heating Element <strong>7 Years</strong>`,
+        ],
+        category: "Geyser",
+        brochureLink: "",
+        paragraph: [
+          {
+            title: "Description",
+            des: `<ul>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Anti-corrosive <strong>CERAMIC BLUE* GLASSLINED TANK</strong> for long life.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Suitable for pressure pumps and high rise buildings.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Power - 2/3/4.5Kw</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Voltage- 230V AC, 50Hz Single Phase</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;"><strong>SUPER PUFF TECHNOLOGY*</strong> for highest energy efficiency.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Auto cut-off provided for safety.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">5 Star BEE rating for low power consumption.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Plastic Shock Proof Body.</li>
+                  </ul>`,
+          },
+        ],
+      },
+      {
+        title: "BALMY Geyser",
+        description: "STORAGE WATER HEATER",
+        features: [
+          { title: "High-Grade Thermostat", iconPath: "" },
+          { title: "Long Lasting Magnesium Anode Rode", iconPath: "" },
+          { title: "Maximum Pressure Rating", iconPath: "" },
+          { title: "Puf Insulation", iconPath: "" },
+          { title: "Suitable for Highrise Building", iconPath: "" },
+          { title: "Multi-Functional Safety Valve", iconPath: "" },
+          { title: "Free Installation", iconPath: "" },
+        ],
+        img: "/vmarc/Product-Images/Geysers/Balmy.png",
+        capacity: ["10Ltr /", "15Ltr /", "25Ltr "],
+        tags: [
+          "Product <strong>2 Years</strong>",
+          "Heating Element <strong>2 Years</strong>",
+          `Heating Element <strong>7 Years</strong>`,
+        ],
+        category: "Geyser",
+        brochureLink: "",
+        paragraph: [
+          {
+            title: "Description",
+            des: `<ul>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Anti-corrosive <strong>CERAMIC BLUE* GLASSLINED TANK</strong> for long life.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Suitable for pressure pumps and high rise buildings.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Power - 2/3/4.5Kw</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Voltage- 230V AC, 50Hz Single Phase</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;"><strong>SUPER PUFF TECHNOLOGY*</strong> for highest energy efficiency.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Auto cut off provided for safety.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">5 Star BEE rating for low power consumption.</li>
+                    <li style="margin-top: 10px; margin-bottom: 10px;">Metal Body.</li>
+                  </ul>`,
+          },
+        ],
+      },
+      {
+        title: "POPPY Geyser",
+        description: "STORAGE WATER HEATER",
+        features: [
+          { title: "High-Grade Thermostat", iconPath: "" },
+          { title: "Long Lasting Magnesium Anode Rode", iconPath: "" },
+          { title: "Maximum Pressure Rating", iconPath: "" },
+          { title: "Multi-Functional Safety Valve", iconPath: "" },
+        ],
+        img: "/vmarc/Product-Images/Geysers/Poppy.png",
+        capacity: ["3 Ltr"],
+        tags: [
+          "Product <strong>2 Years</strong>",
+          "Heating Element <strong>2 Years</strong>",
+          `Heating Element <strong>2 Years</strong>`,
+        ],
+        category: "Geyser",
+        brochureLink: "",
+        paragraph: [
+          {
+            title: "Description",
+            des: `<ul>
+                  <li style="margin-top: 10px; margin-bottom: 10px;" ><strong>STAINLESS STEEL TANK.</strong></li>
+                  <li style="margin-top: 10px; margin-bottom: 10px;">Auto cut off provided for safety.</li>
+                  <li style="margin-top: 10px; margin-bottom: 10px;">Power - 3/4.5Kw</li>
+                  <li style="margin-top: 10px; margin-bottom: 10px;">Voltage- 230V AC, SOHz Single Phase</li>
+                  <li style="margin-top: 10px; margin-bottom: 10px;">Shockproof Plastic body.</li>
+                </ul>`,
+          },
+        ],
+      },
+    ],
   },
 ];
 

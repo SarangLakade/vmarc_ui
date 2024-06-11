@@ -437,7 +437,7 @@ const Navbar = () => {
               variant="h5"
               mx={2}
               component={Link} // Use Link component for navigation
-              to={"carrier"}
+              to={"careers"}
               sx={{
                 my: 3,
                 color: `${theme.palette.textPrimary.main}`,
@@ -449,14 +449,14 @@ const Navbar = () => {
                 textDecoration: "none", // Remove underline from default
               }}
             >
-              Career
+              Careers
               {/* Underline */}
               <span
                 style={{
                   position: "absolute",
                   left: 0,
                   bottom: -6, // Adjust this value to control the gap between text and underline
-                  width: lcaseN.includes("carrier") ? "100%" : "0",
+                  width: lcaseN.includes("careers") ? "100%" : "0",
                   borderBottom: `2px solid ${theme.palette.primary.main}`,
                 }}
               ></span>
@@ -513,10 +513,20 @@ const Navbar = () => {
               display: "flex",
               alignItems: "end",
               justifyContent: "flex-end",
-              m: 2,
+              mx: 2,
+              mt: 2,
+              // backgroundColor: "red",
             }}
           >
-            <IconButton aria-label="delete" onClick={toggleDrawer}>
+            <IconButton
+              aria-label="delete"
+              onClick={toggleDrawer}
+              sx={{
+                "&:hover": {
+                  backgroundColor: "primary.main", // Set the background color to primary on hover
+                },
+              }}
+            >
               <Close sx={{ color: "white" }} />
             </IconButton>
           </Box>
@@ -529,13 +539,24 @@ const Navbar = () => {
                 to="/"
                 onClick={toggleDrawer}
                 sx={{
-                  my: 1,
+                  mb: 1,
                   color: "#fff",
                   display: "block",
                   textDecoration: "none",
+                  position: "relative",
                 }}
               >
                 Home
+                <span
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    bottom: -6, // Adjust this value to control the gap between text and underline
+                    width:
+                      lcaseN === "/" || lcaseN.includes("Home") ? "100%" : "0",
+                    borderBottom: `2px solid ${theme.palette.primary.main}`,
+                  }}
+                ></span>
               </Typography>
             </ListItem>
             <ListItem>
@@ -550,9 +571,19 @@ const Navbar = () => {
                   color: "#fff",
                   display: "block",
                   textDecoration: "none",
+                  position: "relative",
                 }}
               >
                 About Us
+                <span
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    bottom: -6, // Adjust this value to control the gap between text and underline
+                    width: lcaseN.includes("about%20us") ? "100%" : "0",
+                    borderBottom: `2px solid ${theme.palette.primary.main}`,
+                  }}
+                ></span>
               </Typography>
             </ListItem>
             <ListItem
@@ -569,9 +600,19 @@ const Navbar = () => {
                   color: "#fff",
                   display: "block",
                   textDecoration: "none",
+                  position: "relative",
                 }}
               >
                 Product
+                <span
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    bottom: -6, // Adjust this value to control the gap between text and underline
+                    width: lcaseN.includes("product") ? "100%" : "0",
+                    borderBottom: `2px solid ${theme.palette.primary.main}`,
+                  }}
+                ></span>
               </Typography>
               {openProductCat ? (
                 <ExpandLess sx={{ color: "#fff" }} />
@@ -632,9 +673,19 @@ const Navbar = () => {
                   color: "#fff",
                   display: "block",
                   textDecoration: "none",
+                  position: "relative",
                 }}
               >
                 Investor
+                <span
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    bottom: -6, // Adjust this value to control the gap between text and underline
+                    width: lcaseN.includes("investor") ? "100%" : "0",
+                    borderBottom: `2px solid ${theme.palette.primary.main}`,
+                  }}
+                ></span>
               </Typography>
               {openInvestor ? (
                 <ExpandLess sx={{ color: "#fff" }} />
@@ -696,16 +747,26 @@ const Navbar = () => {
                 variant="h4"
                 mx={2}
                 component={Link}
-                to="/carrier"
+                to="/careers"
                 onClick={toggleDrawer}
                 sx={{
                   my: 1,
                   color: "#fff",
                   display: "block",
                   textDecoration: "none",
+                  position: "relative",
                 }}
               >
-                Carrier
+                Careers
+                <span
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    bottom: -6, // Adjust this value to control the gap between text and underline
+                    width: lcaseN.includes("careers") ? "100%" : "0",
+                    borderBottom: `2px solid ${theme.palette.primary.main}`,
+                  }}
+                ></span>
               </Typography>
             </ListItem>
             <ListItem>
@@ -720,9 +781,19 @@ const Navbar = () => {
                   color: "#fff",
                   display: "block",
                   textDecoration: "none",
+                  position: "relative",
                 }}
               >
                 Contact Us
+                <span
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    bottom: -6, // Adjust this value to control the gap between text and underline
+                    width: lcaseN.includes("contact%20us") ? "100%" : "0",
+                    borderBottom: `2px solid ${theme.palette.primary.main}`,
+                  }}
+                ></span>
               </Typography>
             </ListItem>
           </List>

@@ -12,6 +12,7 @@ import {
   Fab,
   IconButton,
   colors,
+  Autocomplete,
 } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -39,7 +40,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as MySVG } from "../img/Group 95.svg";
-
+import { Products } from "../productContent";
 function ScrollTop(props) {
   const { children, window } = props;
 
@@ -79,16 +80,74 @@ ScrollTop.propTypes = {
   window: PropTypes.func,
 };
 
+const scrollBoxStyles = {
+  "&::-webkit-scrollbar": {
+    height: "10px",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    background: "#555", // Scrollbar thumb color
+    borderRadius: "10px",
+  },
+  "&::-webkit-scrollbar-thumb:hover": {
+    background: "#777", // Scrollbar thumb hover color
+  },
+  "&::-webkit-scrollbar-track": {
+    background: "#333", // Scrollbar track color
+  },
+  scrollbarColor: "#555 #333", // For Firefox
+  scrollbarWidth: "thin", // For Firefox
+};
+
 const HomePage = ({ props }) => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isLg = useMediaQuery(theme.breakpoints.down("xl"));
+  const allTitles = Products.flatMap((product) =>
+    product.items.map((item) => item.title)
+  );
+  const AllProducts = Products.flatMap((product) => product.items);
 
   const [value, setValue] = React.useState("1");
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const [filteredProducts, setFilteredProducts] = React.useState(AllProducts);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  console.log("filteredProducts", filteredProducts);
+  const handleSearchChange = (event, value) => {
+    setSearchQuery(value);
+  };
+
+  const performSearch = (query) => {
+    const searchLowercase = query.toLowerCase();
+    setSearchQuery(query);
+
+    if (searchLowercase === "") {
+      setFilteredProducts(AllProducts);
+    } else {
+      const filtered = Products.flatMap((product) =>
+        product.items.filter((item) =>
+          item.title.toLowerCase().includes(searchLowercase)
+        )
+      );
+
+      setFilteredProducts(filtered);
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      performSearch(searchQuery);
+    }
+  };
+
+  const handleButtonClick = () => {
+    performSearch(searchQuery);
+  };
+
   const svg =
     "data:image/svg+xml,%3Csvg%20width%3D%22176%22%20height%3D%22849%22%20viewBox%3D%220%200%20176%20849%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20filter%3D%22url(%23filter0_di_0_270)%22%3E%3Cpath%20d%3D%22M151.088%2025.1958V97.1607C151.088%20103.847%20145.668%20109.267%20138.982%20109.267H21.282C14.5959%20109.267%209.17578%20114.687%209.17578%20121.373V641.269V765.695V839.677%22%20stroke%3D%22url(%23paint0_linear_0_270)%22%20stroke-width%3D%224.03542%22%20stroke-linecap%3D%22round%22/%3E%3C/g%3E%3Cg%20filter%3D%22url(%23filter1_dd_0_270)%22%3E%3Ccircle%20cx%3D%22151.761%22%20cy%3D%2225.1958%22%20r%3D%224.03542%22%20fill%3D%22white%22/%3E%3C/g%3E%3Cdefs%3E%3Cfilter%20id%3D%22filter0_di_0_270%22%20x%3D%220.432264%22%20y%3D%2216.4523%22%20width%3D%22159.399%22%20height%3D%22831.968%22%20filterUnits%3D%22userSpaceOnUse%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeFlood%20flood-opacity%3D%220%22%20result%3D%22BackgroundImageFix%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeOffset/%3E%3CfeGaussianBlur%20stdDeviation%3D%223.36285%22/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22out%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.6%200%200%200%200%200.282353%200%200%200%200%200.984314%200%200%200%201%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22BackgroundImageFix%22%20result%3D%22effect1_dropShadow_0_270%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in%3D%22SourceGraphic%22%20in2%3D%22effect1_dropShadow_0_270%22%20result%3D%22shape%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeOffset/%3E%3CfeGaussianBlur%20stdDeviation%3D%222.69028%22/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22arithmetic%22%20k2%3D%22-1%22%20k3%3D%221%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.9%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22shape%22%20result%3D%22effect2_innerShadow_0_270%22/%3E%3C/filter%3E%3Cfilter%20id%3D%22filter1_dd_0_270%22%20x%3D%22127.548%22%20y%3D%220.983316%22%20width%3D%2248.425%22%20height%3D%2248.425%22%20filterUnits%3D%22userSpaceOnUse%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeFlood%20flood-opacity%3D%220%22%20result%3D%22BackgroundImageFix%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeMorphology%20radius%3D%222.69028%22%20operator%3D%22dilate%22%20in%3D%22SourceAlpha%22%20result%3D%22effect1_dropShadow_0_270%22/%3E%3CfeOffset/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22out%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.643137%200%200%200%200%200.211765%200%200%200%200%200.976471%200%200%200%201%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22BackgroundImageFix%22%20result%3D%22effect1_dropShadow_0_270%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeOffset/%3E%3CfeGaussianBlur%20stdDeviation%3D%2210.0885%22/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22out%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.839216%200%200%200%200%200.239216%200%200%200%200%200.435294%200%200%200%201%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22effect1_dropShadow_0_270%22%20result%3D%22effect2_dropShadow_0_270%22/%3E%3";
 
@@ -98,7 +157,7 @@ const HomePage = ({ props }) => {
         style={{
           position: "fixed",
           borderRadius: "0px 20.18px 20.18px 0",
-          padding: "20px 8px",
+          padding: "15px 8px",
           gap: "13.45px",
           backgroundColor: "#1B1B1B",
           flexDirection: "column",
@@ -116,8 +175,10 @@ const HomePage = ({ props }) => {
           // Change color to primary on hover
         >
           <LinkedIn
-            fontSize="large"
+            // fontSize="large"
+
             sx={{
+              fontSize: 33,
               color: "white",
               "&:hover": { color: theme.palette.primary.main },
             }}
@@ -128,9 +189,10 @@ const HomePage = ({ props }) => {
           href="https://www.instagram.com/vmarcindia?igshid=NDk5N2NlZjQ%3D"
         >
           <Instagram
-            fontSize="large"
+            // fontSize="large"
             sx={{
               color: "white",
+              fontSize: 33,
               "&:hover": { color: theme.palette.primary.main },
             }}
           />
@@ -140,9 +202,10 @@ const HomePage = ({ props }) => {
           href="https://www.youtube.com/@v-marcwirescables8469/videos"
         >
           <YouTube
-            fontSize="large"
+            // fontSize="large"
             sx={{
               color: "white",
+              fontSize: 33,
               "&:hover": { color: theme.palette.primary.main },
             }}
           />
@@ -152,9 +215,10 @@ const HomePage = ({ props }) => {
           href="https://www.facebook.com/profile.php?id=100068702384250"
         >
           <Facebook
-            fontSize="large"
+            // fontSize="large"
             sx={{
               color: "white",
+              fontSize: 33,
               "&:hover": { color: theme.palette.primary.main },
             }}
           />
@@ -164,9 +228,10 @@ const HomePage = ({ props }) => {
           href="https://twitter.com/VMARCwires"
         >
           <Twitter
-            fontSize="large"
+            // fontSize="large"
             sx={{
               color: "white",
+              fontSize: 33,
               "&:hover": { color: theme.palette.primary.main },
             }}
           />
@@ -556,172 +621,82 @@ const HomePage = ({ props }) => {
                 flexDirection: "row",
               }}
             >
-              <TextField
-                fullWidth
-                id="outlined-basic"
-                label="Search"
-                variant="filled"
-                color="primary"
-                InputLabelProps={{
-                  sx: {
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    textAlign: "center",
-                    width: "100%",
-                  },
-                }}
-                sx={{
-                  backgroundColor: "rgba(243, 243, 243, 0.25)",
-                  mr: 2,
-                  "& .MuiInputLabel-root": {
-                    color: "white", // Change label color
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    textAlign: "center",
-                    width: "100%",
-                    justifyContent: "center",
-                    "&.Mui-focused, &.MuiFormLabel-filled": {
-                      left: 0,
-                      top: 0,
-                      transform: "translate(14px, 5px) scale(0.75)",
-                      textAlign: "left",
-                      transformOrigin: "top left",
-                    },
-                  },
-                  "& .MuiFilledInput-root:before": {
-                    borderBottomColor: "rgba(0, 0, 0, 0.42)", // Bottom border color before focus
-                  },
-                  "& .MuiFilledInput-root:hover:before": {
-                    borderBottomColor: "rgba(0, 0, 0, 0.87)", // Bottom border color on hover
-                  },
-                  "& .MuiFilledInput-root:after": {
-                    borderBottomColor: "primary.main", // Bottom border color after focus
-                  },
-                }}
+              <Autocomplete
+                freeSolo
+                sx={{ width: "100%", mr: 2 }}
+                options={allTitles}
+                inputValue={searchQuery}
+                onInputChange={handleSearchChange}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    id="outlined-basic"
+                    label="Search"
+                    variant="filled"
+                    color="primary"
+                    onKeyPress={handleKeyPress}
+                    sx={{
+                      backgroundColor: "rgba(243, 243, 243, 0.25)",
+                      mr: 2,
+                      "& .MuiInputLabel-root": {
+                        color: "white", // Change label color
+                      },
+                      "& .MuiFilledInput-root:before": {
+                        borderBottomColor: "rgba(0, 0, 0, 0.42)", // Bottom border color before focus
+                      },
+                      "& .MuiFilledInput-root:hover:before": {
+                        borderBottomColor: "rgba(0, 0, 0, 0.87)", // Bottom border color on hover
+                      },
+                      "& .MuiFilledInput-root:after": {
+                        borderBottomColor: "primary.main", // Bottom border color after focus
+                      },
+                    }}
+                  />
+                )}
               />
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleButtonClick}
+              >
                 <Search></Search>
               </Button>{" "}
             </Box>
           </Grid>
           {/* </Grid>
         <Grid container spacing={3} sx={{ color: "white", my: 3 }}> */}
-          <Grid item sm={12} sx={{}}>
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
-                  sx={{
-                    "& .MuiTab-root": {
-                      color: "white", // Color of unselected tabs
-                      "&.Mui-selected": {
-                        color: "primary.main", // Color of the selected tab
-                      },
-                    },
-                  }}
-                >
-                  <Tab label="Cable" value="1" />
-                  <Tab label="Switches" value="2" />
-                  <Tab label="MCB's" value="3" />
-                </TabList>
-              </Box>
-              <TabPanel value="1" sx={{ paddingX: 0 }}>
-                <Grid container spacing={3} sx={{}}>
-                  <Grid item xs={12} sm={6} md={4} sx={{}}>
+          <Grid item sm={12}>
+            <Box
+              sx={{
+                overflowY: "auto",
+                mb: 5,
+                color: "white",
+                maxHeight: 700,
+                ...scrollBoxStyles,
+              }}
+            >
+              {/* <Box
+              sx={{
+                mb: 10,
+                color: "white",
+              }}
+            > */}
+              <Grid container spacing={3}>
+                {filteredProducts.map((item, idx) => (
+                  <Grid key={idx} item xs={12} sm={6} md={3}>
                     <ProductCard
-                      heading={"Cable"}
+                      item={item}
+                      category={item.category}
                       subHeading={"VIEW PRODUCT"}
                       paragraph={
                         "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
                       }
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} sx={{}}>
-                    <ProductCard
-                      heading={"Cable"}
-                      subHeading={"VIEW PRODUCT"}
-                      paragraph={
-                        "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} sx={{}}>
-                    <ProductCard
-                      heading={"Cable"}
-                      subHeading={"VIEW PRODUCT"}
-                      paragraph={
-                        "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
-                      }
-                    />
-                  </Grid>
-                </Grid>
-              </TabPanel>
-              <TabPanel value="2" sx={{ paddingX: 0 }}>
-                <Grid container spacing={3} sx={{}}>
-                  <Grid item xs={12} sm={6} md={4} sx={{}}>
-                    <ProductCard
-                      heading={"Switches"}
-                      subHeading={"VIEW PRODUCT"}
-                      paragraph={
-                        "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} sx={{}}>
-                    <ProductCard
-                      heading={"Switches"}
-                      subHeading={"VIEW PRODUCT"}
-                      paragraph={
-                        "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} sx={{}}>
-                    <ProductCard
-                      heading={"Switches"}
-                      subHeading={"VIEW PRODUCT"}
-                      paragraph={
-                        "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
-                      }
-                    />
-                  </Grid>
-                </Grid>
-              </TabPanel>
-              <TabPanel value="3" sx={{ paddingX: 0 }}>
-                {" "}
-                <Grid container spacing={3} sx={{}}>
-                  <Grid item xs={12} sm={6} md={4} sx={{}}>
-                    <ProductCard
-                      heading={"MCB's"}
-                      subHeading={"VIEW PRODUCT"}
-                      paragraph={
-                        "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} sx={{}}>
-                    <ProductCard
-                      heading={"MCB's"}
-                      subHeading={"VIEW PRODUCT"}
-                      paragraph={
-                        "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
-                      }
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={4} sx={{}}>
-                    <ProductCard
-                      heading={"MCB's"}
-                      subHeading={"VIEW PRODUCT"}
-                      paragraph={
-                        "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
-                      }
-                    />
-                  </Grid>
-                </Grid>
-              </TabPanel>
-            </TabContext>
+                ))}
+              </Grid>
+            </Box>
           </Grid>
         </Grid>
         <ScrollTop {...props}>

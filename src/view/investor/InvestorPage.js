@@ -154,23 +154,23 @@ const InvestorPage = () => {
               <TabPanel value="2" sx={{ paddingX: 0 }}>
                 <Box sx={{ mt: 5, mb: 3 }}>
                   <Typography variant="body1">
-                    <Collapse in={expanded} collapsedSize={100}>
-                      “V-Marc”is among the global leaders in providing reliable
-                      and consistent quality of products.By supplying our
-                      optimally priced high quality products we enable our
-                      clients to achieve more and outperform their competitors
-                      and stay ahead of the innovation curve. Customers'
-                      satisfaction is our prime objectives it is the foundation
-                      stone for the growth of the company.
-                      <br /> “V-Marc”has earned trust and reputation in India by
-                      winning the customers’ confidence. A very huge quantity of
-                      our cables has been in operation across India. The
-                      Organization is also committed to comply with all
-                      applicable environment, health & safety legislations and
-                      all other requirements of existing & prospective buyers.
-                    </Collapse>
+                    {/* <Collapse in={expanded} collapsedSize={100}> */}
+                    “V-Marc”is among the global leaders in providing reliable
+                    and consistent quality of products.By supplying our
+                    optimally priced high quality products we enable our clients
+                    to achieve more and outperform their competitors and stay
+                    ahead of the innovation curve. Customers' satisfaction is
+                    our prime objectives it is the foundation stone for the
+                    growth of the company.
+                    <br /> “V-Marc”has earned trust and reputation in India by
+                    winning the customers’ confidence. A very huge quantity of
+                    our cables has been in operation across India. The
+                    Organization is also committed to comply with all applicable
+                    environment, health & safety legislations and all other
+                    requirements of existing & prospective buyers.
+                    {/* </Collapse> */}
                   </Typography>
-                  <Box display="flex" justifyContent="center" mt={1}>
+                  {/* <Box display="flex" justifyContent="center" mt={1}>
                     <Button
                       onClick={handleToggle}
                       sx={{
@@ -186,7 +186,7 @@ const InvestorPage = () => {
                         <ExpandMoreIcon sx={{ color: "white" }} />
                       )}
                     </Button>
-                  </Box>
+                  </Box> */}
                 </Box>
               </TabPanel>
               <TabPanel value="3" sx={{ paddingX: 0 }}>

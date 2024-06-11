@@ -1,49 +1,59 @@
 import React from "react";
-import { Grid, Box, Typography, styled } from "@mui/material";
+import { Grid, Box, Typography, styled, CardMedia } from "@mui/material";
 import { ReactComponent as Vector24 } from "../img/Vector.svg";
 
 const events = [
   {
-    year: "2002",
-    title: "Fonded",
-    description: "Started With 2 Product Line & Vibrant Work Force.",
-    color: "#81C784",
+    year: "2006",
+    icon: require("../img/icon/Founded_icon.png"),
+    title: "Founded",
+    description: "Started with 2 product line & vibrant work force.",
+    color: "#ffe100",
   },
   {
-    year: "2003",
-    title: "Founded",
-    description: "Started With 2 Product Line & Vibrant Work Force.",
-    color: "#81C7C3",
+    year: "2009",
+    icon: require("../img/icon/Lower_Voltage_icon.png"),
+    title: "Lower Voltage XLPE Cables",
+    description: "Introduce new product line, i.e. LT XLPE Cables.",
+    color: "#00dec8",
   },
   {
-    year: "2004",
-    title: "Founded",
-    description: "Started With 2 Product Line & Vibrant Work Force.",
-    color: "#8188C7",
-  },
-  {
-    year: "2005",
-    title: "Founded",
-    description: "Started With 2 Product Line & Vibrant Work Force.",
+    year: "2012",
+    icon: require("../img/icon/New_Plant_Setup_icon.png"),
+    title: "New Plant Setup",
+    description:
+      "Setup new plant along with new product line, i.e. LT Aerial Bunched Cables.",
     color: "#FCA4A4",
   },
   {
-    year: "2006",
-    title: "Founded",
-    description: "Started With 2 Product Line & Vibrant Work Force.",
-    color: "#7BE1E8",
+    year: "20016",
+    icon: require("../img/icon/NPC_1st_Price_Winner_icon.png"),
+    title: "NPC 1st Price Winner",
+    description:
+      "MSME Unit of the year 2015-2016 awarded by NPC under Make in India.",
+    color: "#eb3131",
   },
   {
-    year: "2007",
-    title: "Founded",
-    description: "Started With 2 Product Line & Vibrant Work Force.",
-    color: "#D73F6A",
+    year: "2017",
+    icon: require("../img/icon/33KV_Plant_Setup_icon.png"),
+    title: "33KV Plant Setup",
+    description: "Introduced High Voltage Cables upto & including 33KV.",
+    color: "#f07c00",
   },
   {
-    year: "2008",
-    title: "Founded",
-    description: "Started With 2 Product Line & Vibrant Work Force.",
-    color: "#EFC83C",
+    year: "2019",
+    icon: require("../img/icon/200__Crore_icon.png"),
+    title: "200+ Crore",
+    description: "Turnover crossed 200+ Crore.",
+    color: "#0090f0",
+  },
+  {
+    year: "2022",
+    icon: require("../img/icon/Mega_Expansion_Plan_icon.png"),
+    title: "Mega Expansion Plan",
+    description:
+      "New plant setup and also to introduce new product line of higher voltage upto & including 110KV.",
+    color: "#b400f0",
   },
 ];
 
@@ -72,22 +82,23 @@ const Timeline = () => {
       position: "relative",
       //   backgroundColor: "red",
       width: 220,
-      height: 150,
+      height: 170,
       p: 2,
     },
   };
 
   const TimelineDot = styled("div")(({ color, left }) => ({
-    width: "16px",
-    height: "16px",
+    width: "50px",
+    height: "50px",
     borderRadius: "50%",
-    backgroundColor: color,
+    backgroundColor: "black",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     margin: "0 auto",
-    border: `5px solid #303030`,
+    border: `1px solid ${color}`,
     position: "relative",
+    // padding: '5px',
     zIndex: 1,
     left: `${6 + left + "%"}`,
   }));
@@ -113,6 +124,8 @@ const Timeline = () => {
               key={index}
               sx={{
                 ...styles.box,
+                // backgroundColor: "red",
+                position: "relative",
               }}
             >
               <TimelineDot
@@ -121,29 +134,40 @@ const Timeline = () => {
                 left={index > 0 ? 14.7 * index : 0}
                 style={{
                   position: "absolute",
-                  bottom: -15,
+                  bottom: -25,
                   left: "50%",
                   transform: "translate(-50% )",
                 }}
-              />
-              <>
+              >
+                <CardMedia
+                  component="img"
+                  src={item.icon}
+                  alt="Image"
+                  sx={{
+                    width: "30px", // Make the image fit within the dot
+                    height: "30px", // Make the image fit within the dot
+                    borderRadius: "50%", // Keep the image circular
+                  }}
+                />
+              </TimelineDot>
+              <div style={{ position: "absolute", bottom: 70 }}>
                 <Typography style={styles.heading}>{item.year}</Typography>
                 <Typography style={styles.subHeading}>{item.title}</Typography>
                 <Typography style={styles.paragraph}>
                   {item.description}
                 </Typography>
-                <Vector24
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "auto",
-                    color: item.color,
-                    objectFit: "cover",
-                  }}
-                />
-              </>
+              </div>
+              <Vector24
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "auto",
+                  color: item.color,
+                  objectFit: "cover",
+                }}
+              />
             </Box>
           ) : null
         )}
@@ -196,7 +220,19 @@ const Timeline = () => {
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                   }}
-                />
+                >
+                  {" "}
+                  <CardMedia
+                    component="img"
+                    src={item.icon}
+                    alt="Image"
+                    sx={{
+                      width: "30px", // Make the image fit within the dot
+                      height: "30px", // Make the image fit within the dot
+                      borderRadius: "50%", // Keep the image circular
+                    }}
+                  />
+                </TimelineDot>
                 <Vector24
                   style={{
                     position: "absolute",
@@ -210,7 +246,7 @@ const Timeline = () => {
                     //   backgroundColor: "blue",
                   }}
                 />
-                <>
+                <div style={{ position: "absolute", top: 70 }}>
                   <Typography style={styles.heading}>{item.year}</Typography>
                   <Typography style={styles.subHeading}>
                     {item.title}
@@ -218,7 +254,7 @@ const Timeline = () => {
                   <Typography style={styles.paragraph}>
                     {item.description}
                   </Typography>
-                </>
+                </div>
               </>
             </Box>
           ) : null

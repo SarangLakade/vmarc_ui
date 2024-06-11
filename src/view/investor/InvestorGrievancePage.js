@@ -89,7 +89,7 @@ const InvestorGrievancePage = () => {
       console.log("templateParams", templateParams);
       try {
         const response = await fetch(
-          "https://1yh728hhzg.execute-api.ap-south-1.amazonaws.com/prod/investor_request",
+          "https://vmarc-api.atcrews.com/investor_request",
           {
             headers: {
               "Content-Type": "application/json",

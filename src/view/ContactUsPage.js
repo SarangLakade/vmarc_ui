@@ -76,7 +76,7 @@ const ContactUsPage = () => {
       console.log("Contact us Form", templateParams);
       try {
         const response = await fetch(
-          "https://1yh728hhzg.execute-api.ap-south-1.amazonaws.com/prod/send_request",
+          "https://vmarc-api.atcrews.com/send_request",
           {
             headers: {
               "Content-Type": "application/json",
@@ -115,7 +115,7 @@ const ContactUsPage = () => {
       console.log("Template Params:", templateParams);
       try {
         const response = await fetch(
-          "https://1yh728hhzg.execute-api.ap-south-1.amazonaws.com/prod/send_feedback",
+          "https://vmarc-api.atcrews.com/send_feedback",
           {
             headers: {
               "Content-Type": "application/json",

@@ -25,6 +25,7 @@ const validationSchema = Yup.object({
     .max(50, "Must be less than 50 characters")
     .required("Required"),
   email: Yup.string().email("Invalid email address").required("Required"),
+  // link: Yup.string().url("Must be a valid URL").required("Required"),
   pdf: Yup.mixed()
     .required("Required")
     .test("fileType", "Unsupported File Format", (value) => {
@@ -81,65 +82,40 @@ const CareerPage = () => {
       name: "",
       email: "",
       pdf: null,
-      pdfpath: null,
+      // link: "",
       message: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { resetForm }) => {
-      console.log(values);
-      console.log(values.pdf);
-      // try {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "multipart/form-data");
-
+    onSubmit: async (values, { resetForm }) => {
       const formdata = new FormData();
       formdata.append("email", values.email);
       formdata.append("name", values.name);
       formdata.append("message", values.message);
-      formdata.append("pdf", values.pdf, values.pdfpath);
+      formdata.append("pdf", values.pdf);
 
-      // console.log(formdata.getAll());
-      const requestOptions = {
-        method: "POST",
-        body: formdata,
-      };
-
-      fetch(
-        "https://bbab-2401-4900-1c43-d63-c4a3-6fe8-de36-9a84.ngrok-free.app/job_request",
-        requestOptions
-      )
-        .then((response) => {
-          if (response.ok) {
-            alert("Email sent successfully");
-          } else {
-            alert("Error sending email");
+      console.log("Carrier Form Values:", values);
+      console.log("Template Params:", formdata);
+      try {
+        const response = await fetch(
+          "https://vmarc-api.atcrews.com/job_request",
+          {
+            method: "POST",
+            body: formdata,
           }
-        })
-        .catch((error) => {
-          console.log(error);
+        );
+
+        console.log("Response Status:", response.status);
+
+        if (response.ok) {
+          alert("Email sent successfully");
+          resetForm();
+        } else {
           alert("Error sending email");
-        });
-
-      //   const response = await fetch(
-      //     "https://1yh728hhzg.execute-api.ap-south-1.amazonaws.com/prod/job_request",
-      //     {
-      //       headers: {
-      //         "Content-Type": "multipart/form-data",
-      //       },
-      //       method: "POST",
-      //       body: JSON.stringify(values),
-      //     }
-      //   );
-
-      //   if (response.ok) {
-      //     alert("Email sent successfully");
-      //   } else {
-      //     alert("Error sending email");
-      //   }
-      // } catch (error) {
-      //   console.error("Error:", error);
-      //   alert("Error sending email");
-      // }
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Error sending email");
+      }
     },
   });
 
@@ -153,6 +129,7 @@ const CareerPage = () => {
           width: "100%",
           overflow: "hidden",
           zIndex: -1,
+          height: "auto",
         }}
       >
         <img
@@ -186,7 +163,7 @@ const CareerPage = () => {
               flexDirection={"column"}
             >
               <Typography variant="hb1" fontWeight={800}>
-                Career
+                Careers
               </Typography>
             </Box>
           </Grid>
@@ -238,6 +215,13 @@ const CareerPage = () => {
                         formik={formik}
                       />
                     </Grid>
+                    {/* <Grid item xs={12} md={12}>
+                      <StyledTextField
+                        label="Your Resume Link"
+                        name="link"
+                        formik={formik}
+                      />
+                    </Grid> */}
 
                     <Grid item xs={12}>
                       <Typography variant="body1" gutterBottom>
@@ -250,11 +234,8 @@ const CareerPage = () => {
                         accept="application/pdf"
                         onChange={(event) => {
                           console.log(event);
-                          formik.setFieldValue(
-                            "pdf",
-                            event.currentTarget.files[0]
-                          );
-                          formik.setFieldValue("pdfpath", event.target.value);
+                          formik.setFieldValue("pdf", event.target.files[0]);
+                          // formik.setFieldValue("pdf", event.target.value);
                         }}
                       />
                       {formik.touched.pdf && formik.errors.pdf ? (

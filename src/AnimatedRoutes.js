@@ -1,11 +1,5 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import HomePage from "./view/HomePage";
 import AboutUsPage from "./view/AboutUsPage";
 import ProductPage from "./view/ProductPage";
@@ -17,12 +11,15 @@ import AnnouncementsPage from "./view/investor/AnnouncementsPage";
 import IPOPage from "./view/investor/IPOPage";
 import InvestorGrievancePage from "./view/investor/InvestorGrievancePage";
 import RegistrarDetailsPage from "./view/investor/RegistrarDetailsPage";
-// import { AnimatePresence } from "framer-motion";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
-    // <AnimatePresence>
     <Routes location={location} key={location.pathname}>
       <Route path="/" element={<HomePage />} />
       <Route path="/about us" element={<AboutUsPage />} />
@@ -39,10 +36,9 @@ const AnimatedRoutes = () => {
         path="/investor/details-of-registrar"
         element={<RegistrarDetailsPage />}
       />
-      <Route path="/carrier" element={<CarrierPage />} />
+      <Route path="/careers" element={<CarrierPage />} />
       <Route path="/contact us" element={<ContactUsPage />} />
     </Routes>
-    // </AnimatePresence>
   );
 };
 

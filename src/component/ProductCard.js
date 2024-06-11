@@ -1,9 +1,9 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import Products1 from "../img/products3.jpeg";
-
+import { Link } from "react-router-dom";
 const styles = {
   header: {
     fontFamily: "Poppins",
@@ -25,13 +25,14 @@ const styles = {
     color: "#ffff",
   },
 };
-const ProductCard = ({ heading, subHeading, paragraph }) => {
+const ProductCard = ({ item, category, subHeading, paragraph }) => {
   return (
     <Box
       sx={{
         // width: "344.06px", // Adjust the width as needed
-        height: "400px", // Adjust the height as neededb
+        height: "250px", // Adjust the height as neededb
         backgroundImage: `url(${Products1})`,
+
         backgroundSize: "cover", // Cover the entire box
         backgroundPosition: "center", // Center the image
         backgroundRepeat: "no-repeat", // Prevent image repetition
@@ -53,7 +54,7 @@ const ProductCard = ({ heading, subHeading, paragraph }) => {
     >
       <Box>
         <Typography className="product-header" style={styles.header} mb={1}>
-          {heading}
+          {item.title}
         </Typography>
         <Typography
           className="product-description"
@@ -68,7 +69,13 @@ const ProductCard = ({ heading, subHeading, paragraph }) => {
           {paragraph}
         </Typography>
       </Box>
-      <Link className="product-subheader" style={styles.subHead} href="#">
+
+      <Link
+        className="product-subheader"
+        style={styles.subHead}
+        to={"/product"}
+        state={{ item, category }}
+      >
         {subHeading}
       </Link>
     </Box>
