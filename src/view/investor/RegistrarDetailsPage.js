@@ -42,7 +42,8 @@ const RegistrarDetailsPage = () => {
             justifyContent: "space-between",
             alignContent: "center",
             alignItems: "center",
-            my: 20,
+            mt: 20,
+            mb: 5,
           }}
         >
           <Box
@@ -53,7 +54,11 @@ const RegistrarDetailsPage = () => {
             {/* <Typography variant="hb3">
               Disclosure As Per Regulation 46 of the
             </Typography> */}
-            <Typography variant="hb1" fontWeight={800}>
+            <Typography
+              variant="hb1"
+              fontWeight={800}
+              sx={{ fontSize: { md: "50px", xs: "30px" } }}
+            >
               Details Of Registrar And Share Transfer Agents
             </Typography>
           </Box>
@@ -62,7 +67,11 @@ const RegistrarDetailsPage = () => {
           </Box>
         </Grid>
         <Grid item sm={12} sx={{ mb: 10 }}>
-          <Typography variant="h4" color={"white"}>
+          <Typography
+            variant="h4"
+            color={"white"}
+            sx={{ fontSize: { md: "20px", xs: "16px" } }}
+          >
             Bigshare Services Pvt. Ltd.
             <br />
             <br /> Office No S6-2, 6th floor Pinnacle Business Park,

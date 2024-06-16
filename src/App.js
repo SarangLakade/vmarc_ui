@@ -9,60 +9,87 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter } from "react-router-dom";
 import theme from "./theme/index";
 import AnimatedRoutes from "./AnimatedRoutes";
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <HomePage />,
-//   },
-//   {
-//     path: "/about us",
-//     element: <AboutUsPage />,
-//   },
-//   {
-//     path: "/buy-now",
-//     element: <BuyNowPage />,
-//   },
-//   {
-//     path: "/customer-service",
-//     element: <CustomerService />,
-//   },
-//   {
-//     path: "/privacy-policy",
-//     element: <PrivacyPage />,
-//   },
+import { Box, Fade, Fab } from "@mui/material";
+import { ArrowUpward } from "@mui/icons-material";
+import PropTypes from "prop-types";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
 
-//   // {
-//   //   path: "/",
-//   //   element: <WarrantyPage />,
-//   // },
-//   // {
-//   //   path: "/",
-//   //   element: <Home />,
-//   // },
-// ]);
+function ScrollTop(props) {
+  const { children, window } = props;
 
-// const AnimateRoutes = () => {
-//   const location = useLocation();
-//   return (
-//     <Routes location={location} key={location.pathname}>
-//       <Route path="/" element={<HomePage />} />
-//       <Route path="/about us" element={<AboutUsPage />} />
-//       <Route path="/buy-now" element={<BuyNowPage />} />
-//       <Route path="/customer-service" element={<CustomerService />} />
-//       <Route path="/privacy-policy" element={<PrivacyPage />} />
-//     </Routes>
-//   );
-// };
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
 
-function App() {
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#back-to-top-anchor"
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        block: "center",
+      });
+    }
+  };
+
+  return (
+    <Fade in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: "fixed", bottom: 16, right: 16 }}
+      >
+        {children}
+      </Box>
+    </Fade>
+  );
+}
+
+ScrollTop.propTypes = {
+  children: PropTypes.element.isRequired,
+  window: PropTypes.func,
+};
+
+function App(props) {
   return (
     <ThemeProvider theme={theme}>
       <React.StrictMode>
         <BrowserRouter basename="/" future={{ v7_startTransition: true }}>
-          <Navbar />
-          <AnimatedRoutes />
-          <Footer />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: "100vh",
+            }}
+          >
+            <Navbar />
+            <Box sx={{ flex: 1 }}>
+              <AnimatedRoutes />
+            </Box>
+            <Footer />
+          </Box>
           {/* <RouterProvider router={router} /> */}
+          <ScrollTop {...props}>
+            <Fab
+              size="small"
+              aria-label="scroll back to top"
+              sx={{
+                backgroundColor: "rgba(0, 0, 0, 0.8)",
+                "&:hover": {
+                  backgroundColor: "rgba(0, 0, 0, 0.8)",
+                },
+                "&:hover svg": {
+                  color: theme.palette.primary.main,
+                },
+              }}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              <ArrowUpward sx={{ color: "white" }} />
+            </Fab>
+          </ScrollTop>
         </BrowserRouter>
       </React.StrictMode>
     </ThemeProvider>

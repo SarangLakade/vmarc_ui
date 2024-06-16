@@ -49,7 +49,7 @@ const DetailOfBusiness = () => {
         paddingBottom: "10px",
       }}
     >
-      <Container maxWidth={"lg"}>
+      <Container maxWidth={"lg"} sx={{ mb: 9 }}>
         <Box
           sx={{
             backgroundImage: `url(${BlackEarth})`,

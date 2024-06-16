@@ -26,7 +26,7 @@ const events = [
     color: "#FCA4A4",
   },
   {
-    year: "20016",
+    year: "2016",
     icon: require("../img/icon/NPC_1st_Price_Winner_icon.png"),
     title: "NPC 1st Price Winner",
     description:

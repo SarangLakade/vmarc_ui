@@ -6,79 +6,28 @@ import {
   Typography,
   Button,
   TextField,
-  Tabs,
-  Tab,
-  Fade,
-  Fab,
-  IconButton,
-  colors,
   Autocomplete,
+  CardMedia,
 } from "@mui/material";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
 import backgroundImage from "../img/homeEarth.png";
 import Ellipse from "../img//Ellipse.png";
 import Frame2 from "../img/Frame2.png";
+import ProductFamily from "../img/produt-family-no-bg.png";
 import {
   PlayCircleFilled,
-  Facebook,
-  Twitter,
-  Google,
   Search,
   ArrowUpward,
-  YouTube,
-  Instagram,
-  LinkedIn,
   ArrowBackIos,
   ArrowForwardIos,
 } from "@mui/icons-material";
 import theme from "../theme";
 import ProductCard from "../component/ProductCard";
-import PropTypes from "prop-types";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as MySVG } from "../img/Group 95.svg";
 import { Products } from "../productContent";
-function ScrollTop(props) {
-  const { children, window } = props;
-
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
-
-  const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector(
-      "#back-to-top-anchor"
-    );
-
-    if (anchor) {
-      anchor.scrollIntoView({
-        block: "center",
-      });
-    }
-  };
-
-  return (
-    <Fade in={trigger}>
-      <Box
-        onClick={handleClick}
-        role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16 }}
-      >
-        {children}
-      </Box>
-    </Fade>
-  );
-}
-
-ScrollTop.propTypes = {
-  children: PropTypes.element.isRequired,
-  window: PropTypes.func,
-};
+import SocialMediaBox from "../component/SocialMediaBox";
 
 const scrollBoxStyles = {
   "&::-webkit-scrollbar": {
@@ -98,7 +47,7 @@ const scrollBoxStyles = {
   scrollbarWidth: "thin", // For Firefox
 };
 
-const HomePage = ({ props }) => {
+const HomePage = () => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isLg = useMediaQuery(theme.breakpoints.down("xl"));
@@ -107,14 +56,9 @@ const HomePage = ({ props }) => {
   );
   const AllProducts = Products.flatMap((product) => product.items);
 
-  const [value, setValue] = React.useState("1");
   const [searchQuery, setSearchQuery] = React.useState("");
 
   const [filteredProducts, setFilteredProducts] = React.useState(AllProducts);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   console.log("filteredProducts", filteredProducts);
   const handleSearchChange = (event, value) => {
@@ -148,95 +92,17 @@ const HomePage = ({ props }) => {
     performSearch(searchQuery);
   };
 
+  const handleOpenPDF = (link) => {
+    console.log("Box clicked:", link);
+
+    window.open(link, "_blank");
+  };
   const svg =
     "data:image/svg+xml,%3Csvg%20width%3D%22176%22%20height%3D%22849%22%20viewBox%3D%220%200%20176%20849%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20filter%3D%22url(%23filter0_di_0_270)%22%3E%3Cpath%20d%3D%22M151.088%2025.1958V97.1607C151.088%20103.847%20145.668%20109.267%20138.982%20109.267H21.282C14.5959%20109.267%209.17578%20114.687%209.17578%20121.373V641.269V765.695V839.677%22%20stroke%3D%22url(%23paint0_linear_0_270)%22%20stroke-width%3D%224.03542%22%20stroke-linecap%3D%22round%22/%3E%3C/g%3E%3Cg%20filter%3D%22url(%23filter1_dd_0_270)%22%3E%3Ccircle%20cx%3D%22151.761%22%20cy%3D%2225.1958%22%20r%3D%224.03542%22%20fill%3D%22white%22/%3E%3C/g%3E%3Cdefs%3E%3Cfilter%20id%3D%22filter0_di_0_270%22%20x%3D%220.432264%22%20y%3D%2216.4523%22%20width%3D%22159.399%22%20height%3D%22831.968%22%20filterUnits%3D%22userSpaceOnUse%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeFlood%20flood-opacity%3D%220%22%20result%3D%22BackgroundImageFix%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeOffset/%3E%3CfeGaussianBlur%20stdDeviation%3D%223.36285%22/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22out%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.6%200%200%200%200%200.282353%200%200%200%200%200.984314%200%200%200%201%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22BackgroundImageFix%22%20result%3D%22effect1_dropShadow_0_270%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in%3D%22SourceGraphic%22%20in2%3D%22effect1_dropShadow_0_270%22%20result%3D%22shape%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeOffset/%3E%3CfeGaussianBlur%20stdDeviation%3D%222.69028%22/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22arithmetic%22%20k2%3D%22-1%22%20k3%3D%221%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%201%200%200%200%200%201%200%200%200%200%201%200%200%200%200.9%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22shape%22%20result%3D%22effect2_innerShadow_0_270%22/%3E%3C/filter%3E%3Cfilter%20id%3D%22filter1_dd_0_270%22%20x%3D%22127.548%22%20y%3D%220.983316%22%20width%3D%2248.425%22%20height%3D%2248.425%22%20filterUnits%3D%22userSpaceOnUse%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeFlood%20flood-opacity%3D%220%22%20result%3D%22BackgroundImageFix%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeMorphology%20radius%3D%222.69028%22%20operator%3D%22dilate%22%20in%3D%22SourceAlpha%22%20result%3D%22effect1_dropShadow_0_270%22/%3E%3CfeOffset/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22out%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.643137%200%200%200%200%200.211765%200%200%200%200%200.976471%200%200%200%201%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22BackgroundImageFix%22%20result%3D%22effect1_dropShadow_0_270%22/%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%20result%3D%22hardAlpha%22/%3E%3CfeOffset/%3E%3CfeGaussianBlur%20stdDeviation%3D%2210.0885%22/%3E%3CfeComposite%20in2%3D%22hardAlpha%22%20operator%3D%22out%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.839216%200%200%200%200%200.239216%200%200%200%200%200.435294%200%200%200%201%200%22/%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22effect1_dropShadow_0_270%22%20result%3D%22effect2_dropShadow_0_270%22/%3E%3";
 
   return (
     <div style={{ position: "relative" }}>
-      <Box
-        style={{
-          position: "fixed",
-          borderRadius: "0px 20.18px 20.18px 0",
-          padding: "15px 8px",
-          gap: "13.45px",
-          backgroundColor: "#1B1B1B",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          left: 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-        }}
-        sx={{ display: { xs: "none", lg: "flex" } }}
-      >
-        <IconButton
-          style={{ padding: 10 }}
-          href="https://www.linkedin.com/company/v-marc/"
-          // Change color to primary on hover
-        >
-          <LinkedIn
-            // fontSize="large"
-
-            sx={{
-              fontSize: 33,
-              color: "white",
-              "&:hover": { color: theme.palette.primary.main },
-            }}
-          />
-        </IconButton>
-        <IconButton
-          style={{ padding: 10 }}
-          href="https://www.instagram.com/vmarcindia?igshid=NDk5N2NlZjQ%3D"
-        >
-          <Instagram
-            // fontSize="large"
-            sx={{
-              color: "white",
-              fontSize: 33,
-              "&:hover": { color: theme.palette.primary.main },
-            }}
-          />
-        </IconButton>
-        <IconButton
-          style={{ padding: 10 }}
-          href="https://www.youtube.com/@v-marcwirescables8469/videos"
-        >
-          <YouTube
-            // fontSize="large"
-            sx={{
-              color: "white",
-              fontSize: 33,
-              "&:hover": { color: theme.palette.primary.main },
-            }}
-          />
-        </IconButton>
-        <IconButton
-          style={{ padding: 10 }}
-          href="https://www.facebook.com/profile.php?id=100068702384250"
-        >
-          <Facebook
-            // fontSize="large"
-            sx={{
-              color: "white",
-              fontSize: 33,
-              "&:hover": { color: theme.palette.primary.main },
-            }}
-          />
-        </IconButton>
-        <IconButton
-          style={{ padding: 10 }}
-          href="https://twitter.com/VMARCwires"
-        >
-          <Twitter
-            // fontSize="large"
-            sx={{
-              color: "white",
-              fontSize: 33,
-              "&:hover": { color: theme.palette.primary.main },
-            }}
-          />
-        </IconButton>
-      </Box>
+      <SocialMediaBox />
 
       <div style={{ position: "relative", width: "100%", height: "100%" }}>
         <div
@@ -321,14 +187,18 @@ const HomePage = ({ props }) => {
             </Box>
           </Box> */}
 
-          <Grid item xs={12} sx={{ my: 25 }}>
+          <Grid item xs={12} sx={{ mt: 25, mb: { md: 25, xs: 10 } }}>
             <Typography variant="h6" component="div">
               Experience Excellence with Us
             </Typography>
             <Typography
               variant="hb1"
               component="div"
-              sx={{ marginY: 3, marginBottom: 4 }}
+              sx={{
+                marginY: 3,
+                marginBottom: 4,
+                fontSize: { md: "50px", xs: "40px" },
+              }}
             >
               Connecting & <br />
               Enlightening Lives
@@ -337,9 +207,11 @@ const HomePage = ({ props }) => {
               <Button
                 variant="outlined"
                 sx={{ mr: 2 }}
-                onClick={() => navigate("/product")}
+                onClick={() =>
+                  handleOpenPDF("./vmarc/V-Marc India Ltd. Profile_new_14.pdf")
+                }
               >
-                Our Products
+                Our Profile
               </Button>
               <Button
                 variant="contained"
@@ -413,13 +285,21 @@ const HomePage = ({ props }) => {
             `}</style>
           </Box> */}
           <Grid item sm={12} md={6} sx={{ mb: 5 }}>
-            <Typography variant="hb3" component="div">
+            <Typography
+              variant="hb3"
+              component="div"
+              sx={{ fontSize: { md: "40px", xs: "25px" } }}
+            >
               Premium & Durable Wires and cables
             </Typography>
             <Typography
               variant="h5"
-              component="div"
-              sx={{ marginY: 3, marginBottom: 4 }}
+              sx={{
+                marginY: 3,
+                marginBottom: 4,
+                textAlign: "justify",
+                fontSize: { xs: "14px", md: "16px" },
+              }}
             >
               V-Marc is one of the global leader in providing reliable and
               consistent quality of products, we enable our clients to achieve
@@ -437,7 +317,7 @@ const HomePage = ({ props }) => {
                 sx={{
                   backgroundColor: "#D9D9D94A",
                   padding: 1,
-                  px: 2,
+                  px: { xs: 1, md: 2 },
                   borderBottom: "4px solid #F24535",
                   mr: 2,
                 }}
@@ -450,7 +330,7 @@ const HomePage = ({ props }) => {
                     textAlign: "center",
                     fontWeight: 700,
                     fontFamily: "Poppins, sans-serif",
-                    fontSize: 40,
+                    fontSize: { md: 40, xs: 35 },
                   }}
                 >
                   18+
@@ -473,7 +353,7 @@ const HomePage = ({ props }) => {
                 sx={{
                   backgroundColor: "#D9D9D94A",
                   padding: 1,
-                  px: 2,
+                  px: { xs: 1, md: 2 },
                   borderBottom: "4px solid #F24535",
                 }}
                 flexDirection={"row"}
@@ -484,7 +364,7 @@ const HomePage = ({ props }) => {
                     textAlign: "center",
                     fontWeight: 700,
                     fontFamily: "Poppins, sans-serif",
-                    fontSize: 40,
+                    fontSize: { md: 40, xs: 35 },
                   }}
                   component="div"
                 >
@@ -513,22 +393,20 @@ const HomePage = ({ props }) => {
               alignContent: "center",
             }}
           >
-            <img
-              src={Frame2}
+            <CardMedia
+              image={Frame2}
+              component="img"
               alt="background"
-              style={{
-                width: "100%",
-                height: "auto",
-                maxHeight: "350px",
-                objectFit: "cover",
-                // transform: `rotate(155deg)`,
-              }}
+              loading="lazy"
             />
             <Button
               variant="contained"
               color="secondary"
               fullWidth
               sx={{ mt: 2 }}
+              onClick={() => {
+                navigate("/about us");
+              }}
             >
               Read More
             </Button>
@@ -537,7 +415,7 @@ const HomePage = ({ props }) => {
         <Grid
           container
           spacing={3}
-          sx={{ color: "white", my: 3, position: "relative" }}
+          sx={{ color: "white", my: 3, position: "relative", mb: 5 }}
         >
           {/* <Box
             sx={{
@@ -590,14 +468,25 @@ const HomePage = ({ props }) => {
               }
             `}</style>
           </Box> */}
-          <Grid item sm={12} md={6} sx={{ mt: 5 }}>
+          <CardMedia
+            image={ProductFamily}
+            component="img"
+            alt="background"
+            loading="lazy"
+          />
+          <Grid item sm={12} md={6} sx={{ mt: 5 }} id="our-products">
             <Typography variant="hb4" component="div">
               Our Products
             </Typography>
             <Typography
               variant="h5"
               component="div"
-              sx={{ marginY: 3, marginBottom: 4 }}
+              sx={{
+                marginY: 3,
+                marginBottom: 4,
+                textAlign: "justify",
+                fontSize: { xs: "14px", md: "16px" },
+              }}
             >
               V-Marc Manufacturing Unit is well equiped with modern plant and
               machinery and have complete testing equiptment backed up with well
@@ -613,16 +502,19 @@ const HomePage = ({ props }) => {
             md={6}
             sx={{
               alignContent: "center",
+              width: "100%",
             }}
           >
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "row",
+                width: "100%",
               }}
             >
               <Autocomplete
                 freeSolo
+                fullWidth
                 sx={{ width: "100%", mr: 2 }}
                 options={allTitles}
                 inputValue={searchQuery}
@@ -637,6 +529,7 @@ const HomePage = ({ props }) => {
                     color="primary"
                     onKeyPress={handleKeyPress}
                     sx={{
+                      width: "100%",
                       backgroundColor: "rgba(243, 243, 243, 0.25)",
                       mr: 2,
                       "& .MuiInputLabel-root": {
@@ -665,7 +558,7 @@ const HomePage = ({ props }) => {
             </Box>
           </Grid>
           {/* </Grid>
-        <Grid container spacing={3} sx={{ color: "white", my: 3 }}> */}
+          <Grid container spacing={3} sx={{ color: "white", my: 3 }}> */}
           <Grid item sm={12}>
             <Box
               sx={{
@@ -684,14 +577,12 @@ const HomePage = ({ props }) => {
             > */}
               <Grid container spacing={3}>
                 {filteredProducts.map((item, idx) => (
-                  <Grid key={idx} item xs={12} sm={6} md={3}>
+                  <Grid key={idx} item xs={12} sm={6} md={4}>
                     <ProductCard
                       item={item}
                       category={item.category}
                       subHeading={"VIEW PRODUCT"}
-                      paragraph={
-                        "These cables are used for electric power transmission at high voltage. HT power cables comes in different types which have a variety of applications in ignition systems, instruments and direct and alternating current power transmission"
-                      }
+                      paragraph={item.description}
                     />
                   </Grid>
                 ))}
@@ -699,23 +590,6 @@ const HomePage = ({ props }) => {
             </Box>
           </Grid>
         </Grid>
-        <ScrollTop {...props}>
-          <Fab
-            size="small"
-            aria-label="scroll back to top"
-            sx={{
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-              "&:hover": {
-                backgroundColor: "rgba(0, 0, 0, 0.8)",
-              },
-              "&:hover svg": {
-                color: theme.palette.primary.main,
-              },
-            }}
-          >
-            <ArrowUpward sx={{ color: "white" }} />
-          </Fab>
-        </ScrollTop>
       </Container>
     </div>
   );

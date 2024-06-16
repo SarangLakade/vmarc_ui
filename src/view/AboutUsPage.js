@@ -31,14 +31,14 @@ const styles = {
   },
   subHeading: {
     fontWeight: 500,
-    fontSize: "16px",
+    fontSize: { md: "16px", xs: "14px" },
     fontFamily: "Poppins, sans-serif",
     textAlign: "right",
     color: "#fff",
   },
   paragraph: {
     fontWeight: 400,
-    fontSize: "14px",
+    fontSize: { md: "14px", xs: "12px" },
     fontFamily: "Poppins, sans-serif",
   },
   GradientText: {},
@@ -207,7 +207,7 @@ const AboutUsPage = () => {
             color: "white",
           }}
         >
-          <Box mb={15}>
+          <Box mb={15} id="aboutUs-history">
             <Typography
               sx={{
                 fontFamily: "Poppins",
@@ -226,7 +226,13 @@ const AboutUsPage = () => {
             <Box mb={2} mt={3}>
               <Typography variant="hb4">Our History</Typography>
             </Box>
-            <Typography variant="h5">
+            <Typography
+              variant="h5"
+              sx={{
+                textAlign: "justify",
+                fontSize: { xs: "14px", md: "16px" },
+              }}
+            >
               Our MD, the first generation entrepreneur Shri Vikas Garg Ji had a
               very humble inception in 1996 with the manufacturing of house
               wiring cables, the simplest product of wires & cable industry.
@@ -245,13 +251,16 @@ const AboutUsPage = () => {
               successfully subscribed.
             </Typography>
           </Box>
-          <Box sx={{ overflowX: "auto", pb: 5, mb: 5, ...scrollBoxStyles }}>
+          <Box sx={{ overflowX: "auto", pb: 10, mb: 5, ...scrollBoxStyles }}>
             <Timeline />
           </Box>
         </Grid>
       </Container>
 
-      <div style={{ backgroundColor: "#2B2B2B", paddingTop: "10px" }}>
+      <div
+        style={{ backgroundColor: "#2B2B2B", paddingTop: "10px" }}
+        id="aboutUs-company"
+      >
         <Container maxWidth={"lg"}>
           <Typography
             sx={{
@@ -268,7 +277,13 @@ const AboutUsPage = () => {
           </Typography>
           <Grid container spacing={3} sx={{ color: "#ffff" }}>
             <Grid item xs={12} md={8}>
-              <Typography variant="h5">
+              <Typography
+                variant="h5"
+                sx={{
+                  textAlign: "justify",
+                  fontSize: { xs: "14px", md: "16px" },
+                }}
+              >
                 “V-Marc” is among the global leaders in providing reliable and
                 consistent quality of products. By supplying our optimally
                 priced high quality products we enable our clients to achieve
@@ -329,21 +344,21 @@ const AboutUsPage = () => {
             }}
           >
             <Box sx={{ p: 5, justifyContent: "flex-end" }}>
-              <Typography style={styles.subHeading}>
+              <Typography style={styles.subHeading} my={7}>
                 We are committed to deliver consistently through dedicated
                 <br />
                 customer support and offices located across India. “V-Marc” is
                 <br />
                 there for you, whenever and wherever.....
               </Typography>
-              <Button
+              {/* <Button
                 variant="contained"
                 sx={{
                   mt: 5,
                 }}
               >
                 view services
-              </Button>
+              </Button> */}
             </Box>
           </Box>
           <Box my={3}>
@@ -364,8 +379,21 @@ const AboutUsPage = () => {
                   sx={{ borderRadius: 2 }}
                 />
               </Grid>
-              <Grid item xs={12} md={7.8} sx={{ p: 2, color: "#fff" }}>
-                <Typography variant="h5">
+              <Grid
+                item
+                xs={12}
+                md={7.8}
+                sx={{
+                  p: { md: 2, xs: 0 },
+                  pt: { md: 0, xs: 2 },
+                  color: "#fff",
+                  textAlign: "justify",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{ fontSize: { xs: "14px", md: "16px" } }}
+                >
                   We manufacture various types of exceptional quality wires &
                   cables in Single & Multi-core with Copper/Aluminium
                   Conductors, having XLPE/PVC insulation, Flat Cables, Co-axial
@@ -393,7 +421,7 @@ const AboutUsPage = () => {
               </Grid>
             </Grid>
           </Box>
-          <Box py={10} sx={{}}>
+          <Box py={10} id="aboutUs-services">
             <Box mb={10} sx={{ color: "#FFFF" }}>
               <Typography
                 sx={{
@@ -405,7 +433,11 @@ const AboutUsPage = () => {
               >
                 Our Services
               </Typography>
-              <Typography variant="h5" my={2}>
+              <Typography
+                variant="h5"
+                my={2}
+                sx={{ fontSize: { xs: "14px", md: "16px" } }}
+              >
                 In an ongoing process to improve Customer Satisfaction “V-Marc”
                 offers a variety of services:
               </Typography>
@@ -416,28 +448,40 @@ const AboutUsPage = () => {
           </Box>
         </Container>
       </div>
-      <div style={{ backgroundColor: "#212121", paddingTop: "10px" }}>
-        <Container maxWidth={"lg"}>
+      <div
+        style={{
+          backgroundColor: "#212121",
+          paddingTop: "10px",
+          paddingBottom: "20px",
+        }}
+      >
+        <Container maxWidth={"lg"} sx={{ my: 5 }}>
           <Grid
             container
             gap={3}
             sx={{
-              p: 5,
+              p: { md: 1, xs: 0 },
             }}
+            id="aboutUs-vision"
           >
             <Grid
               item
               xs={12}
               md={5.8}
-              sx={{ p: 5, backgroundColor: "#2E2E2E", borderRadius: 2 }}
+              sx={{
+                p: { md: 5, xs: 2 },
+                backgroundColor: "#2E2E2E",
+                // borderRadius: 2,
+                borderBottom: `5px solid ${theme.palette.primary.main}`,
+              }}
             >
               <Typography
                 sx={{
                   fontFamily: "Outfit",
-                  fontSize: "47px",
+                  fontSize: { md: "47px", xs: "30px" },
                   fontWeight: 900,
                   textAlign: "start",
-                  color: "#fff",
+                  color: theme.palette.primary.main,
                   mb: 3,
                 }}
               >
@@ -446,9 +490,9 @@ const AboutUsPage = () => {
               <Typography
                 sx={{
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: "16px",
+                  fontSize: { md: "16px", xs: "14px" },
                   fontWeight: 500,
-                  textAlign: "start",
+                  textAlign: "justify",
                   color: "#fff",
                 }}
               >
@@ -464,15 +508,20 @@ const AboutUsPage = () => {
               item
               xs={12}
               md={5.8}
-              sx={{ p: 5, backgroundColor: "#2E2E2E", borderRadius: 2 }}
+              sx={{
+                p: { md: 5, xs: 2 },
+                backgroundColor: "#2E2E2E",
+                // borderRadius: 2,
+                borderBottom: `5px solid ${theme.palette.primary.main}`,
+              }}
             >
               <Typography
                 sx={{
                   fontFamily: "Outfit",
-                  fontSize: "47px",
+                  fontSize: { md: "47px", xs: "30px" },
                   fontWeight: 900,
                   textAlign: "start",
-                  color: "#fff",
+                  color: theme.palette.primary.main,
                   mb: 3,
                 }}
               >
@@ -481,9 +530,9 @@ const AboutUsPage = () => {
               <Typography
                 sx={{
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: "16px",
+                  fontSize: { md: "16px", xs: "14px" },
                   fontWeight: 500,
-                  textAlign: "start",
+                  textAlign: "justify",
                   color: "#fff",
                 }}
               >
@@ -507,7 +556,7 @@ const AboutUsPage = () => {
               borderRadius: 2,
             }}
           >
-            <Grid item xs={12} md={4.5} sx={{ p: 3 }}>
+            <Grid item xs={12} md={4.5} sx={{ p: { md: 3, xs: 2 } }}>
               <Box
                 sx={{ height: "80%", backgroundColor: "#4F577A", mb: 3 }}
               ></Box>
@@ -546,8 +595,15 @@ const AboutUsPage = () => {
                 </Box>
               </Box>
             </Grid>
-            <Grid item xs={12} md={7.5} sx={{ p: 3 }}>
-              <Typography variant="h5" sx={{ color: "#fff", fontSize: "14px" }}>
+            <Grid item xs={12} md={7.5} sx={{ p: { md: 3, xs: 2 } }}>
+              <Typography
+                variant="h5"
+                sx={{
+                  color: "#fff",
+                  fontSize: { xs: "14px", md: "16px" },
+                  textAlign: "justify",
+                }}
+              >
                 I would like to express my gratitude to all my customers, board
                 of directors, stakeholders, consultants and V-Marc’s team & wish
                 all of them to have a great experience working together. We are
@@ -588,9 +644,12 @@ const AboutUsPage = () => {
         </Container>
       </div>
 
-      <div style={{ backgroundColor: "#212121", paddingTop: "1px" }}>
+      <div
+        style={{ backgroundColor: "#212121", paddingTop: "1px" }}
+        id="aboutUs-policy"
+      >
         <Container maxWidth={"lg"} sx={{ my: 10 }}>
-          <Box mb={10} sx={{ color: "#FFFF" }}>
+          <Box sx={{ color: "#FFFF" }}>
             <Typography
               sx={{
                 fontFamily: "Poppins",
@@ -601,7 +660,11 @@ const AboutUsPage = () => {
             >
               Quality Policy
             </Typography>
-            <Typography variant="h5" my={2}>
+            <Typography
+              variant="h5"
+              my={2}
+              sx={{ fontSize: { md: "16px", xs: "14px" } }}
+            >
               We at “V-Marc” are devoted towards meeting the customers’ needs
               and expectations by delivering an array of uncompetitive services
               and solutions through continual improvement of our systems and
@@ -709,6 +772,7 @@ const AboutUsPage = () => {
                 ...styles.subHeading,
                 textAlign: "left",
                 color: "#B58B8B",
+                textAlign: "justify",
               }}
             >
               Also, we try to cultivate a quality culture by developing quality
@@ -722,7 +786,7 @@ const AboutUsPage = () => {
               important and valuable thing to us.
             </Typography>
           </Box>
-          <Box sx={{ color: "#FFFF", pb: 15 }}>
+          <Box sx={{ color: "#FFFF", pb: 15, mt: 10 }} id="aboutUs-csr">
             <Typography
               sx={{
                 fontFamily: "Poppins",
@@ -733,7 +797,14 @@ const AboutUsPage = () => {
             >
               CSR
             </Typography>
-            <Typography variant="h5" my={2}>
+            <Typography
+              variant="h5"
+              my={2}
+              sx={{
+                textAlign: "justify",
+                fontSize: { md: "16px", xs: "14px" },
+              }}
+            >
               Social and environmental responsibility has always been at the
               forefront of V-Marc operating philosophy and as a result the
               Company consistently contributes to socially responsible
@@ -796,7 +867,7 @@ const AboutUsPage = () => {
               </Grid>
             </Grid>
           </Box>
-          <Box sx={{ color: "#FFFF", pb: 15 }}>
+          <Box sx={{ color: "#FFFF", pb: 15 }} id="aboutUs-gallery">
             <Box sx={{ width: "100%", typography: "body1" }}>
               <TabContext value={value}>
                 <Box
@@ -883,8 +954,15 @@ const AboutUsPage = () => {
           </Box>
         </Container>
       </div>
-      <div style={{ backgroundColor: "#0000", paddingTop: " 1px" }}>
-        <Container maxWidth={"lg"} sx={{ my: 6 }}>
+      <div
+        style={{
+          backgroundColor: "#0000",
+          paddingTop: " 1px",
+          paddingBottom: "10px",
+        }}
+        id="aboutUs-certifications"
+      >
+        <Container maxWidth={"lg"} sx={{ mb: 6, pb: 3 }}>
           <Typography
             sx={{
               fontFamily: "Poppins",

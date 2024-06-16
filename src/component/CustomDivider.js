@@ -26,7 +26,7 @@ const CustomDivider = ({ title }) => {
         <Typography
           sx={{
             fontWeight: 400,
-            fontSize: "20px",
+            fontSize: "22px",
             fontFamily: "Poppins, sans-serif",
             color: "#D4D4D4",
           }}

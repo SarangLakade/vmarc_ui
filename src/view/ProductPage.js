@@ -32,7 +32,12 @@ const StandardsComponent = ({ title, description }) => {
         <InfoOutlined style={{ marginLeft: 8 }} />
         {/* Adds some space between text and icon */}
       </Box>
-      <Typography variant="h5" color="#BAFFC1" mt={1}>
+      <Typography
+        variant="h5"
+        color="#BAFFC1"
+        mt={1}
+        sx={{ fontSize: { md: "16px", xs: "14px" } }}
+      >
         {description}
       </Typography>
     </Box>
@@ -81,9 +86,8 @@ const Paragraph = ({ header, description }) => {
         {header}
       </Typography>
       <Typography
-        textAlign={"left"}
         variant="h4"
-        sx={{ fontSize: "16px" }}
+        sx={{ fontSize: { md: "16px", xs: "14px" }, textAlign: "justify" }}
         color={"#ffff"}
         dangerouslySetInnerHTML={{ __html: description }}
       ></Typography>
@@ -100,6 +104,7 @@ const ProductPage = () => {
   console.log("Item from Product page ", item);
   console.log("Item from Product category ", category);
 
+  window.scrollTo(0, 0);
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -127,17 +132,18 @@ const ProductPage = () => {
         />
       </div>
       <Container maxWidth={"lg"}>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} sx={{}}>
           <Grid
             item
             xs={12}
             md={8}
             sx={{
-              mt: 20,
+              mt: { xs: 2, md: 20 },
               color: "white",
               display: "flex",
               justifyContent: "space-between",
               flexDirection: "column",
+              order: { xs: 2, md: 1 },
             }}
           >
             <Box mb={5}>
@@ -160,7 +166,15 @@ const ProductPage = () => {
                 <Typography variant="hb4">{item.title}</Typography>
               </Box>
 
-              <Typography variant="h5">{item.description}</Typography>
+              <Typography
+                variant="h5"
+                sx={{
+                  textAlign: "justify",
+                  fontSize: { md: "16px", xs: "14px" },
+                }}
+              >
+                {item.description}
+              </Typography>
 
               {category === "Geyser" && item.features.length > 0 && (
                 <Grid container>
@@ -253,8 +267,9 @@ const ProductPage = () => {
             xs={12}
             md={4}
             sx={{
-              mt: { xs: 0, md: 20 },
+              mt: { xs: 20, md: 20 },
               color: "white",
+              order: { xs: 1, md: 2 },
             }}
           >
             <CardMedia
@@ -344,6 +359,8 @@ const ProductPage = () => {
               </Card>
             )}
           </Grid>
+        </Grid>
+        <Grid container spacing={4}>
           <Grid item xs={12} md={8} my={1} mb={5}>
             {item.paragraph.length > 0 && (
               <Paragraph

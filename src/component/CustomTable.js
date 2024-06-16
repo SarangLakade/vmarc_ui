@@ -26,7 +26,6 @@ const styles = {
   },
   subHeading: {
     fontWeight: 400,
-    fontSize: "16px",
     fontFamily: "Poppins, sans-serif",
     color: "#ECECFF",
     textAlign: "center",
@@ -58,7 +57,12 @@ const EventCard = ({ name }) => (
       border: "1px solid #5D5DCC",
     }}
   >
-    <Typography style={styles.subHeading}>{name}</Typography>
+    <Typography
+      style={styles.subHeading}
+      sx={{ fontSize: { xs: "12px", md: "16px" } }}
+    >
+      {name}
+    </Typography>
     <IconButton>
       <FileCopy sx={{ color: "#ffff" }}></FileCopy>
     </IconButton>
@@ -73,7 +77,7 @@ const CustomTable = ({ Data }) => {
     window.open(link, "_blank");
   };
   return (
-    <TableContainer sx={{ width: "100%" }}>
+    <TableContainer sx={{ width: "100%", mb: 5 }}>
       <Table
         sx={{
           minWidth: 650,
@@ -84,17 +88,20 @@ const CustomTable = ({ Data }) => {
       >
         <TableHead>
           <TableRow>
-            <TableCell style={styles.tableCell}>
+            <TableCell style={{ alignContent: "center" }} sx={styles.tableCell}>
               <Typography style={styles.heading}>Year</Typography>
             </TableCell>
-            <TableCell style={styles.tableCell}>
+            <TableCell style={{ alignContent: "center" }} sx={styles.tableCell}>
               <Typography style={styles.heading}>HY1</Typography>
             </TableCell>
-            <TableCell style={styles.tableCell}>
+            <TableCell style={{ alignContent: "center" }} sx={styles.tableCell}>
               <Typography style={styles.heading}>HY2</Typography>
             </TableCell>
             {Data[0].annual !== undefined ? (
-              <TableCell style={styles.tableCell}>
+              <TableCell
+                style={{ alignContent: "center" }}
+                sx={styles.tableCell}
+              >
                 <Typography style={styles.heading}>Annual Report</Typography>
               </TableCell>
             ) : null}
@@ -103,7 +110,7 @@ const CustomTable = ({ Data }) => {
         <TableBody>
           {Data.map((event, index) => (
             <TableRow key={index}>
-              <TableCell sx={{ border: "3px dotted #6B6B6B" }}>
+              <TableCell sx={{ border: "3px dotted #6B6B6B", minWidth: 70 }}>
                 {/* <Box
                     sx={{
                       width: "100%",
@@ -111,7 +118,11 @@ const CustomTable = ({ Data }) => {
                       mr: 0.5,
                     }}
                   > */}
-                <Typography style={styles.subHeading} color="#8EA1FF">
+                <Typography
+                  style={styles.subHeading}
+                  sx={{ fontSize: { xs: "12px", md: "16px" } }}
+                  color="#8EA1FF"
+                >
                   {event.year}
                 </Typography>
                 {/* </Box> */}

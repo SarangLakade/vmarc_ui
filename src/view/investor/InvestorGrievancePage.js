@@ -44,18 +44,17 @@ const validationSchema = Yup.object({
 
 const styles = {
   h1: {
-    fontSize: 32,
     fontWeight: 500,
     lineHeight: 1.5,
     fontFamily: "Poppins, sans-serif",
   },
   h2: {
-    fontSize: 16,
+    fontSize: { md: 16, xs: 14 },
     fontWeight: 500,
     fontFamily: "Poppins, sans-serif",
   },
   h3: {
-    fontSize: 16,
+    fontSize: { md: 16, xs: 14 },
     fontWeight: 300,
     fontFamily: "Poppins, sans-serif",
   },
@@ -147,20 +146,17 @@ const InvestorGrievancePage = () => {
               alignContent: "center",
               alignItems: "center",
               mt: 20,
-              mb: 5,
             }}
           >
-            <Box
-              sx={{ color: "#C3C3C3" }}
-              display={"flex"}
-              flexDirection={"column"}
+            <Typography
+              variant="hb1"
+              fontWeight={800}
+              sx={{ fontSize: { md: "50px", xs: "30px" }, color: "#C3C3C3" }}
             >
-              <Typography variant="hb1" fontWeight={800}>
-                Investor Grievance
-              </Typography>
-            </Box>
+              Investor Grievance
+            </Typography>
           </Grid>
-          <Grid item sm={12} lg={10} sx={{}}>
+          <Grid item sm={12} lg={12} sx={{}}>
             <Box sx={{ display: "flex", mb: 5 }}>
               <Card
                 sx={{
@@ -168,10 +164,15 @@ const InvestorGrievancePage = () => {
                   borderRadius: 2,
                   color: "white",
                   padding: 2,
+                  width: "100%",
                 }}
               >
                 <CardContent>
-                  <Typography component="h1" gutterBottom sx={styles.h1}>
+                  <Typography
+                    component="h1"
+                    gutterBottom
+                    sx={{ ...styles.h1, fontSize: { md: 32, xs: 22 } }}
+                  >
                     Grievance Redressal Contact Details
                   </Typography>
                   <Typography
@@ -249,7 +250,16 @@ const InvestorGrievancePage = () => {
               variant="h6"
               gutterBottom
               color={"white"}
-              sx={{ ...styles.h3, mb: 2, textAlign: "left" }}
+              sx={{
+                ...styles.h3,
+                mb: 2,
+                textAlign: "left",
+                fontSize: { md: 16, xs: 20 },
+                fontWeight: {
+                  xs: 600,
+                  md: 400,
+                },
+              }}
             >
               Send your message to us
             </Typography>

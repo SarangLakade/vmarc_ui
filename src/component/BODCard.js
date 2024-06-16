@@ -53,24 +53,38 @@ const BodCard = ({ name, img, position, description }) => {
     >
       <CardMedia
         component="img"
-        sx={{ height: 200, width: 200, backgroundColor: "white" }}
+        sx={{
+          height: { md: 200, xs: 100 },
+          width: { md: 200, xs: 100 },
+          backgroundColor: "white",
+        }}
         image={img}
         alt="Live from space album cover"
       />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
           {console.log(name)}
-          <Typography component="div" variant="h3">
+          <Typography
+            component="div"
+            variant="h3"
+            sx={{ fontSize: { xs: "18px", md: "24px" } }}
+          >
             {name}
           </Typography>
           <Typography
             component="div"
             variant="h5"
             color={theme.palette.secondary.main}
+            sx={{ fontSize: { xs: "14px", md: "16px" } }}
           >
             {position}
           </Typography>
-          <Typography component="div" variant="h5" mt={2}>
+          <Typography
+            component="div"
+            variant="h5"
+            mt={{ xs: 1, md: 2 }}
+            sx={{ fontSize: { xs: "12px", md: "16px" }, textAlign: "justify" }}
+          >
             {description}
           </Typography>
         </CardContent>

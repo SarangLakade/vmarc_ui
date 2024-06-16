@@ -45,7 +45,7 @@ const AnnouncementsPage = () => {
           }}
         />
       </div>
-      <Container maxWidth={"lg"} sx={{ position: "relative" }}>
+      <Container maxWidth={"lg"} sx={{ position: "relative", mb: 3 }}>
         <Grid
           item
           sx={{
@@ -55,7 +55,7 @@ const AnnouncementsPage = () => {
             alignContent: "center",
             alignItems: "center",
             mt: 20,
-            mb: 10,
+            mb: 5,
           }}
         >
           <Box
@@ -66,7 +66,11 @@ const AnnouncementsPage = () => {
             {/* <Typography variant="hb3">
               Disclosure As Per Regulation 46 of the
             </Typography> */}
-            <Typography variant="hb1" fontWeight={800}>
+            <Typography
+              variant="hb1"
+              fontWeight={800}
+              sx={{ fontSize: { md: "50px", xs: "30px" } }}
+            >
               Announcements
             </Typography>
           </Box>
@@ -83,6 +87,8 @@ const AnnouncementsPage = () => {
                 onChange={handleChange}
                 aria-label="lab API tabs example"
                 centered
+                variant="scrollable"
+                scrollButtons="auto"
                 sx={{
                   width: "100%", // Set TabList to take full width
                   borderBottom: "none",

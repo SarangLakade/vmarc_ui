@@ -96,7 +96,7 @@ const IPOPage = () => {
           }}
         />
       </div>
-      <Container maxWidth={"lg"} sx={{ position: "relative" }}>
+      <Container maxWidth={"lg"} sx={{ position: "relative", mb: 7 }}>
         <Grid
           item
           sx={{
@@ -117,7 +117,11 @@ const IPOPage = () => {
             <Typography variant="hb3">
               {/* Disclosure As Per Regulation 46 of the */}
             </Typography>
-            <Typography variant="hb1" fontWeight={800}>
+            <Typography
+              variant="hb1"
+              fontWeight={800}
+              sx={{ fontSize: { md: "50px", xs: "30px" } }}
+            >
               IPO
             </Typography>
           </Box>

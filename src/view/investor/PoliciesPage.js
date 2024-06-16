@@ -71,7 +71,7 @@ const PoliciesPage = () => {
             alignContent: "center",
             alignItems: "center",
             mt: 20,
-            mb: 10,
+            mb: 5,
           }}
         >
           <Box
@@ -82,7 +82,11 @@ const PoliciesPage = () => {
             {/* <Typography variant="hb3">
               Disclosure As Per Regulation 46 of the
             </Typography> */}
-            <Typography variant="hb1" fontWeight={800}>
+            <Typography
+              variant="hb1"
+              fontWeight={800}
+              sx={{ fontSize: { md: "50px", xs: "30px" } }}
+            >
               Policies & Program
             </Typography>
           </Box>
@@ -90,7 +94,7 @@ const PoliciesPage = () => {
             {/* <img src={SEBI}></img> */}
           </Box>
         </Grid>
-        <Grid item sm={12} sx={{}}>
+        <Grid item sm={12} sx={{ pb: 7 }}>
           <CustomListCard
             title={Policies.title}
             list={Policies.content}
@@ -98,7 +102,6 @@ const PoliciesPage = () => {
           />
         </Grid>
       </Container>
-      \
     </>
   );
 };

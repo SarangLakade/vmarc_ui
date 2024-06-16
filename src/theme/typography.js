@@ -1,8 +1,9 @@
 import theme from "./index";
+
 export default {
   hb1: {
     fontFamily: "Poppins, sans-serif",
-    fontSize: "60px",
+    fontSize: "50px",
     fontWeight: 500,
     textAlign: "left",
   },

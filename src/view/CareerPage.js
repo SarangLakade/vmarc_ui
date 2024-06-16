@@ -154,7 +154,7 @@ const CareerPage = () => {
               alignContent: "center",
               alignItems: "center",
               mt: 20,
-              mb: 5,
+              mb: { md: 5, sx: 0 },
             }}
           >
             <Box
@@ -162,7 +162,11 @@ const CareerPage = () => {
               display={"flex"}
               flexDirection={"column"}
             >
-              <Typography variant="hb1" fontWeight={800}>
+              <Typography
+                variant="hb1"
+                fontWeight={800}
+                sx={{ fontSize: { md: "50px", xs: "30px" } }}
+              >
                 Careers
               </Typography>
             </Box>
@@ -187,7 +191,7 @@ const CareerPage = () => {
                 backgroundColor: "#1D1D1D",
                 borderRadius: 2,
                 color: "white",
-                padding: 2,
+                padding: { md: 2, xs: 0 },
               }}
             >
               <CardContent>

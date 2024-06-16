@@ -32,7 +32,7 @@ const CommitteeOfBoardSection = () => {
   };
   return (
     <div style={{ backgroundColor: "#2B2B2B", paddingTop: "10px" }}>
-      <Container maxWidth={"lg"}>
+      <Container maxWidth={"lg"} sx={{ pb: 5 }}>
         <Grid item sm={12}>
           <Typography
             sx={{
@@ -50,7 +50,6 @@ const CommitteeOfBoardSection = () => {
           <TabContext value={cvalue}>
             <Box
               sx={{
-                borderBottom: 1,
                 borderColor: "divider",
                 color: "white",
               }}

@@ -77,7 +77,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/v-marc/"
                 size="small"
                 aria-label="LinkedIn"
-                sx={{ color: "rgba(255,255,255, 0.8)", mr: 1 }}
+                sx={{ color: "rgba(255,255,255, 0.8)", mr: 1, p: 0 }}
               >
                 <LinkedIn />
               </IconButton>
@@ -127,14 +127,17 @@ const Footer = () => {
                 py: 2,
               }}
             >
-              <Button href="https://play.google.com/store/apps/details?id=com.unotag.vmarc">
+              <Button
+                href="https://play.google.com/store/apps/details?id=com.unotag.vmarc"
+                sx={{ p: 0 }}
+              >
                 <img
                   src={PlayStore}
                   width={120}
                   style={{ marginRight: "5px" }}
                 />
               </Button>
-              <img src={AppStore} width={120} />
+              {/* <img src={AppStore} width={120} /> */}
             </Box>
             {/* <Typography variant="h5" color={"#A9A27B"}>
           {position}

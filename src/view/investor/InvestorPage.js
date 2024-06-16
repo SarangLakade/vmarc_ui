@@ -1,15 +1,5 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Grid,
-  Box,
-  Typography,
-  Button,
-  TextField,
-  Tabs,
-  Tab,
-  Collapse,
-} from "@mui/material";
+import { Container, Grid, Box, Typography, Tab } from "@mui/material";
 import SEBI from "../../img/invest1.png";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -24,8 +14,6 @@ import {
 } from "../../content";
 import CommitteeOfBoardSection from "../../section/CommitteeOfBoardSection";
 import DetailOfBusiness from "../../section/DetailOfBusiness";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import CustomTable from "../../component/CustomTable";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -73,7 +61,8 @@ const InvestorPage = () => {
             justifyContent: "space-between",
             alignContent: "center",
             alignItems: "center",
-            my: 20,
+            mt: 20,
+            mb: 10,
           }}
         >
           <Box
@@ -84,12 +73,16 @@ const InvestorPage = () => {
             <Typography variant="hb3">
               Disclosure As Per Regulation 46 of the
             </Typography>
-            <Typography variant="hb1" fontWeight={800}>
+            <Typography
+              variant="hb1"
+              fontWeight={800}
+              sx={{ fontSize: { md: "50px", xs: "30px" } }}
+            >
               SEBI (LODR), 2015
             </Typography>
           </Box>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <img src={SEBI}></img>
+            <img alt={"SEBI Icon"} src={SEBI}></img>
           </Box>
         </Grid>
         <Grid item sm={12} sx={{}}>
@@ -153,7 +146,7 @@ const InvestorPage = () => {
               </TabPanel>
               <TabPanel value="2" sx={{ paddingX: 0 }}>
                 <Box sx={{ mt: 5, mb: 3 }}>
-                  <Typography variant="body1">
+                  <Typography variant="body1" sx={{ textAlign: "justify" }}>
                     {/* <Collapse in={expanded} collapsedSize={100}> */}
                     “V-Marc”is among the global leaders in providing reliable
                     and consistent quality of products.By supplying our
@@ -199,8 +192,8 @@ const InvestorPage = () => {
           </TabContext>
         </Grid>
       </Container>
-      {value == "1" ? <CommitteeOfBoardSection /> : null}
-      {value == "2" ? <DetailOfBusiness /> : null}
+      {value === "1" ? <CommitteeOfBoardSection /> : null}
+      {value === "2" ? <DetailOfBusiness /> : null}
     </>
   );
 };

@@ -25,6 +25,7 @@ const CustomListCard = ({ title, list, singlechild, large, pdf }) => {
       {title ? (
         <Box
           sx={{
+            pt: 2,
             display: "flex",
             flexDirection: "row",
             justifyContent: "flex-end",
@@ -40,7 +41,7 @@ const CustomListCard = ({ title, list, singlechild, large, pdf }) => {
               py: 1,
             }}
           >
-            <Typography variant="h4" sx={{ color: "#FFFF" }}>
+            <Typography variant="h4" sx={{ color: "#FFFF", fontSize: "18px" }}>
               {title}
             </Typography>
           </Box>

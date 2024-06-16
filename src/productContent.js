@@ -572,7 +572,7 @@ const Products = [
         title: "FR Multistrand Cables",
         description:
           "V-Marc Multistrand Wires, compliant with IS 694: FR Category, IS 8130 & IS 5831 standards, feature pure electrolytic grade copper conductors and flame retardant PVC insulation, ensuring safety, high insulation resistance, and energy efficiency.",
-        img: "/vmarc/Product-Images/Lt-Ht-cables.png",
+        img: "/vmarc/Product-Images/FR.png",
         color: ["black", "blue", "green", "red", "yellow"],
         features: [
           { title: "Standard", des: "IS 694: FR Category, IS 8130 & IS 5831" },
@@ -598,7 +598,7 @@ const Products = [
       {
         title: "HRFR Multistrand Cables",
         description: "",
-        img: "path/to/lan_cables_img.png",
+        img: "/vmarc/Product-Images/HRFR.png",
         color: ["black", "blue", "green", "red", "yellow"],
         features: [],
         brochureLink: "",
@@ -608,7 +608,7 @@ const Products = [
         title: "FRLSH Multistrand Cables",
         description:
           "V-Marc Multistrand Wires, compliant with IS 694: FR Category, IS 8130 & IS 5831 standards, feature pure electrolytic grade copper conductors and flame retardant PVC insulation, ensuring safety, high insulation resistance, and energy efficiency.V-Marc Multistrand Wires, meeting IS 694: FRLSH Category, IS 8130 & IS 5831 standards, feature pure electrolytic grade copper conductors for low energy losses. The FRLSH insulation ensures minimal smoke, toxic emissions, and efficient fire suppression.",
-        img: "/vmarc/Product-Images/Lt-Ht-cables.png",
+        img: "/vmarc/Product-Images/FRLSH.png",
         color: ["black", "blue", "green", "red", "yellow"],
         features: [
           {
@@ -634,7 +634,7 @@ const Products = [
         title: "HFFR/ZHFR/LSZH Multistrand Cables",
         description:
           "'V-Marc' Multistrand Wires, compliant with IS 17048 and IEC standards, feature pure electrolytic grade copper conductors for high conductivity and energy efficiency. HFFR insulation ensures minimal toxic emissions and smoke, enhancing fire safety.",
-        img: "path/to/lan_cables_img.png",
+        img: "/vmarc/Product-Images/HFFR.png",
         color: ["black", "blue", "green", "red", "yellow"],
         features: [
           {
