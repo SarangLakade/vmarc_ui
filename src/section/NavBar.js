@@ -495,6 +495,7 @@ const Navbar = () => {
               mx={2}
               component={Link} // Use Link component for navigation
               to={"careers"}
+              to={"careers"}
               sx={{
                 my: 3,
                 color: `${theme.palette.textPrimary.main}`,
