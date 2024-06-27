@@ -169,7 +169,7 @@ const ProductPage = () => {
               <Typography
                 variant="h5"
                 sx={{
-                  textAlign: "justify",
+                  // textAlign: "justify",
                   fontSize: { md: "16px", xs: "14px" },
                 }}
               >

@@ -65,7 +65,7 @@ const ProductCard = ({ item, category, subHeading, paragraph }) => {
             fontSize: "12.23px",
             fontWeight: 400,
             color: "#ffff",
-            textAlign: "justify",
+            // textAlign: "justify",
             display: "none", // Initially hidden
           }}
         >

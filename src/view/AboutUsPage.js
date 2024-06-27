@@ -229,7 +229,7 @@ const AboutUsPage = () => {
             <Typography
               variant="h5"
               sx={{
-                textAlign: "justify",
+                // textAlign: "justify",
                 fontSize: { xs: "14px", md: "16px" },
               }}
             >
@@ -280,7 +280,7 @@ const AboutUsPage = () => {
               <Typography
                 variant="h5"
                 sx={{
-                  textAlign: "justify",
+                  // textAlign: "justify",
                   fontSize: { xs: "14px", md: "16px" },
                 }}
               >
@@ -387,7 +387,7 @@ const AboutUsPage = () => {
                   p: { md: 2, xs: 0 },
                   pt: { md: 0, xs: 2 },
                   color: "#fff",
-                  textAlign: "justify",
+                  // textAlign: "justify",
                 }}
               >
                 <Typography
@@ -492,7 +492,7 @@ const AboutUsPage = () => {
                   fontFamily: "Poppins, sans-serif",
                   fontSize: { md: "16px", xs: "14px" },
                   fontWeight: 500,
-                  textAlign: "justify",
+                  // textAlign: "justify",
                   color: "#fff",
                 }}
               >
@@ -532,7 +532,7 @@ const AboutUsPage = () => {
                   fontFamily: "Poppins, sans-serif",
                   fontSize: { md: "16px", xs: "14px" },
                   fontWeight: 500,
-                  textAlign: "justify",
+                  // textAlign: "justify",
                   color: "#fff",
                 }}
               >
@@ -601,7 +601,7 @@ const AboutUsPage = () => {
                 sx={{
                   color: "#fff",
                   fontSize: { xs: "14px", md: "16px" },
-                  textAlign: "justify",
+                  // textAlign: "justify",
                 }}
               >
                 I would like to express my gratitude to all my customers, board
@@ -772,7 +772,7 @@ const AboutUsPage = () => {
                 ...styles.subHeading,
                 textAlign: "left",
                 color: "#B58B8B",
-                textAlign: "justify",
+                // textAlign: "justify",
               }}
             >
               Also, we try to cultivate a quality culture by developing quality
@@ -801,7 +801,7 @@ const AboutUsPage = () => {
               variant="h5"
               my={2}
               sx={{
-                textAlign: "justify",
+                // textAlign: "justify",
                 fontSize: { md: "16px", xs: "14px" },
               }}
             >

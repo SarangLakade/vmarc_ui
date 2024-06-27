@@ -131,7 +131,7 @@ const Navbar = () => {
             justifyContent: "space-between",
           }}
         >
-          <img src={Logo} alt="logo" height={"120px"} />
+          <img src={Logo} loading="eager" alt="logo" height={"120px"} />
 
           {/* Navigation links for medium and larger screens */}
           <Box sx={{ display: { xs: "none", md: "flex" } }} ml={4}>
@@ -494,7 +494,6 @@ const Navbar = () => {
               variant="h5"
               mx={2}
               component={Link} // Use Link component for navigation
-              to={"careers"}
               to={"careers"}
               sx={{
                 my: 3,

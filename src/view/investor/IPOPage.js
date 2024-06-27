@@ -39,6 +39,7 @@ const ImageCard = ({ img, buttonText, link }) => {
     <Grid item xs={12} md={5}>
       <CardMedia
         component="img"
+        loading="lazy"
         sx={{
           height: 450,
           backgroundColor: "white",

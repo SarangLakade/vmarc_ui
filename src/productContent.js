@@ -81,7 +81,7 @@ const Products = [
         title: "Telephone and Switchboard Cables",
         description:
           "'V-MARC' Telephone & Switchboard Cables, with pure copper conductors and high-grade PVC insulation, ensure voice clarity and eliminate crosstalk. Ideal for large offices, residential buildings, and industrial complexes, they offer noise-free audio signals and easy connectivity.",
-        img: "/vmarc/Product-Images/",
+        img: "/vmarc/Product-Images/Telephone-cables.png",
         color: ["grey"],
         features: [
           {
@@ -384,7 +384,7 @@ const Products = [
         title: "LT XLPE Aerial Bunched Cables",
         description:
           "IS-14255 compliant cables feature hard-drawn Aluminium conductors, XLPE/PE insulation, and identification by ridges. Construction allows for easy installation, lightweight design, and protection against power theft, ideal for street lighting applications.",
-        img: "/vmarc/Product-Images/Lt-Ht-cables.png",
+        img: "/vmarc/Product-Images/AB-cables.png",
         color: ["black"],
         features: [
           { title: "Standard", des: "IS-14255" },

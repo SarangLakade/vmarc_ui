@@ -28,6 +28,9 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as MySVG } from "../img/Group 95.svg";
 import { Products } from "../productContent";
 import SocialMediaBox from "../component/SocialMediaBox";
+import CommingSoon1 from "../img/comming-soon1.png";
+import CommingSoon2 from "../img/comming-soon2.png";
+import CommingSoon3 from "../img/comming-soon3.png";
 
 const scrollBoxStyles = {
   "&::-webkit-scrollbar": {
@@ -118,6 +121,7 @@ const HomePage = () => {
           <img
             src={backgroundImage}
             alt="background"
+            loading="eager"
             style={{
               width: "100%", // Full width of container
               height: "auto", // Maintain aspect ratio
@@ -138,7 +142,7 @@ const HomePage = () => {
             position: "relative",
           }}
         >
-          {/* <Box
+          <Box
             sx={{
               position: "absolute",
               bottom: 0,
@@ -185,7 +189,7 @@ const HomePage = () => {
                 sx={{ color: "white", alignItems: "flex-start" }}
               />
             </Box>
-          </Box> */}
+          </Box>
 
           <Grid item xs={12} sx={{ mt: 25, mb: { md: 25, xs: 10 } }}>
             <Typography variant="h6" component="div">
@@ -233,7 +237,7 @@ const HomePage = () => {
             // overflow: "hidden",
           }}
         >
-          {/* <Box
+          <Box
             sx={{
               display: isLg ? "none" : undefined,
               position: "absolute",
@@ -283,7 +287,7 @@ const HomePage = () => {
                 }
               }
             `}</style>
-          </Box> */}
+          </Box>
           <Grid item sm={12} md={6} sx={{ mb: 5 }}>
             <Typography
               variant="hb3"
@@ -297,7 +301,7 @@ const HomePage = () => {
               sx={{
                 marginY: 3,
                 marginBottom: 4,
-                textAlign: "justify",
+                // textAlign: "justify",
                 fontSize: { xs: "14px", md: "16px" },
               }}
             >
@@ -397,7 +401,7 @@ const HomePage = () => {
               image={Frame2}
               component="img"
               alt="background"
-              loading="lazy"
+              loading="eager"
             />
             <Button
               variant="contained"
@@ -415,25 +419,26 @@ const HomePage = () => {
         <Grid
           container
           spacing={3}
-          sx={{ color: "white", my: 3, position: "relative", mb: 5 }}
+          sx={{ color: "white", mt: 3, position: "relative" }}
         >
-          {/* <Box
+          <Box
             sx={{
               display: isLg ? "none" : undefined,
               position: "absolute",
               top: 6,
               left: -50,
               width: "100%",
-              height: "105%",
-              // backgroundColor: "red",
+              height: "100.4%",
+              backgroundColor: theme.palette.primary.main,
               overflow: "hidden",
               borderTopLeftRadius: 10,
+              borderBottomLeftRadius: 10,
               zIndex: -1,
               "&::before": {
                 content: "''",
                 position: "absolute",
                 zIndex: -100,
-                top: "-50%",
+                top: "-0%",
                 left: "-50%",
                 width: "200%",
                 height: "300%",
@@ -448,12 +453,13 @@ const HomePage = () => {
                 content: "''",
                 position: "absolute",
                 zIndex: -2,
-                top: "4px",
+                bottom: "4px",
                 left: "4px",
                 width: "100% ",
-                height: "100% ",
+                height: "99.5% ",
                 background: "black",
                 borderTopLeftRadius: 10,
+                borderBottomLeftRadius: 10,
               },
             }}
           >
@@ -467,7 +473,7 @@ const HomePage = () => {
                 }
               }
             `}</style>
-          </Box> */}
+          </Box>
           <CardMedia
             image={ProductFamily}
             component="img"
@@ -484,7 +490,7 @@ const HomePage = () => {
               sx={{
                 marginY: 3,
                 marginBottom: 4,
-                textAlign: "justify",
+                // textAlign: "justify",
                 fontSize: { xs: "14px", md: "16px" },
               }}
             >
@@ -493,7 +499,7 @@ const HomePage = () => {
               qualified and trained personnel. <br /> <br />
               V-Marc 3 Core Flat Cables are used by quality conscious electrical
               contractors and recommended by leading consultants, Builders for
-              projects, domestic, industrial & agricultural use
+              projects, domestic, industrial & agricultural use.
             </Typography>
           </Grid>
           <Grid
@@ -589,6 +595,190 @@ const HomePage = () => {
               </Grid>
             </Box>
           </Grid>
+        </Grid>
+        <Grid
+          container
+          spacing={3}
+          sx={{ color: "white", mt: 1, position: "relative", mb: 5 }}
+        >
+          <Box
+            sx={{
+              display: isLg ? "none" : undefined,
+              position: "absolute",
+              top: 0,
+              right: -50,
+              width: "100%",
+              height: "110%",
+              backgroundColor: theme.palette.primary.main,
+              overflow: "hidden",
+              borderTopRightRadius: 10,
+              zIndex: -1,
+              "&::before": {
+                content: "''",
+                position: "absolute",
+                zIndex: -100,
+                top: "0",
+                right: "-50%",
+                width: "200%",
+                height: "300%",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "50% 50% ",
+                backgroundPosition: "0 0, 100% 0, 100% 100%, 0 100%",
+                backgroundImage:
+                  "linear-gradient(#9747FF, #FF6B00), linear-gradient(#05FF00, #1E4705), linear-gradient(#1D4EFF, #0085FF), linear-gradient(#9B49F6, #BD00FF), linear-gradient(#FF0000, #FF7F50), linear-gradient(#FFFF00, #9ACD32), linear-gradient(#00FF00, #32CD32), linear-gradient(#00FFFF, #4682B4)",
+                animation: "rotate 4s linear infinite",
+              },
+              "&::after": {
+                content: "''",
+                position: "absolute",
+                zIndex: -2,
+                top: "4px",
+                right: "4px",
+                width: "100% ",
+                height: "100% ",
+                background: "black",
+                borderTopRightRadius: 10,
+              },
+            }}
+          >
+            <style jsx>{`
+              @keyframes rotate {
+                0% {
+                  transform: rotate(369deg);
+                }
+                100% {
+                  transform: rotate(0deg);
+                }
+              }
+            `}</style>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "center",
+              mt: 5,
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="hb4" component="div">
+              Launching Soon
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              justifyContent: "space-between",
+              my: 5,
+            }}
+          >
+            <Grid
+              item
+              xs={12}
+              md={3}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                sx={{
+                  background:
+                    "linear-gradient(180deg, rgba(252, 252, 252, 0.1) 0%, rgba(255, 255, 255, 0) 100%)",
+                  width: "100px",
+                  p: 8,
+                }}
+              >
+                <CardMedia
+                  image={CommingSoon1}
+                  component="img"
+                  alt="background"
+                  loading="lazy"
+                />
+              </Box>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={3}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                sx={{
+                  background:
+                    "linear-gradient(180deg, rgba(252, 252, 252,  0.1) 0%, rgba(255, 255, 255, 0) 100%)",
+                  width: "100px",
+                  p: 5,
+                }}
+              >
+                <CardMedia
+                  image={CommingSoon2}
+                  component="img"
+                  alt="background"
+                  loading="lazy"
+                />
+              </Box>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={3}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                sx={{
+                  background:
+                    "linear-gradient(180deg, rgba(252, 252, 252,  0.1) 0%, rgba(255, 255, 255, 0) 100%)",
+                  width: "100px",
+                  p: 5,
+                }}
+              >
+                <CardMedia
+                  image={CommingSoon3}
+                  component="img"
+                  alt="background"
+                  loading="lazy"
+                />
+              </Box>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={3}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                sx={{
+                  background:
+                    "linear-gradient(180deg, rgba(252, 252, 252,  0.1) 0%, rgba(255, 255, 255, 0) 100%)",
+                  width: "100px",
+                  p: 5,
+                }}
+              >
+                <CardMedia
+                  image={CommingSoon3}
+                  component="img"
+                  alt="background"
+                  loading="lazy"
+                />
+              </Box>
+            </Grid>
+          </Box>
         </Grid>
       </Container>
     </div>
